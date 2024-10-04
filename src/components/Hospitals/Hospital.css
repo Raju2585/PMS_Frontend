@@ -22,6 +22,57 @@
 input[type="text"] {
   width: 300px; /* Fixed width for search input */
 }
+ 
+.custom-card:hover {
+
+  transform: scale(1.05);
+
+}
+ 
+/* Image container styling */
+
+.custom-card-img-container {
+
+  height: 150px; /* Fixed height for uniformity */
+
+  overflow: hidden;
+
+}
+ 
+.custom-card-img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover; /* Maintain aspect ratio */
+
+}
+ 
+/* Card body styling */
+
+.card-body {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Horizontally center elements */
+  justify-content: center; /* Vertically center elements */
+  text-align: center; /* Center text alignment */
+  padding: 20px;
+}
+ 
+/* Card title styling */
+
+.card-title {
+
+  font-size: 1.25rem;
+
+  font-weight: bold;
+
+  color: #007bff; /* Bootstrap primary color */
+
+}
+ 
+/* Button styling */
 
 .btn {
   margin-left: 10px; /* Space between input and button */
@@ -82,9 +133,45 @@ input[type="text"] {
 }
 
 /* Responsive styling */
+.backgroundimg{
+  background: linear-gradient(to right, lightblue, lightpink);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh; /* Full viewport height, adjust as needed */
+  width: 100%;
+  position: relative;
+
+  
+
+}
 @media (max-width: 768px) {
   .col-md-4 {
       flex: 0 0 100%;
       max-width: 100%; /* Stacking on smaller screens */
   }
+
 }
+
+.body{
+ 
+  background: linear-gradient(
+   rgba(0, 0, 0, 0.5), 
+   rgba(0, 0, 0, 0.5)  
+ ), url('/public/dashboardbg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width:100vw;
+  height:100vh;
+  color: white;  
+ text-align: center; 
+ display: flex;
+ flex-direction: column;
+ justify-content: center; 
+ align-items:flex-start;
+ padding: 0 2rem; 
+
+}
+
+ 

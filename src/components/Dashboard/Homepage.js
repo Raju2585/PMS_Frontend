@@ -49,8 +49,12 @@ function Homepage() {
       <div class="container-fluid">
       <Consultation/>      
       </div>
+
       <Faqs/>
       <Footer/>
+
+    
+
      
 
     </div>
@@ -235,5 +239,6 @@ function Step({ image, title, description }) {
     </Row>
   );
 }
+
 
 export default Homepage;

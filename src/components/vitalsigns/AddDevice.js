@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 import api from '../../apiHandler/api';
 const AddDevice = ({ onClose, show ,onDeviceAdded }) => {
   const [email, setEmail] = useState('');
@@ -25,7 +25,8 @@ const AddDevice = ({ onClose, show ,onDeviceAdded }) => {
       if (response.data.isSuccess) {
         // Handle success, e.g., show success message or redirect
         //alert('Device added successfully!');
-        console.log(response.data);
+        console.log(response.data.vitalSign);
+        localStorage.setItem("vitalsigns",JSON.stringify(response.data.vitalSign));
         onDeviceAdded();
         onClose(); // Close modal
         navigate("/root/vitalsigns",{ state: { vitals: response.data.vitalSign } });

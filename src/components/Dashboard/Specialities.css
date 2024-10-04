@@ -47,14 +47,16 @@
     padding:4px;
 }
 
-.react-multiple-carousel__arrow--left {
+  .react-multiple-carousel__arrow--left {
+    position:absolute;
     left: 0px;
-}
-
-
-.react-multiple-carousel__arrow--right {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .react-multiple-carousel__arrow--right {
+    position:absolute;
     right: 10px;
-}
-.Specialist-consult{
-    margin:0px;
-}
+    top: 50%;
+    transform: translateY(-50%);
+  }

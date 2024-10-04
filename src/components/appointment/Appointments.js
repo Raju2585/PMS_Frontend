@@ -7,8 +7,13 @@ import { Link, useNavigate } from 'react-router-dom';
 const Appointments = () => {
     const [appointments, setAppointments] = useState([]);
     const [error, setError] = useState(null);
+<<<<<<< HEAD
     const navigate = useNavigate();
 
+=======
+    const navigate=useNavigate();
+    
+>>>>>>> 8e074d6 (pmd)
     const fetchAppointments = async () => {
         try {
             const patientInfo = JSON.parse(localStorage.getItem('patientInfo'));

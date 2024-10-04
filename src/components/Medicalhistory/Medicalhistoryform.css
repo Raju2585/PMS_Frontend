@@ -1,168 +1,57 @@
-.medical-history-container {
-  max-width: 1000px;
-  margin-top: 100px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
- 
- 
-/* Style specific input fields by ID */
-#first,
-#lastName,
-#gender,
-#height,
-#weight,
-#dob,
-#email,
-#appointmentDate,
-#appointmentTime,
-#reason,
-#alcoholConsumption,
-#exerciseFrequency,
-#medication {
-  background-color: transparent; /* Keep background transparent */
-  /* Blue border */
-  border-radius: 4px; /* Rounded corners */
-  padding: 8px; /* Padding for better spacing */
-  font-size: 16px; /* Font size for better readability */
-  color: white; /* Text color */
-}
- 
-/* Change focus outline color */
-#first:focus,
-#lastName:focus,
-#gender:focus,
-#height:focus,
-#weight:focus,
-#exerciseFrequency:focus,
-#alcoholConsumption:focus,
-#dob:focus,
-#email:focus,
-#appointmentDate:focus,
-#reason:focus,
-#medication:focus {
-  outline: none; /* Remove default outline */
- 
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Optional shadow */
-}
- 
-.form-container {
-  width: 100%; /* Set width to 100% to fill the container */
-  max-width: 1200px; /* Set a max width if you want to limit it */
-  margin: 0 auto; /* Center the container */
-  padding: 20px;
- 
-}
-label {
-  color: white; /* Set label text color to white */
-}
- 
-.input-spacing {
-  margin-right: 0.5rem; /* Adjust this value to increase horizontal spacing */
-}
- 
-.mh-container{
-  background-image:
-  linear-gradient(
-    rgba(0, 0, 0, 0.5), /* Lighter black */
-    rgba(0, 0, 0, 0.5)  /* Lighter black */
-  );
- 
-}
- 
 .background {
-  background-image:
-  linear-gradient(
-    rgba(50, 50, 50, 0.3), /* Lighter black */
-    rgba(50, 50, 50, 0.3)  /* Lighter black */
-  ),
-    url(../Assests/pexels-tima-miroshnichenko-5407246.jpg); /* Ensure the path is correct */
-  background-size: cover; /* Cover the entire area */
-  background-repeat: no-repeat; /* Prevent repetition */
-  background-position: center; /* Center the image */
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
-  position: absolute; /* Positioning to cover the page */
-  top: 60px; /* Move down from the top (adjust as needed) */
-  left: 0; /* Align to left */
-  z-index: -1; /* Send to the back if necessary */
-  display: flex;
-  justify-content: flex-start; /* Align to the left */
-  align-items: flex-start;
-  padding-top: 100px;
-}
- 
- 
-.form-container h1 {
-  color: #007bff; /* Header color */
-  text-align: center;
-  margin-bottom: 30px;
-  margin-top:20px;
+  background-image: 
+    linear-gradient(
+      rgba(50, 50, 50, 0.3),
+      rgba(50, 50, 50, 0.3)
+    ),
+    url(../Assests/pexels-tima-miroshnichenko-5407246.jpg);
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  height: 100vh; 
+  width: 100vw; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  position: relative; 
 }
 
-.form-control2 {
-  background-color: transparent; /* Set background to transparent */
-  border: 1px solid #ccc; /* Border color */
-  color: white; /* Text color */
+.medical-history-container {
+  max-width: 600px; /* Limit the max width */
+  width: 100%; /* Make it responsive */
+  padding: 20px; 
+  background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+  border: 2px solid #007bff; /* Border color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for better visibility */
+  margin-top: 0; /* Remove any top margin from the container */
+  display: flex; /* Flexbox to center content */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Shadow for better visibility */
 }
- 
-.form-control:focus {
-  background-color: transparent; /* Keep transparent on focus */
-  border-color: #007bff; /* Change border color on focus */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+
+.form-container {
+  width: 100%; /* Full width */
+  padding: 20px;
 }
- 
+
+.form-container h1 {
+  color: #007bff; /* Header color */
+  text-align: center; 
+  margin: 0;
+}
+
+/* Reduce the bottom margin for rows */
 .row {
-  margin-bottom: 20px; /* Spacing between rows */
+  margin-bottom: 15px; 
 }
- 
-.alert {
-  margin-top: 20px; /* Spacing above alerts */
+
+.appointment-form {
+  color: #333; /* Adjust text color for better readability */
 }
- 
+
 .button-container {
   display: flex;
   justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically if needed */
-  margin-top: 20px; /* Optional: Add some spacing above */
-  width: 100%; /* Ensure it takes the full width */
+  margin-top: 20px; 
 }
- 
-.btn-primary {
-  background-color: #007bff; /* Button background color */
-  border: none; /* Remove border */
-  padding: 10px 20px; /* Button padding */
-  border-radius: 5px; /* Rounded corners */
-  font-weight: bold; /* Bold text */
-}
- 
-.btn-primary:hover {
-  background-color: #0056b3; /* Darker background on hover */
- 
-}
- 
-.checkbox-group,
-.radio-group {
-  margin-top: 10px; /* Top margin for checkbox/radio groups */
-}
- 
-.checkbox-group label,
-.radio-group label {
-  margin-right: 15px; /* Spacing between labels */
-}
-.select-white {
-  color: white; /* Set text color to white */
-  background-color: transparent; /* Optional: set background to transparent */
-  border: 1px solid white; /* Optional: add border for better visibility */
-}
- 
-.select-white option {
-  color: black; /* Set option text color to black (or any other color) */
-  background-color: white; /* Set option background color */
-}
-.appointment-form{
-  color:white;
-}
-

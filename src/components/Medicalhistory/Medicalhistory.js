@@ -180,16 +180,15 @@ const PatientForm = () => {
     console.log(formData.appointmentTime);
   };
   const handleSlotClick = (time) => {
-    setSelectedSlot(time); // Update the selected slot
+    setSelectedSlot(time); 
     setFormData({ ...formData, appointmentTime: time });
   };
   return (
+    <>
     <div className='background mb-5'>
- 
-   
-    <div className="medical-history-container container mt-5 mb-1 mh-container">
+  <div className="medical-history-container container mt-5 mb-1 mh-container">
       <div className="form-container medical-form ">
-        <h1 className="text-center mb-4">MAKE AN APPOINTMENT</h1>
+        <h1 className="text-center">MAKE AN APPOINTMENT</h1>
         <form onSubmit={handleSubmit}>
           {/* Appointment Fields */}
           <div className="row mb-6">
@@ -464,6 +463,7 @@ const PatientForm = () => {
       </div>
     </div>
   </div>
+  </>
   );
 };
  

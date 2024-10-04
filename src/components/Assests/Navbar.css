@@ -186,7 +186,7 @@
   top: 68px; /* Position it below the navbar */
   left: 0; /* Align to the left */
   width: 100vw; /* Full width of the viewport */
-  height: 350px;
+  height: 355px;
   z-index: 1000; /* Ensure it is above other elements */
 }
 
@@ -241,5 +241,36 @@
   text-decoration: none;
   display: block;
 }
+.dropdown-content a:hover {
+ 
+  border:1px solid #1A72A0;
+  border-radius:10px;
+  padding:2%;
+  margin:5%;
+ 
+}
+.fa-user{
+  color:#1A72A0;
+}
+.dropbtn:hover{
+  border:1px solid #1A72A0;
+  border-radius:10px;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+  position: absolute;
+  top:45px;
+ 
+}
 
+.cards-container {
+  display: flex; /* Use flexbox to align cards horizontally */
+  justify-content: start;
+  align-items: center; /* Space around cards */
+ /* Allow wrapping */
+}
+.card {
+  margin: 10px; /* Add margin around each card */
+  width: 50%; /* Control the width of each card */
 
+}

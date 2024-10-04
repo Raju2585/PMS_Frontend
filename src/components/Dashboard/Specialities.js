@@ -24,11 +24,12 @@ const specialists = [
 ];
 
 
+
  
 const responsive = {
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 4,
+        items:5,
         slidesToSlide: 1
     },
     tablet: {
@@ -60,8 +61,9 @@ const Specialities = () => {
                 customTransition="all .5"
                 transitionDuration={500}
                 containerClass="carousel-container"
-                removeArrowOnDeviceType={["tablet", "mobile"]}
+                //removeArrowOnDeviceType={["tablet", "mobile"]}
                 itemClass="carousel-item-padding-0"
+                
             >
                 {specialists.map((specialist, idx) => (
                     <div key={idx} className='Specilist-main-card' >
@@ -71,7 +73,7 @@ const Specialities = () => {
                                 <Link to='/root/specialist' state={{ specialization: specialist.name }} className="btn btn-info">
                                     {specialist.name}
                                 </Link>
-                               <div  className="reason-text"><p>{specialist.Reasons}</p></div> 
+                               <div className="reason-text"><p>{specialist.Reasons}</p></div> 
                             </div>
                         </div>
                     </div>

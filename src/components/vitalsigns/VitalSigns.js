@@ -10,7 +10,9 @@ import { useLocation } from 'react-router-dom';
 
 const VitalSigns = () => {
   const location = useLocation();
-  const vitals = location.state?.vitals;
+  const vitals = location.state?.vitals || JSON.parse(localStorage.getItem("vitalsigns"));
+
+
 
   if (!vitals) {
     return <p>No vital signs data available.</p>;

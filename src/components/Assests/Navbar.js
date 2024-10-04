@@ -9,7 +9,8 @@ import Login from '../login/Login';
 import RegisterPatient from '../register patient/RegisterPatient';
 import { useNotification } from '../Notifications/NotificationContext';
 import serviceImg from "./doctor-consultation.jpg";
-
+import vs from "./vs.webp";
+import AddDevice from '../vitalsigns/AddDevice';
 function Navbar() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -17,7 +18,10 @@ function Navbar() {
   const navigate = useNavigate();
   const sidebarRef = useRef(null);
   const { notificationCount } = useNotification();
-  
+  const [deviceAdded, setDeviceAdded] = useState(false);
+  const [showAddDeviceModal, setShowAddDeviceModal] = useState(false);
+  const handleShowAddDevice = () => setShowAddDeviceModal(true);
+  const handleCloseAddDevice = () => setShowAddDeviceModal(false);
   const handleCloseLogin = () => setShowLoginModal(false);
   const handleShowLogin = () => setShowLoginModal(true);
   const handleCloseRegister = () => setShowRegisterModal(false);
@@ -25,10 +29,11 @@ function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem('authToken');
     localStorage.removeItem('patientInfo');
+    localStorage.removeItem("vitalsigns");
     setSidebarOpen(false);
     navigate('/root');
   };
-
+  const vitals =localStorage.getItem("vitalsigns")!=null? JSON.parse(localStorage.getItem("vitalsigns")):null;
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   
   const patientInfo = JSON.parse(localStorage.getItem('patientInfo')) || null;
@@ -71,7 +76,10 @@ function Navbar() {
     }
     return color;
   }
-
+  const onDeviceAdded = () => {
+    setDeviceAdded(true);
+    handleCloseAddDevice();
+  };
   return (
     <header className='navbar-header'>
       <nav className="navbar navbar-expand-lg custom-navbar fixed-top">
@@ -85,15 +93,23 @@ function Navbar() {
 
           <div className="navbar-links d-flex align-items-stretch mt-3">
             <div className="services-container">
-              <Link to='/root/hospitals' className="nav-link services">Our Services</Link>
+              <Link className="nav-link services">Our Services</Link>
               <div className='subnav-content'>
-                <div className='container'>
-                  <Link style={{textDecoration:"none"}}>
-                    <div className="card p-2 d-flex justify-content-center" style={{ width: "17%", height: "%" }}>
-                      <div className="card-body">
-                        <p className="card-text fw-bold text-center" >Doctor Consultation</p>
+                <div className='container cards-container'>
+                    <Link style={{textDecoration:"none"}}>
+                      <div className="card p-2 d-flex justify-content-center" style={{ width: "60%", height: "25%" }}>
+                        <div className="card-body">
+                          <p className="card-text fw-bold text-center" >Doctor Consultation</p>
+                        </div>
+                        <img src={serviceImg} style={{borderRadius:"9px",height:"200px"}} className="card-img-bottom" alt="..." />
                       </div>
-                      <img src={serviceImg} style={{borderRadius:"9px",height:"200px"}} className="card-img-bottom" alt="..." />
+                    </Link>
+                  <Link style={{textDecoration:"none"}}>
+                    <div className="card p-2 d-flex justify-content-center" style={{ width: "60%", height: "25%" }}>
+                      <div className="card-body">
+                        <p className="card-text fw-bold text-center" >Monitor Vitalsigns</p>
+                      </div>
+                      <img src={vs} style={{borderRadius:"9px",height:"200px"}} className="card-img-bottom" alt="..." />
                     </div>
                   </Link>
                 </div>
@@ -104,10 +120,15 @@ function Navbar() {
           </div>
           {localStorage.getItem("authToken") != null?(
               <div className='dropdown' >
-                <span className='dropbtn' style={{ margin: 'auto', cursor: "pointer", fontSize: "20px" }}><i class="fa-solid fa-user" styyle={{color:'navy'}}></i>Hi,{getInitials(patientInfo.patientName)}</span>
+                <span className='dropbtn' style={{ margin: 'auto', cursor: "pointer", fontSize: "20px" }}><i class="fa-solid fa-user" ></i> Hi,{getInitials(patientInfo.patientName)}</span>
                 <div className='dropdown-content'>
                   <Link to='/root/hospitals'>Consult a Doctor</Link>
                   <Link to='appointments'>My Appointments</Link>
+                  {vitals!=null ? (
+                      <Link to="/root/vitalsigns" state={vitals} >Vital Signs</Link> // Show Vital Signs if device added
+                    ) : (
+                      <Link onClick={handleShowAddDevice}>Add Device</Link>// Show Add Device otherwise
+                  )}
                   <Link  onClick={handleLogout}>LogOut</Link>
                 </div>
               </div>):
@@ -117,7 +138,7 @@ function Navbar() {
             }
         </div>
       </nav>
-
+      <AddDevice onClose={handleCloseAddDevice} show={showAddDeviceModal} onDeviceAdded={onDeviceAdded}/>
       {/* Sidebar */}
       <div className={`sidebar${sidebarOpen ? ' open' : ''}`} ref={sidebarRef}>
         <button className="close-btn" onClick={toggleSidebar}>×</button>

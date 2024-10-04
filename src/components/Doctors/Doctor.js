@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import StarRatings from 'react-star-ratings'
 import './Doctor.css';
-
+ 
 function Doctor() {
     const [doctors, setDoctors] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ function Doctor() {
     useEffect(() => {
         handleApi();
     }, []);
-
+ 
    
     function handleApi() {
         api.get('/Doctor/Get/Doctor/HospitalId/'+hospital.hospitalId)
@@ -45,7 +45,7 @@ function Doctor() {
         }
     }
     return (
-        <>
+        <div className='baimage'>
             <div style={{margin:"100px"}}>
                 {loading && <div>Loading...</div>}
                 {error && <div>Error: {error.message}</div>}
@@ -83,8 +83,9 @@ function Doctor() {
                     !loading && <div>No doctors available.</div>
                 )}
             </div>
-        </>
+        </div>
     );
 }
-
+ 
 export default Doctor;
+ 
