@@ -102,3 +102,18 @@
     }
   }
   
+  /* Styling for the status filter dropdown */
+.filter-select {
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .filter-select:hover {
+    background-color: #e9ecef;
+  }
+  

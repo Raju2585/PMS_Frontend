@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import api from '../../apiHandler/api';
 import '../css/Appointments.css';
 import { Link, useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 const Appointments = () => {
     const [appointments, setAppointments] = useState([]);
     const [error, setError] = useState(null);
@@ -34,10 +34,6 @@ const Appointments = () => {
     const getStatusText = (appointment) => {
         const currentDate = new Date();
 
-        if (new Date(appointment.appointmentDate) < currentDate) {
-            return 'Completed';
-        }
-
         switch (appointment.statusId) {
             case 1:
                 return 'Booked';
@@ -45,7 +41,7 @@ const Appointments = () => {
                 return 'Cancelled';
             case -1:
                 return 'Pending';
-            case -2:
+            case 2:
                 return 'Completed';
             default:
                 return 'Unknown'; 
@@ -66,7 +62,7 @@ const Appointments = () => {
                 return 'bg-danger text-white'; 
             case -1:
                 return 'bg-warning text-dark'; 
-            case -2:
+            case 2:
                 return 'bg-info text-white';
             default:
                 return 'bg-secondary text-white'; 
