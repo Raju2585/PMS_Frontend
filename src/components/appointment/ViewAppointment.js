@@ -40,7 +40,7 @@ const ViewAppointment = () => {
         const currentDate = new Date();
 
         if (new Date(appointment.appointmentDate) < currentDate) {
-            const token = localStorage.getItem('recAuthToken');
+            const token = localStorage.getItem('authToken');
             if (new Date(appointment.appointmentDate) < currentDate) {
                 axios.put(`https://localhost:44376/api/Appointment/UpdateStatus/${appointment.appointmentId}?statusId=${2}`, null, {
                     headers: { Authorization: `Bearer ${token}` },

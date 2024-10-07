@@ -11,7 +11,7 @@ const Receptionist = () => {
   const [activeComponent, setActiveComponent] = useState('default');
   const navigate = useNavigate();
   const receptionistInfo = JSON.parse(localStorage.getItem('receptionistInfo')) || null;
-
+ 
   const hospitalName = receptionistInfo?.hospitalName || 'Unknown Hospital';
   const receptionistName = receptionistInfo?.receptionistName || 'Unknown Receptionist';
   const [appointments, setAppointments] = useState([]);
@@ -22,7 +22,7 @@ const Receptionist = () => {
   const [filterDate, setFilterDate] = useState('');
   const [filterPatientName, setFilterPatientName] = useState('');
   const [filterDoctorName, setFilterDoctorName] = useState('');
-  const [filterStatus, setFilterStatus] = useState(''); 
+  const [filterStatus, setFilterStatus] = useState('');
   const handleLogout = () => {
     localStorage.removeItem('recAuthToken');
     localStorage.removeItem('receptionistInfo');
@@ -97,11 +97,11 @@ const Receptionist = () => {
   useEffect(() => {
     fetchDoctors();
   }, []);
-
+ 
   //overview
   const renderDefaultCards = () => (
     <div>
-      
+     
       <div className="default-cards d-flex justify-content-between">
         <div className="card-custom flex-fill mx-2">
           <div className="card-header-custom">
@@ -138,14 +138,14 @@ const Receptionist = () => {
   {
     setActiveComponent("AddDoctor");
   }
-  
-
+ 
+ 
   return (
     <div className="receptionist-container">
       {/* Navbar */}
       <nav className="navbar-custom sticky-top">
-      
-      
+     
+     
         <div className="container d-flex justify-content-between align-items-center">
         <div className="d-flex ">
             <Link to="/receptionist">
@@ -156,14 +156,14 @@ const Receptionist = () => {
           <ul className='d-flex justify-content-between align-items-center receiptonist-navbar'>
           <li><a className="navbar-brand" href="#">
              {hospitalName} Hospital</a></li>
-          
+         
           <li><span className="navbar-text"><i class="fa-solid fa-user" ></i>{receptionistName}</span></li>
           <li><i onClick={handleLogout}  class="fa-solid fa-power-off"></i></li>
           </ul>
         </div>
-
+ 
       </nav>
-
+ 
       <div className="main-content d-flex">
         {/* Sidebar */}
         <div className="sidebar-custom">
@@ -177,7 +177,7 @@ const Receptionist = () => {
            
           </ul>
         </div>
-
+ 
         {/* Main Component Area */}
         <div className="overview-section d-flex flex-column" style={{paddingRight:"80px"}}>
           <div className='bg-light'>{activeComponent === 'default' &&renderDefaultCards()}</div>
@@ -211,7 +211,7 @@ const Receptionist = () => {
     </div>
   );
 };
-
+ 
 const AddDoctor = ({ onAddSuccess }) => {
   const [doctorName, setDoctorName] = useState('');
   const [email, setEmail] = useState('');
@@ -222,14 +222,14 @@ const AddDoctor = ({ onAddSuccess }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-
+ 
     const hospitalId = JSON.parse(localStorage.getItem('receptionistInfo'))?.hospitalId;
-
+ 
     const formData = new FormData();
     formData.append('Doctorname', doctorName);
     formData.append('email', email);
@@ -239,7 +239,7 @@ const AddDoctor = ({ onAddSuccess }) => {
     formData.append('consultationFee', consultationFee);
     formData.append('hospitalId', hospitalId);
     if (file) formData.append('file', file);
-
+ 
     try {
       const token = localStorage.getItem('recAuthToken');
       await axios.post('https://localhost:44376/api/Doctor/Add/Doctors', formData, {
@@ -253,7 +253,7 @@ const AddDoctor = ({ onAddSuccess }) => {
       setLoading(false);
     }
   };
-
+ 
   return (
     <div className="add-doctor-form">
       <h2>Add New Doctor</h2>
@@ -279,7 +279,7 @@ const AddDoctor = ({ onAddSuccess }) => {
           <label>Consultation Fee:</label>
           <input type="number" className="form-control" value={consultationFee} onChange={(e) => setConsultationFee(e.target.value)} required />
         </div>
-
+ 
         <div className="form-group">
           <label>Upload Image:</label>
           <input type="file" className="form-control" onChange={(e) => setFile(e.target.files[0])} />
@@ -291,11 +291,11 @@ const AddDoctor = ({ onAddSuccess }) => {
     </div>
   );
 };
-
-
+ 
+ 
 function renderTable(){
-  
+ 
 }
-
-
+ 
+ 
 export default Receptionist;
