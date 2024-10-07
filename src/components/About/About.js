@@ -23,6 +23,7 @@ const AboutUs = () => {
             <img src={patientimg} alt="Mission" className="img-fluid rounded" style={{ width: '100%', height: 'auto' }} />
           </div>
           <div className="text-container" style={{ flex: '1', maxWidth: '50%', paddingLeft: '20px' }}>
+            <h1>Our Mission</h1>
             <p className="text-center">
               At PMS,We prioritize patient-centric care, ensuring the well-being and comfort of patients through personalized and timely health insights. Our commitment to innovation and excellence drives us to continuously improve and integrate cutting-edge technology in our services
             </p>
@@ -32,10 +33,11 @@ const AboutUs = () => {
 
 
         <section className="mb-5">
-          <h2>Our Story</h2>
+         
           <br />
           <div className="row align-items-center">
             <div className="col-md-6">
+            <h1>Our Story</h1>
               <p>
                 Our journey began with a shared vision: to transform patient care through innovative monitoring solutions. Inspired by personal experiences
                 and the desire to make a difference, we set out to create a system that not only captures vital health data but
@@ -59,22 +61,22 @@ const AboutUs = () => {
             <div className="col-md-3">
               <h3>Santhiraju</h3>
               <img src={raju} alt="Team Member" className="img-fluid rounded mb-2 passport-image" />
-              <p>Founder & CEO: [Brief Bio]</p>
+              <p>Founder & CEO</p>
             </div>
             <div className="col-md-3">
               <h3>Pavani</h3>
               <img src={pavani} alt="Team Member" className="img-fluid rounded mb-2 passport-image" />
-              <p>Chief Technology Officer: [Brief Bio]</p>
+              <p>Chief Technology Officer</p>
             </div>
             <div className="col-md-3">
               <h3>Shruthi</h3>
               <img src={shruthi} alt="Team Member" className="img-fluid rounded mb-2 passport-image" />
-              <p>Founder & CEO: [Brief Bio]</p>
+              <p>Founder & CEO</p>
             </div>
             <div className="col-md-3">
               <h3>Suchithra</h3>
               <img src={suchi} alt="Team Member" className="img-fluid rounded mb-2 passport-image" />
-              <p>Founder & CEO: [Brief Bio]</p>
+              <p>Founder & CEO</p>
             </div>
           </div>
         </section>
