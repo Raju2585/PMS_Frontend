@@ -28,8 +28,9 @@ import Login from './components/login/Login';
 import { NotificationProvider } from './components/Notifications/NotificationContext';
 import Navbar from './components/Assests/Navbar';
 import EmailSender from './components/password/EmailSender';
-
+import Chat from './components/chatbot/chatbot';
 import ViewAppointment from './components/appointment/ViewAppointment';
+import About from './components/About/About';
 
 
 const App = () => {
@@ -51,6 +52,7 @@ const App = () => {
       setNotificationCount={setNotificationCount}  />,
       children: [
         { element: <Homepage />, index: true },
+        
         {
           element: <PrivateRoute />,
           children: [
@@ -118,6 +120,9 @@ const App = () => {
           path:"/root/healthform",
           element:<HealthForm/>
 
+        },{
+          path:"/root/aboutus",
+          element:<About/>
         }
       ],
     },    
@@ -125,6 +130,10 @@ const App = () => {
       path: '/receptionist',
       element: <Receptionist />,
     },
+    {
+      path:'/root/chatbot',
+      element:<Chat/>
+    }
     
   ]);
 
@@ -135,6 +144,7 @@ const App = () => {
       <RouterProvider router={router} />
     </div>
     </NotificationProvider>
+    
   
   );
 };

@@ -90,6 +90,7 @@ const PatientForm = () => {
         exerciseFrequency: formData.exerciseFrequency,
         alcoholConsumption: formData.alcoholConsumption,
         smoke: formData.smoke,
+      
       };
  
       // First API call: Submit medical history
@@ -119,6 +120,7 @@ const PatientForm = () => {
         appointmentDate: `${formData.appointmentDate}T${formData.appointmentTime}`,
         statusId: -1,
         reason: formData.reason,
+        userName:patientInfo.patientName
       };
  
       // Second API call: Schedule appointment

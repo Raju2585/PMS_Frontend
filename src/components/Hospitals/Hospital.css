@@ -25,7 +25,13 @@
   margin-bottom: 50px; 
 }
 
+.custom-card {
 
+  overflow: hidden;
+  width: 100%;
+
+  transition: transform 0.2s;
+}
 input[type="text"] {
   width: 300px; 
 }
@@ -203,5 +209,3 @@ input[type="text"] {
  padding: 0 2rem; 
 
 }
-
- 

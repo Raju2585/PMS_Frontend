@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../receptionist/receptionist.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate,Link } from 'react-router-dom';
-import StarRatings from 'react-star-ratings'
+import { useNavigate,Link, NavLink } from 'react-router-dom';
+import logo from "../Assests/newlogo.png";
+import AllAppointments from './AllAppointments';
+import Tasks from './Tasks';
+import AllDoctors from './AllDoctors';
 const Receptionist = () => {
   const [activeComponent, setActiveComponent] = useState('default');
   const navigate = useNavigate();
@@ -16,6 +19,10 @@ const Receptionist = () => {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [filterDate, setFilterDate] = useState('');
+  const [filterPatientName, setFilterPatientName] = useState('');
+  const [filterDoctorName, setFilterDoctorName] = useState('');
+  const [filterStatus, setFilterStatus] = useState(''); 
   const handleLogout = () => {
     localStorage.removeItem('recAuthToken');
     localStorage.removeItem('receptionistInfo');
@@ -26,11 +33,11 @@ const Receptionist = () => {
     const fetchAppointments = async () => {
       const token = localStorage.getItem('recAuthToken');
       const hospitalName = JSON.parse(localStorage.getItem('receptionistInfo'))?.hospitalName;
-      const statusId=2;
       try {
-        const response = await axios.get(`https://localhost:44376/api/Appointment/GetHospitalName/${hospitalName}/${statusId}`, {
+        const response = await axios.get(`https://localhost:44376/api/Appointment/GetAllAppointments/${hospitalName}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log(response.data);
         setAppointments(response.data || []);
       } catch (error) {
         console.error('Error fetching appointments:', error);
@@ -77,7 +84,7 @@ const Receptionist = () => {
     const hospitalId = JSON.parse(localStorage.getItem('receptionistInfo'))?.hospitalId;
     try {
       const response = await axios.get(`https://localhost:44376/api/Doctor/Get/Doctor/HospitalId/${hospitalId}`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization:` Bearer ${token}` },
       });
       console.log(response.data);
       setDoctors(response.data || []);
@@ -90,11 +97,11 @@ const Receptionist = () => {
   useEffect(() => {
     fetchDoctors();
   }, []);
+
+  //overview
   const renderDefaultCards = () => (
     <div>
-      <div>
-        <h1>Overview</h1>
-      </div>
+      
       <div className="default-cards d-flex justify-content-between">
         <div className="card-custom flex-fill mx-2">
           <div className="card-header-custom">
@@ -131,44 +138,72 @@ const Receptionist = () => {
   {
     setActiveComponent("AddDoctor");
   }
+  
 
   return (
     <div className="receptionist-container">
       {/* Navbar */}
       <nav className="navbar-custom sticky-top">
+      
+      
         <div className="container d-flex justify-content-between align-items-center">
-          <a className="navbar-brand" href="#">
-            Hospital Name: {hospitalName}
-          </a>
-          <span className="navbar-text">Receptionist: {receptionistName}</span>
-          <button onClick={handleLogout} className="btn btn-primary">Logout</button>
+        <div className="d-flex ">
+            <Link to="/receptionist">
+              <img src={logo} className="custom-logo" alt="Logo" />
+            </Link>
+            <span className="custom-title-logo fw-bold">PMS</span>
+          </div>
+          <ul className='d-flex justify-content-between align-items-center receiptonist-navbar'>
+          <li><a className="navbar-brand" href="#">
+             {hospitalName} Hospital</a></li>
+          
+          <li><span className="navbar-text"><i class="fa-solid fa-user" ></i>{receptionistName}</span></li>
+          <li><i onClick={handleLogout}  class="fa-solid fa-power-off"></i></li>
+          </ul>
         </div>
+
       </nav>
 
       <div className="main-content d-flex">
         {/* Sidebar */}
         <div className="sidebar-custom">
-          <h2 className="sidebar-heading">Overview</h2>
-          <ul className="sidebar-links">
-            <li><Link onClick={() => setActiveComponent('appointments')}>Appointment History</Link></li>
-            <li><Link onClick={() => setActiveComponent('tasks')}>Tasks</Link></li>
-            <li><Link onClick={() => setActiveComponent('doctors')}>Doctors</Link></li>
+         
+         
+          <ul className="sidebar-links d-block ">
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('overview')}><i class="fa fa-list-alt" aria-hidden="true"></i> Overview</NavLink></li>
+            <li><NavLink to="#"  className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('doctors')}><i class="fas fa-user-md"></i> Doctors</NavLink></li>
+            <li><NavLink to="#"  className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('appointments')}><i class="fa fa-calendar" aria-hidden="true"></i> Appointment History</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('tasks')}><i class="fas fa-tasks"></i> Tasks</NavLink></li>
+           
           </ul>
         </div>
 
         {/* Main Component Area */}
-        <div className="overview-section d-flex flex-column">
+        <div className="overview-section d-flex flex-column" style={{paddingRight:"80px"}}>
           <div className='bg-light'>{activeComponent === 'default' &&renderDefaultCards()}</div>
-          <div>
-            {activeComponent === 'appointments' && <Appointments appointments={appointments}/>}
+          <div  className='container'>
+            {activeComponent === 'overview' && renderDefaultCards()}
           </div>
-          <div>
+          <div   className='container'>
+            {activeComponent === 'appointments' && <AllAppointments
+            appointments={appointments}
+            filterDate={filterDate}
+            setFilterDate={setFilterDate}
+            filterPatientName={filterPatientName}
+            setFilterPatientName={setFilterPatientName}
+            filterDoctorName={filterDoctorName}
+            setFilterDoctorName={setFilterDoctorName}
+            filterStatus={filterStatus}
+            setFilterStatus={setFilterStatus}
+          />}
+          </div>
+          <div   className='container' style={{width:"70%"}}>
             {activeComponent === 'tasks' && <Tasks tasks={tasks} confirmAppointment={confirmAppointment}/>}
           </div>
-          <div>
-            {activeComponent === 'doctors' && <Doctors doctors={doctors} error={error} loading={loading} handleAddDoctorClick={handleAddDoctorClick} onAddDoctorSuccess={handleAddDoctorSuccess} />}
+          <div   className='container'>
+            {activeComponent === 'doctors' && <AllDoctors doctors={doctors} error={error} loading={loading} handleAddDoctorClick={handleAddDoctorClick} onAddDoctorSuccess={handleAddDoctorSuccess} />}
           </div>
-          <div>
+          <div   className='container'>
             {activeComponent==='AddDoctor' && <AddDoctor onAddSuccess={handleAddDoctorSuccess}></AddDoctor>}
           </div>
         </div>
@@ -177,129 +212,6 @@ const Receptionist = () => {
   );
 };
 
-// Appointments Component
-const Appointments = ({appointments}) => {
-
-  return (
-    <div>
-      <h2 className="text-center mb-4">Appointment List</h2>
-      <div className="row">
-        {appointments.length === 0 ? (
-          <p className="text-center">No appointments available.</p>
-        ) : (
-          appointments.map((appointment) => (
-            <div className="col-12 mb-3" key={appointment.appointmentId}>
-              <div className="card-custom">
-                <div className="card-body-custom d-flex justify-content-between align-items-start">
-                  <div>
-                    <h5 className="card-title">{appointment.patientName}</h5>
-                    <p className="card-text">
-                      <strong>Doctor:</strong> {appointment.doctorName} <br />
-                      <strong>Problem:</strong> {appointment.reason} <br />
-                      <strong>Gender:</strong> {appointment.gender} <br />
-                      <strong>Email:</strong> {appointment.email} <br />
-                      <strong>Appointment Time:</strong> {appointment.appointmentDate}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))
-        )}
-      </div>
-    </div>
-  );
-};
-
-// Tasks Component
-const Tasks = ({tasks,confirmAppointment}) => {
-
- 
-  return (
-    <div>
-      <h2 className="text-center mb-4">Appointment List</h2>
-      <div className="row">
-        {tasks.length === 0 ? (
-          <p className="text-center">No appointments available.</p>
-        ) : (
-          tasks.map((task) => (
-            <div className="col-12 mb-3" key={task.appointmentId}>
-              <div className="card-custom">
-                <div className="card-body-custom d-flex justify-content-between align-items-start">
-                  <div>
-                    <h5 className="card-title">{task.patientName}</h5>
-                    <p className="card-text">
-                      <strong>Doctor:</strong> {task.doctorName} <br />
-                      <strong>Problem:</strong> {task.reason} <br />
-                      <strong>Gender:</strong> {task.gender} <br />
-                      <strong>Email:</strong> {task.email} <br />
-                      <strong>Appointment Time:</strong> {task.appointmentDate}
-                    </p>
-                  </div>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => confirmAppointment(task.appointmentId)}
-                  >
-                    Confirm
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))
-        )}
-      </div>
-    </div>
-  );
-};
-
-// Doctors Component
-const Doctors = ({ doctors, loading, error, handleAddDoctorClick}) => {
-  const getRandomRating = () => Math.floor(Math.random() * 5) + 1;
-  
-  return (
-    <div className="doc-container" >
-      <div className='d-flex mb-4 justify-content-between'>
-        <h2>Doctors List</h2>
-        <button className='btn btn-primary' onClick={handleAddDoctorClick}>Add Doctor</button>
-      </div>
-      {loading && <div>Loading...</div>}
-      {error && <div>Error: {error.message}</div>}
-      {doctors.length > 0 ? (
-        doctors.map(doctor => {
-          const rating = getRandomRating();
-          return (
-            <div className="doc-card d-flex justify-content-between" key={doctor.doctorId}>
-      <div className="doc-image">
-        <img
-          src={`data:image/jpeg;base64,${doctor.image}`}
-          alt={doctor.name}
-        />
-      </div>
-      <div className="doc-details">
-        <h4>{doctor.name}</h4>
-        <strong>{doctor.doctorName}</strong>
-        <p>Specialization: {doctor.specialization}</p>
-        <p>Consultation Fee: Rs.{doctor.consultationFee}</p>
-        <p>Email: {doctor.doctorEmail}</p>
-        <StarRatings
-          rating={getRandomRating()}
-          starRatedColor="gold"
-          numberOfStars={5}
-          name='rating'
-          starDimension="20px"
-          starSpacing="2px"
-        />
-      </div>
-    </div>
-
-          );
-        })
-      ) : (
-        !loading && <div>No doctors available.</div>
-      )}
-    </div>
-  );
-};
 const AddDoctor = ({ onAddSuccess }) => {
   const [doctorName, setDoctorName] = useState('');
   const [email, setEmail] = useState('');
@@ -379,5 +291,11 @@ const AddDoctor = ({ onAddSuccess }) => {
     </div>
   );
 };
+
+
+function renderTable(){
+  
+}
+
 
 export default Receptionist;
