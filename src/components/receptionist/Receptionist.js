@@ -287,7 +287,9 @@ const AddDoctor = ({ onAddSuccess }) => {
         <button type="submit" className="btn btn-primary" disabled={loading}>
           {loading ? 'Adding...' : 'Add Doctor'}
         </button>
+
       </form>
+     
     </div>
   );
 };
