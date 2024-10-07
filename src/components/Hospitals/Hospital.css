@@ -32,7 +32,7 @@
   transition: transform 0.2s;
 }
 #search input[type="text"] {
-  width: 300px;
+  width: 300px; 
 }
  
 .search-container {
@@ -80,8 +80,8 @@
  
 }
  
- 
- 
+
+
 .hospitalDtl {
   display: flex;
   flex-direction: column;
@@ -91,10 +91,10 @@
   padding: 20px;
 }
  
- 
- 
+
+
 .hospitalName {
- 
+
   font-size: 1.25rem;
  
   font-weight: bold;
@@ -103,9 +103,9 @@
  
 }
  
- 
+
 .viewBtn {
-  margin-left: 10px;
+  margin-left: 10px; 
 }
  
  
@@ -137,13 +137,12 @@
   height: 100%;
   object-fit: cover;
 }
- 
- 
+
+
 .hospitalDtl {
   padding: 15px;
   text-align: left;
 }
- 
 .hospitalName {
   font-size: 1.25rem;
   font-weight: bold;
@@ -156,7 +155,6 @@
   border: none;
   transition: background-color 0.3s;
 }
- 
 .viewBtn:hover {
   background-color: #0056b3; /* Darker shade on hover */
 }
@@ -179,6 +177,5 @@
       flex: 0 0 100%;
       max-width: 100%; /* Stacking on smaller screens */
   }
- 
+
 }
- 
