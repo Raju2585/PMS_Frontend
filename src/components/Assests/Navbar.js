@@ -11,6 +11,7 @@ import { useNotification } from '../Notifications/NotificationContext';
 import serviceImg from "./doctor-consultation.jpg";
 import vs from "./vs.webp";
 import AddDevice from '../vitalsigns/AddDevice';
+
 function Navbar() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -115,8 +116,9 @@ function Navbar() {
                 </div>
               </div>
             </div>
-            <Link to="appointments" className="nav-link">About Us</Link>
+            <Link to="/root/aboutus" className="nav-link">About Us</Link>
             <Link to="appointments" className="nav-link">More</Link>
+            <Link to="/root/chatbot" className="nav-link">Chatbot</Link>
           </div>
           {localStorage.getItem("authToken") != null?(
               <div className='dropdown' >

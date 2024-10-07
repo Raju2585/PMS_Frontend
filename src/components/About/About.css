@@ -1,0 +1,26 @@
+
+
+.passport-image {
+    width: 150px; /* Set the width you prefer */
+    height: 200px; /* Set the height to maintain a 3:4 aspect ratio */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 5px; /* Optional: rounded corners */
+  }
+  .applyimage{
+    background: linear-gradient(to right, lightblue, lightpink);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh; /* Full viewport height, adjust as needed */
+    width: 100%;
+    position: relative;
+        
+
+  }
+
+  .small-image {
+    max-width: 50%; /* Adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  
