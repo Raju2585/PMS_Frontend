@@ -32,7 +32,7 @@
 
   transition: transform 0.2s;
 }
-input[type="text"] {
+#search input[type="text"] {
   width: 300px; 
 }
 
@@ -47,12 +47,6 @@ input[type="text"] {
   width: 250px; 
   margin-right: 10px; 
 }
-
-.d-flex {
-  display: flex; 
-  align-items: center; 
-}
-
 .btn-container {
   height: 38px; 
   display: flex;
@@ -89,7 +83,7 @@ input[type="text"] {
  
 
 
-.card-body {
+.hospitalDtl {
   display: flex;
   flex-direction: column; 
   align-items: center; 
@@ -100,7 +94,7 @@ input[type="text"] {
  
 
 
-.card-title {
+.hospitalName {
 
   font-size: 1.25rem;
 
@@ -111,7 +105,7 @@ input[type="text"] {
 }
  
 
-.btn {
+.viewBtn {
   margin-left: 10px; 
 }
 
@@ -146,25 +140,25 @@ input[type="text"] {
 }
 
 
-.card-body {
+.hospitalDtl {
   padding: 15px;
   text-align: left;
 }
 
-.card-title {
+.hospitalName {
   font-size: 1.25rem;
   font-weight: bold;
   color: #007bff;
 }
 
 /* Button styling */
-.btn-primary {
+.viewBtn {
   background-color: #007bff;
   border: none;
   transition: background-color 0.3s;
 }
 
-.btn-primary:hover {
+.viewBtn:hover {
   background-color: #0056b3; /* Darker shade on hover */
 }
 
@@ -186,26 +180,5 @@ input[type="text"] {
       flex: 0 0 100%;
       max-width: 100%; /* Stacking on smaller screens */
   }
-
-}
-
-.body{
- 
-  background: linear-gradient(
-   rgba(0, 0, 0, 0.5), 
-   rgba(0, 0, 0, 0.5)  
- ), url('/public/dashboardbg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width:100vw;
-  height:100vh;
-  color: white;  
- text-align: center; 
- display: flex;
- flex-direction: column;
- justify-content: center; 
- align-items:flex-start;
- padding: 0 2rem; 
 
 }
