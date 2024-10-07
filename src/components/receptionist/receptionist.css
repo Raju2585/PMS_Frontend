@@ -156,3 +156,90 @@
 .doc-details {
   flex: 2;
 }
+.receiptonist-navbar{
+  list-style-type: none;
+}
+.receiptonist-navbar li{
+  margin-left:5%;
+}
+.navbar-custom {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ 
+}
+
+
+.receiptonist-navbar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.receiptonist-navbar li {
+  margin-left: 30px;
+}
+
+.navbar-custom .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 18px;
+  color: #000;
+}
+
+.navbar-text {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: #000;
+}
+
+.navbar-text i {
+  margin-right: 8px;
+}
+
+.navbar-text span {
+  margin-left: 8px;
+}
+.sidebar-custom{
+  background-color:black;
+  opacity: 0.5;
+  color:white;
+} 
+
+
+.btn i {
+  margin-right: 8px;
+}
+sidebar-links li:hover{
+  border:2px solid blue;
+}
+sidebar-links li {
+  list-style-type: none;
+  margin: 20px 0;
+  padding: 10px 0;
+  margin-bottom:10px;
+}
+
+
+.inactive-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+
+.active-link {
+  color: white; 
+  font-weight: bold; 
+  text-decoration: none; 
+}
+
+
+.inactive-link:hover {
+  color: #06248f;
+  text-decoration: underline; 
+}

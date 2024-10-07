@@ -1,0 +1,119 @@
+/* Styling for the header */
+.appointments-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the Reset Filter button */
+  .reset-filter-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .reset-filter-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Styling for the No Appointments message */
+  .no-appointments-text {
+    text-align: center;
+    font-size: 16px;
+    color: #6c757d;
+    padding: 20px;
+  }
+  
+  /* Styling for the appointments table */
+  .appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .appointments-table-header {
+    position: relative;
+    min-width: 200px;
+    vertical-align: middle;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+  }
+  
+  /* Styling for the filter icon */
+  .filter-icon {
+    cursor: pointer;
+    margin-left: 10px;
+    color: #007bff;
+  }
+  
+  .filter-icon:hover {
+    color: #0056b3;
+  }
+  
+/* Styling for the filter input fields */
+.filter-input {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    z-index: 10;
+    display: none; /* Hide inputs by default */
+  }
+  
+  /* Display the input when active */
+  .filter-input.active {
+    display: block;
+  }
+  
+  
+  /* Style for table rows */
+  .appointments-table tbody tr {
+    background-color: #fff;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .appointments-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .appointments-table td {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    vertical-align: middle;
+  }
+  
+  /* Add padding to the header cells */
+  .appointments-table th {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  /* Responsive table adjustments */
+  @media (max-width: 768px) {
+    .appointments-table th, .appointments-table td {
+      padding: 8px;
+    }
+  }
+  
+  /* Styling for the status filter dropdown */
+.filter-select {
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .filter-select:hover {
+    background-color: #e9ecef;
+  }
+  

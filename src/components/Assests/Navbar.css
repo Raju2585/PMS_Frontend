@@ -269,7 +269,7 @@
   align-items: center; /* Space around cards */
  /* Allow wrapping */
 }
-.card {
+.service-card {
   margin: 10px; /* Add margin around each card */
   width: 50%; /* Control the width of each card */
 

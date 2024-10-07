@@ -11,6 +11,7 @@ import { useNotification } from '../Notifications/NotificationContext';
 import serviceImg from "./doctor-consultation.jpg";
 import vs from "./vs.webp";
 import AddDevice from '../vitalsigns/AddDevice';
+
 function Navbar() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -97,7 +98,7 @@ function Navbar() {
               <div className='subnav-content'>
                 <div className='container cards-container'>
                     <Link style={{textDecoration:"none"}}>
-                      <div className="card p-2 d-flex justify-content-center" style={{ width: "60%", height: "25%" }}>
+                      <div className="card service-card p-2 d-flex justify-content-center" style={{ width: "60%", height: "25%" }}>
                         <div className="card-body">
                           <p className="card-text fw-bold text-center" >Doctor Consultation</p>
                         </div>
@@ -105,7 +106,7 @@ function Navbar() {
                       </div>
                     </Link>
                   <Link style={{textDecoration:"none"}}>
-                    <div className="card p-2 d-flex justify-content-center" style={{ width: "60%", height: "25%" }}>
+                    <div className="card service-card p-2 d-flex justify-content-center" style={{ width: "60%", height: "25%" }}>
                       <div className="card-body">
                         <p className="card-text fw-bold text-center" >Monitor Vitalsigns</p>
                       </div>
@@ -115,8 +116,9 @@ function Navbar() {
                 </div>
               </div>
             </div>
-            <Link to="appointments" className="nav-link">About Us</Link>
+            <Link to="/root/aboutus" className="nav-link">About Us</Link>
             <Link to="appointments" className="nav-link">More</Link>
+            <Link to="/root/chatbot" className="nav-link">Chatbot</Link>
           </div>
           {localStorage.getItem("authToken") != null?(
               <div className='dropdown' >
