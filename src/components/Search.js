@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation,Link } from 'react-router-dom';
 import axios from 'axios'; 
-import search from '../components/Search.js';
+import './css/Search.css'
+
 const HospitalSearchComponent = () => {
   const [hospitals, setHospitals] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -33,7 +34,8 @@ const HospitalSearchComponent = () => {
   }, [location]);
   
   return (
-    <div className="container mt-5 search-component">
+    <div className='search-component'>
+    <div className="container container-search mt-5">
       <h1 className="mb-4">Hospitals</h1>
       {loading && <div>Loading...</div>}
       {error && <div>Error: {error.message}</div>}
@@ -72,6 +74,7 @@ const HospitalSearchComponent = () => {
           <p>No hospitals found.</p>
         )}
       </div>
+    </div>
     </div>
   );
 };
