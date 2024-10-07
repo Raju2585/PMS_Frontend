@@ -117,7 +117,12 @@ function Navbar() {
               </div>
             </div>
             <Link to="/root/aboutus" className="nav-link">About Us</Link>
+
+            <Link to="appointments" className="nav-link">More</Link>
+            {/* <Link to="/root/chatbot" className="nav-link">Chatbot</Link> */}
+
             <Link to="/root/chatbot" className="nav-link">Chatbot</Link>
+
           </div>
           {localStorage.getItem("authToken") != null?(
               <div className='dropdown' >

@@ -1,0 +1,91 @@
+*{
+    margin:0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.vital-container{
+    margin-top:10%;
+   
+
+}
+.overview-image{
+    width:400px;
+    height:400px;
+    border-radius: 50%;
+    margin-top:15%;
+
+}
+.icon-shape{
+    border:2px solid black;
+    border-radius:10px;
+    padding:10%;
+    margin:2%;
+    background-color: bisque;
+}
+.icon-text{
+    margin:5%;
+    text-align:center;
+}
+.icon-textment{
+    text-align: center;
+    
+}
+.icon{
+border-bottom:1px solid black;
+}
+.fa-heart{
+    font-size: 30px;
+}
+.vital-banner{
+    width:100%;
+}
+
+.vital-layout {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; 
+    margin-top: 20px;
+}
+
+.single-card {
+   position:relative;
+   margin:10%;
+}
+
+.multiple-cards {
+    flex: 3; 
+    display: flex;
+    flex-direction: column; 
+    width:100%;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between; 
+    margin-bottom: 20px; 
+   
+}
+
+.card {
+    flex: 1; 
+    margin-right: 10px; 
+}
+
+.card:last-child {
+    margin-right: 0; 
+}
+
+.vitalImage{
+    border-radius: 50%;
+    width:100%;
+    margin-top:0%;
+}
+
+.card .custom-vital{
+    width:298px;
+}
+
+
+
+
