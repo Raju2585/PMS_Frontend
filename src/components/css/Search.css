@@ -1,0 +1,16 @@
+.search-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items at the start */
+    min-height: 100vh; /* Minimum viewport height */
+    background: linear-gradient(to right, lightblue, lightpink);
+    padding: 20px; /* Optional: Add some padding */
+    border-radius: 8px; /* Optional: Add rounded corners */
+  }
+  
+  .container-search {
+    flex: 1; /* Allow the container to grow and fill the available space */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+  }
+  

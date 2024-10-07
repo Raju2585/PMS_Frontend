@@ -1,39 +1,71 @@
-/* Background styling */
-.backgroundimg {
+
+.hospital-background {
+  min-height: 100vh; /* Ensure it takes at least the full viewport height */
   background: linear-gradient(to right, lightblue, lightpink);
-  height: 100%; /* Full height */
-  display: flex; /* Use flexbox for centering */
-  flex-direction: column; /* Column layout */
+  position: relative; /* Allows any absolute positioning inside */
+  display: flex; /* Allows inner content to align correctly */
+  flex-direction: column; /* Ensures children stack vertically */
 }
 
-/* Container styling */
-.container {
-  padding: 20px;
-  flex: 1; /* Allow the container to take remaining space */
-}
 
-/* Search bar styling */
-.search-bar {
+.backgroundimg {
+  min-height: 100vh; 
+  width: 100%;
   display: flex;
-  justify-content: center; /* Center the search bar */
-  margin-bottom: 20px; /* Space between search bar and title */
+  flex-direction: column;
+  justify-content: center;
 }
+
+
+.list-hospitals {
+  flex: 1; /* Allows it to take remaining space */
+  padding-top: 20px; /* Adjust as necessary */
+  text-align: center;
+  color: #333;
+  margin-bottom: 50px; 
+}
+
 
 input[type="text"] {
-  width: 300px; /* Fixed width for search input */
+  width: 300px; 
 }
+
+.search-container {
+  margin-top: 100px; /* Move it down from the nav bar */
+  display: flex; /* Ensures the input and button are aligned */
+  justify-content: center; /* Center align */
+}
+
+
+.search-bar {
+  width: 250px; 
+  margin-right: 10px; 
+}
+
+.d-flex {
+  display: flex; 
+  align-items: center; 
+}
+
+.btn-container {
+  height: 38px; 
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
+
+
  
 .custom-card:hover {
 
   transform: scale(1.05);
 
 }
- 
-/* Image container styling */
+
 
 .custom-card-img-container {
 
-  height: 150px; /* Fixed height for uniformity */
+  height: 150px; 
 
   overflow: hidden;
 
@@ -45,22 +77,22 @@ input[type="text"] {
 
   height: 100%;
 
-  object-fit: cover; /* Maintain aspect ratio */
+  object-fit: cover; 
 
 }
  
-/* Card body styling */
+
 
 .card-body {
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Horizontally center elements */
-  justify-content: center; /* Vertically center elements */
-  text-align: center; /* Center text alignment */
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
   padding: 20px;
 }
  
-/* Card title styling */
+
 
 .card-title {
 
@@ -68,24 +100,23 @@ input[type="text"] {
 
   font-weight: bold;
 
-  color: #007bff; /* Bootstrap primary color */
+  color: #007bff; 
 
 }
  
-/* Button styling */
 
 .btn {
-  margin-left: 10px; /* Space between input and button */
+  margin-left: 10px; 
 }
 
-/* Heading styling */
+
 .list-hospitals {
   text-align: center;
   color: #333;
-  margin-bottom: 50px; /* Reduced margin for spacing */
+  margin-bottom: 50px; 
 }
 
-/* Card styling */
+
 .custom-card {
   overflow: hidden;
   width: 100%;
@@ -96,29 +127,28 @@ input[type="text"] {
   transform: scale(1.05);
 }
 
-/* Image container styling */
+
 .custom-card-img-container {
-  height: 150px; /* Fixed height for uniformity */
+  height: 150px; 
   overflow: hidden;
 }
 
 .custom-card-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Maintain aspect ratio */
+  object-fit: cover; 
 }
 
-/* Card body styling */
+
 .card-body {
   padding: 15px;
   text-align: left;
 }
 
-/* Card title styling */
 .card-title {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #007bff; /* Bootstrap primary color */
+  color: #007bff;
 }
 
 /* Button styling */

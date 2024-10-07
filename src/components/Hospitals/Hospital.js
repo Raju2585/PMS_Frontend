@@ -39,28 +39,34 @@ const Hospital = () => {
   };
 
   return (
-    <div className="container mt-5 list-hospitals">
-      <div className='backgroundimg'>
-        <div className="d-flex justify-content-center mb-4">
-          <input 
-            type="text" 
-            id="search" 
-            className="form-control w-50" 
-            placeholder="Find hospital by location" 
-            value={location}
-            onChange={handleLocationChange}
-          />
-          <button 
-            className="btn btn-outline-secondary ms-2" 
-            type="button" 
-            onClick={handleSearch}
-          >
-            Search
-          </button>
+    <div className="hospital-background">
+      <div className="container list-hospitals">
+        <div className='container'>
+          <div className='row'>
+            <div className='col  col-4 d-flex justify-content-start'>
+              <h1 className=" text-center">Hospitals List</h1>
+            </div>
+            <div className="col col-8 search-container d-flex justify-content-end">
+              <input 
+                type="text" 
+                id="search" 
+                className="form-control search-bar w-50" 
+                placeholder="Find hospital by location" 
+                value={location}
+                onChange={handleLocationChange}
+              />
+              <button 
+                className="btn-container btn btn-success ms-1" 
+                type="button" 
+                onClick={handleSearch}
+              >
+                Search
+              </button>
+            </div>
+          </div>
         </div>
 
-        <h1 className="mb-4 text-center">Hospitals List</h1>
-        
+
         {loading && <div className="text-center">Loading...</div>}
         {error && <div className="alert alert-danger text-center">Error: {error.message}</div>}
         
@@ -99,5 +105,6 @@ const Hospital = () => {
     </div>
   );
 };
-
+ 
 export default Hospital;
+ 
