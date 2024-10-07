@@ -84,7 +84,7 @@ function Navbar() {
   return (
     <header className='navbar-header'>
       <nav className="navbar navbar-expand-lg custom-navbar fixed-top">
-        <div className="container-fluid d-flex justify-content-between align-items-center">
+        <div className="container-fluid d-flex justify-content-between align-items-strech">
           <div className="d-flex ">
             <Link to="/root">
               <img src={logo} className="custom-logo" alt="Logo" />
@@ -93,7 +93,7 @@ function Navbar() {
           </div>
 
           <div className="navbar-links d-flex align-items-stretch mt-3">
-            <div className="services-container">
+            <div className="services-contain">
               <Link className="nav-link services">Our Services</Link>
               <div className='subnav-content'>
                 <div className='container cards-container'>
@@ -117,12 +117,11 @@ function Navbar() {
               </div>
             </div>
             <Link to="/root/aboutus" className="nav-link">About Us</Link>
-            <Link to="appointments" className="nav-link">More</Link>
             <Link to="/root/chatbot" className="nav-link">Chatbot</Link>
           </div>
           {localStorage.getItem("authToken") != null?(
               <div className='dropdown' >
-                <span className='dropbtn' style={{ margin: 'auto', cursor: "pointer", fontSize: "20px" }}><i class="fa-solid fa-user" ></i> Hi,{getInitials(patientInfo.patientName)}</span>
+                <span className='dropbtn' style={{ margin: 'auto', cursor: "pointer", fontSize: "20px" }}><i class="fa-solid fa-user" ></i> {getInitials(patientInfo.patientName)}</span>
                 <div className='dropdown-content'>
                   <Link to='/root/hospitals'>Consult a Doctor</Link>
                   <Link to='appointments'>My Appointments</Link>

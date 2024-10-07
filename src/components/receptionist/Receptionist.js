@@ -19,7 +19,10 @@ const Receptionist = () => {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showCard, setShowCard] = useState(false);
+  const [filterDate, setFilterDate] = useState('');
+  const [filterPatientName, setFilterPatientName] = useState('');
+  const [filterDoctorName, setFilterDoctorName] = useState('');
+  const [filterStatus, setFilterStatus] = useState(''); 
   const handleLogout = () => {
     localStorage.removeItem('recAuthToken');
     localStorage.removeItem('receptionistInfo');
@@ -145,7 +148,7 @@ const Receptionist = () => {
       
         <div className="container d-flex justify-content-between align-items-center">
         <div className="d-flex ">
-            <Link to="/root">
+            <Link to="/receptionist">
               <img src={logo} className="custom-logo" alt="Logo" />
             </Link>
             <span className="custom-title-logo fw-bold">PMS</span>
@@ -167,30 +170,40 @@ const Receptionist = () => {
          
          
           <ul className="sidebar-links d-block ">
-            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('overview')}>Overview</NavLink></li>
-            <li><NavLink to="#"  className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('doctors')}>Doctors</NavLink></li>
-            <li><NavLink to="#"  className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('appointments')}>Appointment History</NavLink></li>
-            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('tasks')}>Tasks</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('overview')}><i class="fa fa-list-alt" aria-hidden="true"></i> Overview</NavLink></li>
+            <li><NavLink to="#"  className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('doctors')}><i class="fas fa-user-md"></i> Doctors</NavLink></li>
+            <li><NavLink to="#"  className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('appointments')}><i class="fa fa-calendar" aria-hidden="true"></i> Appointment History</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('tasks')}><i class="fas fa-tasks"></i> Tasks</NavLink></li>
            
           </ul>
         </div>
 
         {/* Main Component Area */}
-        <div className="overview-section d-flex flex-column">
+        <div className="overview-section d-flex flex-column" style={{paddingRight:"80px"}}>
           <div className='bg-light'>{activeComponent === 'default' &&renderDefaultCards()}</div>
-          <div>
+          <div  className='container'>
             {activeComponent === 'overview' && renderDefaultCards()}
           </div>
-          <div>
-            {activeComponent === 'appointments' && <AllAppointments appointments={appointments}/>}
+          <div   className='container'>
+            {activeComponent === 'appointments' && <AllAppointments
+            appointments={appointments}
+            filterDate={filterDate}
+            setFilterDate={setFilterDate}
+            filterPatientName={filterPatientName}
+            setFilterPatientName={setFilterPatientName}
+            filterDoctorName={filterDoctorName}
+            setFilterDoctorName={setFilterDoctorName}
+            filterStatus={filterStatus}
+            setFilterStatus={setFilterStatus}
+          />}
           </div>
-          <div>
+          <div   className='container' style={{width:"70%"}}>
             {activeComponent === 'tasks' && <Tasks tasks={tasks} confirmAppointment={confirmAppointment}/>}
           </div>
-          <div>
+          <div   className='container'>
             {activeComponent === 'doctors' && <AllDoctors doctors={doctors} error={error} loading={loading} handleAddDoctorClick={handleAddDoctorClick} onAddDoctorSuccess={handleAddDoctorSuccess} />}
           </div>
-          <div>
+          <div   className='container'>
             {activeComponent==='AddDoctor' && <AddDoctor onAddSuccess={handleAddDoctorSuccess}></AddDoctor>}
           </div>
         </div>

@@ -2,13 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FaFilter } from 'react-icons/fa';
 import './allAppointments.css';
 import axios from 'axios';
-
-const AllAppointments = ({ appointments }) => {
-  const [filteredAppointments, setFilteredAppointments] = useState(appointments);
-  const [filterDate, setFilterDate] = useState('');
-  const [filterPatientName, setFilterPatientName] = useState('');
-  const [filterDoctorName, setFilterDoctorName] = useState('');
-  const [filterStatus, setFilterStatus] = useState(''); // State for status filter
+const AllAppointments = ({ appointments, filterDate, setFilterDate, filterPatientName, setFilterPatientName, filterDoctorName, setFilterDoctorName, filterStatus, setFilterStatus }) => {
+  const [filteredAppointments, setFilteredAppointments] = useState(appointments);// State for status filter
 
   const [showDateFilter, setShowDateFilter] = useState(false);
   const [showPatientNameFilter, setShowPatientNameFilter] = useState(false);
@@ -62,7 +57,7 @@ const AllAppointments = ({ appointments }) => {
   const getStatusText = (appointment) => {
     const currentDate = new Date();
 
-    if (new Date(appointment.appointmentDate) < currentDate) {
+    if (new Date(appointment.appointmentDate) < currentDate && appointment.appointmentId!=2) {
         const token = localStorage.getItem('recAuthToken');
         if (new Date(appointment.appointmentDate) < currentDate) {
             const response= axios.put(`https://localhost:44376/api/Appointment/UpdateStatus/${appointment.appointmentId}?statusId=${2}`, null, {
@@ -110,10 +105,10 @@ const AllAppointments = ({ appointments }) => {
   };
 
   return (
-    <div>
+    <div className='container'>
       <div className='d-flex justify-content-between align-items-center'>
         <h2 className="appointments-header">Appointments</h2>
-        <button className="reset-filter-btn" onClick={resetFilters}>Reset Filter</button>
+        <button className="reset-filter-btn" onClick={resetFilters}><i class="fa-light fa-filter-circle-xmark"></i> Reset Filter</button>
       </div>
 
       {filteredAppointments.length === 0 ? (
@@ -184,7 +179,6 @@ const AllAppointments = ({ appointments }) => {
                 </select>
               </th>
 
-              <th className="appointments-table-header">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -197,7 +191,6 @@ const AllAppointments = ({ appointments }) => {
                 <td className={getStatusClass(appointment)}>
                   {getStatusText(appointment)}
                 </td>
-                <td></td>
               </tr>
             ))}
           </tbody>
