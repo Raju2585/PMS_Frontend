@@ -13,6 +13,7 @@ function Doctor() {
     const location = useLocation();
     const navigate = useNavigate();
     const hospital = location.state || null;
+    const[ratings,setRatings]=useState([]);
 
     useEffect(() => {
         handleApi();
@@ -22,6 +23,11 @@ function Doctor() {
         api.get('/Doctor/Get/All/Doctors')
             .then(response => {
                 setDoctors(response.data);
+
+                 
+               const generatedRatings=response.data.map(()=>getRandomRating());
+               setRatings(generatedRatings);
+                
             })
             .catch(error => {
                 setErrors(error);
@@ -89,8 +95,9 @@ function Doctor() {
                 {loading && <div>Loading...</div>}
                 {error && <div>Error: {error.message}</div>}
                 {filteredDoctors.length > 0 ? (
-                    filteredDoctors.map(doctor => {
-                        const rating = getRandomRating();
+                    filteredDoctors.map((doctor,index) => {
+                        const rating = ratings[index] !== undefined ? ratings[index] : 0;
+                        
                         return (
                             <div className="Doctors d-flex justify-content-between" key={doctor.doctorName}>
                                 <div className="child Doctor-image">
