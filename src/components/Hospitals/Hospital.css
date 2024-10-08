@@ -156,16 +156,16 @@
 }
 
 .viewBtn:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #0056b3; 
 }
  
-/* Responsive styling */
+
 .backgroundimg{
   background: linear-gradient(to right, lightblue, lightpink);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  min-height: 100vh; /* Full viewport height, adjust as needed */
+  min-height: 100vh; 
   width: 100%;
   position: relative;
  
@@ -175,7 +175,7 @@
 @media (max-width: 768px) {
   .col-md-4 {
       flex: 0 0 100%;
-      max-width: 100%; /* Stacking on smaller screens */
+      max-width: 100%; 
   }
  
 }
