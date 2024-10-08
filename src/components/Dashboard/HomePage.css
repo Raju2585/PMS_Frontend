@@ -36,21 +36,21 @@
     margin-bottom: 3%;
 }
 .custom-card {
-    width: 18rem; 
+    width: 18rem;
     margin: 1rem;
     text-align: center;
 }
 .backimg {
     background-image: url('../Assests/navphoto.webp');
     background-position: 90% center; /* Moves the image 85% from the left, creating space on the right */
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     background-position: right;
-    
+   
     /* Prevents the image from repeating */
     background-size: 60%; /* Sets the size of the image to 35% of the container */
     height: 100vh; /* Full viewport height */
     width: 100%; /* Full width */
-
+ 
 }
 .linear {
     background-image: linear-gradient(
@@ -60,19 +60,19 @@
     height: 70vh; /* Set height to cover full viewport height */
     display: flex;  /* Use flexbox if needed */
 }
-
+ 
 .back {
     display: flex; /* Use Flexbox to align children */
     height: 100%; /* Ensure the back div takes the full height of the linear gradient */
     width: 100%;  /* Full width */
 }
-
+ 
 .back{
     display: flex;
     height: 10px;
     margin: 10%;
     margin-top: -100px;
-    
+   
 }
 .btn-custom-long {
     width: 300px; /* Set desired width */
@@ -86,25 +86,25 @@
     font-size: 2rem; /* Optional: Adjust the font size as needed */
     margin-top: 0%;
 }
-
-
+ 
+ 
 .btn-custom-long:hover {
     background-color: #ff3c00; /* Darker shade on hover */
 }
-
-
+ 
+ 
 .btn-custom-orange {
     background-color: #e95e0e; /* Custom orange color */
     color: white; /* Text color */
     border: none; /* Remove border */
 }
-
+ 
 .btn-custom-orange:hover {
     background-color: #d85f0f; /* Darker shade on hover */
 }
-
+ 
 .textto{
-    
+   
     display: flex;
    justify-content: center;
     margin-left: 100px;
@@ -116,17 +116,17 @@
 .rem{
     font-size: 2rem;
 }
-
-
+ 
+ 
 .problem-img {
-    width: 100%; 
-    height: 12rem; 
-    object-fit: cover; 
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
 }
-
-
-
-
+ 
+ 
+ 
+ 
 .Home-content{
     margin:5%;
 }
@@ -139,11 +139,11 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
-  
+ 
   .stat-item {
     position: relative;
   }
-  
+ 
   /* Thicker dotted vertical lines between sections except the last one */
   .stat-item:not(:last-child)::after {
     content: '';
@@ -154,38 +154,34 @@
     width: 2px; /* Adjusting the width to make the line thicker */
     border-right: 2px dotted #3d3838; /* Thicker dotted line with increased border size */
   }
-  
+ 
   /* Optional: Add some margin for better spacing between text and dotted lines */
   .stat-item h2, .stat-item p {
     margin-right: 20px;
   }
   /* Custom styles for the accordion */
 .custom-accordion-button {
-    
+   
     color: black; /* Set text color to black */
     border: none; /* Remove border */
     background-color: white;
   }
-  
+ 
   .custom-accordion-button:focus {
     box-shadow: none; /* Remove focus shadow */
     background-color: white;
   }
-  
+ 
   .accordion-button.collapsed {
     color: black; /* Keep text black when collapsed */
     background-color: white;
   }
-  
+ 
   .accordion-item {
     margin-bottom: 10px;
    } /* Add margin between accordion items */
-
+ 
   #pmsWork{
     color: rgb(31, 157, 207);;
   }
-    
-  
-  
-
-
+   

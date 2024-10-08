@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../apiHandler/api';
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useNavigate } from 'react-router-dom';
-import './Hospital.css'; 
-
+import './Hospital.css';
+ 
 const Hospital = () => {
   const [hospitals, setHospitals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [location, setLocation] = useState('');
-
+ 
   const navigate = useNavigate();
-
+ 
   useEffect(() => {
     fetchHospitals();
   }, []);
-
+ 
   const fetchHospitals = async () => {
     try {
       const response = await api.get('/Hospital/Get/All/Hospitals');
@@ -28,16 +28,16 @@ const Hospital = () => {
       setLoading(false);
     }
   };
-
+ 
   const handleSearch = () => {
     navigate(`/root/locationSearch?location=${location.toLowerCase()}`);
     setLocation('');
   };
-
+ 
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
   };
-
+ 
   return (
     <div className="hospital-background">
       <div className="container list-hospitals">
@@ -55,9 +55,9 @@ const Hospital = () => {
                 value={location}
                 onChange={handleLocationChange}
               />
-              <button 
-                className="btn-container btn btn-success ms-1" 
-                type="button" 
+              <button
+                className="btn-container btn btn-success ms-1"
+                type="button"
                 onClick={handleSearch}
               >
                 Search
@@ -65,11 +65,11 @@ const Hospital = () => {
             </div>
           </div>
         </div>
-
-
+ 
+ 
         {loading && <div className="text-center">Loading...</div>}
         {error && <div className="alert alert-danger text-center">Error: {error.message}</div>}
-        
+       
         <div className="row">
           {hospitals.map(hospital => (
             <div key={hospital.hospitalId} className="col-md-4 mb-4">
@@ -107,4 +107,3 @@ const Hospital = () => {
 };
  
 export default Hospital;
- 

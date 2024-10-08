@@ -3,7 +3,7 @@ import { Carousel } from 'react-bootstrap';
 import './HomePage.css';
 import { Container, Accordion, Card } from 'react-bootstrap'; // Ensure these components are imported correctly
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+ 
 import { Row, Col } from 'react-bootstrap';
 import handIcon from './hand.svg';
 import smilyIcon from './smily.svg';
@@ -21,9 +21,9 @@ import Faqs from '../Faq';
 import { Link } from 'react-router-dom';
 import Footer from "../Footer";
 function Homepage() {
-
+ 
   const [index, setIndex] = useState(0);
-
+ 
   const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
   };
@@ -38,6 +38,7 @@ function Homepage() {
               <span className='rem'>Top Doctors Online</span>
             </h1><br />
             <Link to="/root/doctors"><button className="btn btn-warning btn-custom-long">Consult Now</button></Link>
+            {/* <Link to="/root/doctors"><button className="btn btn-warning btn-custom-long">Consult Now</button></Link> */}
           </div>
           <div className='backimg'>
           </div>
@@ -49,19 +50,19 @@ function Homepage() {
       <div class="container-fluid">
       <Consultation/>      
       </div>
-
+ 
       <Faqs/>
       <Footer/>
-
-    
-
+ 
+   
+ 
      
-
+ 
     </div>
   );
-
+ 
 }
-
+ 
 const StatsComponent = () => {
   return (
     <div className="stat-container text-center py-5">
@@ -84,14 +85,14 @@ const StatsComponent = () => {
     </div>
   );
 };
-
+ 
 function OnlineConsultation() {
   return (
     <div className="mt-5"> {/* Use mt-5 to add top margin */}
       <div className="p-4" style={{ background: 'linear-gradient(to bottom, #ffcccb, #add8e6)' }}>
         <div className='container'>
           {/* Left-aligned header with blue color */}
-          <div className="row mb-4">       
+          <div className="row mb-4">      
             <h1 className="text-left text-primary">Why Book Appointment On PMS</h1>        
           </div>
           <div className="row">
@@ -108,7 +109,7 @@ function OnlineConsultation() {
                 <p>With 30+ specialities, 4000+ Doctors, and partnerships with 600+ hospitals across the nation.</p>
               </div>
             </div>
-
+ 
             {/* Convenience */}
             <div className="col-md-6 mb-4 d-flex align-items-start">
               <img
@@ -122,7 +123,7 @@ function OnlineConsultation() {
                 <p>Most patients prefer online consultations due to the ease and convenience of the process.</p>
               </div>
             </div>
-
+ 
             {/* Security and Privacy */}
             <div className="col-md-6 mb-4 d-flex align-items-start">
               <img
@@ -136,7 +137,7 @@ function OnlineConsultation() {
                 <p>We ensure that your medical information is safe and protected with top security standards.</p>
               </div>
             </div>
-
+ 
             {/* Complete Confidentiality */}
             <div className="col-md-6 mb-4 d-flex align-items-start">
               <img
@@ -150,7 +151,7 @@ function OnlineConsultation() {
                 <p>Our platform facilitates a secure and confidential online consultation with your doctor.</p>
               </div>
             </div>
-
+ 
             {/* Certified Doctors */}
             <div className="col-md-6 mb-4 d-flex align-items-start">
               <img
@@ -164,7 +165,7 @@ function OnlineConsultation() {
                 <p>Our network includes certified doctors with over 10 years of experience in their respective fields.</p>
               </div>
             </div>
-
+ 
             {/* Affordability */}
             <div className="col-md-6 mb-4 d-flex align-items-start">
               <img
@@ -194,7 +195,7 @@ function Consultation() {
             image={Online1}
             title="Choose a speciality"
             description="Choose a specialty based on the medical condition you have. If unsure, consult with a general physician."
-
+ 
           />
           <Step
             image={Online2}
@@ -218,11 +219,11 @@ function Consultation() {
             image={Online5}
             title="Buy medicines online"
             description="Buy medicines online and get them delivered to your doorstep without stepping out of your home."
-
+ 
           />
         </div>
       </div>
-      
+     
     </>
   );
 }
@@ -239,6 +240,6 @@ function Step({ image, title, description }) {
     </Row>
   );
 }
-
-
-export default Homepage;
+ 
+ 
+export default Homepage

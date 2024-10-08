@@ -121,6 +121,7 @@ function Doctor() {
                 )}
             </div>
         </div>
+       
     );
 }
 

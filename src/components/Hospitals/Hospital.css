@@ -80,7 +80,6 @@
  
 }
  
-
 .hospitalDtl {
   display: flex;
   flex-direction: column;
@@ -136,12 +135,10 @@
   height: 100%;
   object-fit: cover;
 }
-
 .hospitalDtl {
   padding: 15px;
   text-align: left;
 }
-
 .hospitalName {
   font-size: 1.25rem;
   font-weight: bold;
