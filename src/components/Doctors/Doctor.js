@@ -57,24 +57,33 @@ function Doctor() {
         <div className='baimage' style={{ paddingTop: "110px", paddingBottom: "120px" }}>
             <div className='container'>
                 <div className='filter-container'>
-                    <input
-                        type='text'
-                        placeholder='Search by name'
-                        value={filters.name}
-                        onChange={(e) => setFilters({ ...filters, name: e.target.value })}
-                    />
-                    <input
-                        type='text'
-                        placeholder='Search by specialization'
-                        value={filters.specialization}
-                        onChange={(e) => setFilters({ ...filters, specialization: e.target.value })}
-                    />
-                    <input
-                        type='text'
-                        placeholder='Search by city'
-                        value={filters.city}
-                        onChange={(e) => setFilters({ ...filters, city: e.target.value })}
-                    />
+                    <div className='input-group inp'>
+                        <span className=' d-flex align-items-center justify-content-center p-1' style={{borderTopLeftRadius:"25px",borderBottomLeftRadius:"25px",width:"40px"}}><i class="fas fa-user-md"></i></span>
+                        <input
+                            type='text'
+                            placeholder='Search by name'
+                            value={filters.name}
+                            onChange={(e) => setFilters({ ...filters, name: e.target.value })}
+                        />
+                    </div>
+                    <div className='input-group inp'>
+                        <span className=' d-flex align-items-center justify-content-center p-1' style={{borderTopLeftRadius:"25px",borderBottomLeftRadius:"25px",width:"40px"}}><i class="fa-solid fa-stethoscope"></i></span>
+                        <input
+                            type='text'
+                            placeholder='Filter by specialization'
+                            value={filters.specialization}
+                            onChange={(e) => setFilters({ ...filters, specialization: e.target.value })}
+                        />
+                    </div>
+                    <div className='input-group inp'>
+                        <span className=' d-flex align-items-center justify-content-center p-1' style={{borderTopLeftRadius:"25px",borderBottomLeftRadius:"25px",width:"40px"}}><i class="fa-solid fa-location"></i></span>
+                        <input
+                            type='text'
+                            placeholder='Filter by city'
+                            value={filters.city}
+                            onChange={(e) => setFilters({ ...filters, city: e.target.value })}
+                        />
+                    </div>
                 </div>
 
                 {loading && <div>Loading...</div>}
