@@ -37,7 +37,7 @@ function Homepage() {
               <span className='rem'>Consult India's</span><br />
               <span className='rem'>Top Doctors Online</span>
             </h1><br />
-            <Link to="/root/hospitals"><button className="btn btn-warning btn-custom-long">Consult Now</button></Link>
+            <Link to="/root/doctors"><button className="btn btn-warning btn-custom-long">Consult Now</button></Link>
           </div>
           <div className='backimg'>
           </div>
