@@ -2,9 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { FaFilter } from 'react-icons/fa';
 import './allAppointments.css';
 import axios from 'axios';
-const AllAppointments = ({ appointments, filterDate, setFilterDate, filterPatientName, setFilterPatientName, filterDoctorName, setFilterDoctorName, filterStatus, setFilterStatus }) => {
-  const [filteredAppointments, setFilteredAppointments] = useState(appointments);// State for status filter
 
+const AllAppointments = ({ 
+  appointments, 
+  filterDate, 
+  setFilterDate, 
+  filterPatientName, 
+  setFilterPatientName, 
+  filterDoctorName, 
+  setFilterDoctorName, 
+  filterStatus, 
+  setFilterStatus 
+}) => {
+  const [filteredAppointments, setFilteredAppointments] = useState(appointments);
   const [showDateFilter, setShowDateFilter] = useState(false);
   const [showPatientNameFilter, setShowPatientNameFilter] = useState(false);
   const [showDoctorNameFilter, setShowDoctorNameFilter] = useState(false);
@@ -31,7 +41,6 @@ const AllAppointments = ({ appointments, filterDate, setFilterDate, filterPatien
         );
       }
 
-      // Apply status filter
       if (filterStatus !== '') {
         filteredData = filteredData.filter(appointment =>
           appointment.statusId === parseInt(filterStatus)
@@ -48,7 +57,7 @@ const AllAppointments = ({ appointments, filterDate, setFilterDate, filterPatien
     setFilterDate('');
     setFilterPatientName('');
     setFilterDoctorName('');
-    setFilterStatus(''); // Reset status filter
+    setFilterStatus('');
     setShowDateFilter(false);
     setShowPatientNameFilter(false);
     setShowDoctorNameFilter(false);
@@ -57,50 +66,36 @@ const AllAppointments = ({ appointments, filterDate, setFilterDate, filterPatien
   const getStatusText = (appointment) => {
     const currentDate = new Date();
 
-    if (new Date(appointment.appointmentDate) < currentDate && appointment.appointmentId!=2) {
-        const token = localStorage.getItem('recAuthToken');
-        if (new Date(appointment.appointmentDate) < currentDate) {
-            const response= axios.put(`https://localhost:44376/api/Appointment/UpdateStatus/${appointment.appointmentId}?statusId=${2}`, null, {
-                headers: { Authorization: `Bearer ${token}` },
-                });
-            return 'Completed';
-        }
-
-        return 'Completed';
+    if (new Date(appointment.appointmentDate) < currentDate && appointment.appointmentId !== 2) {
+      const token = localStorage.getItem('recAuthToken');
+      axios.put(`https://localhost:44376/api/Appointment/UpdateStatus/${appointment.appointmentId}?statusId=${2}`, null, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return 'Completed';
     }
 
     switch (appointment.statusId) {
-      case 1:
-        return 'Booked';
-      case 0:
-        return 'Cancelled';
-      case -1:
-        return 'Pending';
-      case 2:
-        return 'Completed';
-      default:
-        return 'Unknown';
+      case 1: return 'Booked';
+      case 0: return 'Cancelled';
+      case -1: return 'Pending';
+      case 2: return 'Completed';
+      default: return 'Unknown';
     }
   };
 
-  const getStatusClass = (appointment) => {
+  const getStatusClasses = (appointment) => {
     const currentDate = new Date();
 
     if (new Date(appointment.appointmentDate) < currentDate) {
-      return 'bg-info text-white';
+      return { bg: 'bg-info' };
     }
 
     switch (appointment.statusId) {
-      case 1:
-        return 'bg-success text-white';
-      case 0:
-        return 'bg-danger text-white';
-      case -1:
-        return 'bg-warning text-dark';
-      case 2:
-        return 'bg-info text-white';
-      default:
-        return 'bg-secondary text-white';
+      case 1: return { bg: 'bg-success' }; // Booked
+      case 0: return { bg: 'bg-danger' }; // Cancelled
+      case -1: return { bg: 'bg-warning' }; // Pending
+      case 2: return { bg: 'bg-secondary' }; // Completed
+      default: return { bg: 'bg-light' }; // Unknown status
     }
   };
 
@@ -108,21 +103,20 @@ const AllAppointments = ({ appointments, filterDate, setFilterDate, filterPatien
     <div className='container'>
       <div className='d-flex justify-content-between align-items-center'>
         <h2 className="appointments-header">Appointments</h2>
-        <button className="reset-filter-btn" onClick={resetFilters}><i class="fa-light fa-filter-circle-xmark"></i> Reset Filter</button>
+        <button className="reset-filter-btn" onClick={resetFilters}>
+          <i className="fa-light fa-filter-circle-xmark"></i> Reset Filter
+        </button>
       </div>
 
       {filteredAppointments.length === 0 ? (
         <p className="no-appointments-text">No appointments available.</p>
       ) : (
-        <table className="appointments-table">
+        <table className="appointments-table table">
           <thead>
             <tr>
               <th className="appointments-table-header">
                 Date
-                <FaFilter
-                  className="filter-icon"
-                  onClick={() => setShowDateFilter(!showDateFilter)}
-                />
+                <FaFilter className="filter-icon" onClick={() => setShowDateFilter(!showDateFilter)} />
                 <input
                   type="date"
                   className={`filter-input ${showDateFilter ? 'active' : ''}`}
@@ -130,15 +124,10 @@ const AllAppointments = ({ appointments, filterDate, setFilterDate, filterPatien
                   onChange={(e) => setFilterDate(e.target.value)}
                 />
               </th>
-
               <th className="appointments-table-header">Time</th>
-
               <th className="appointments-table-header">
                 Patient Name
-                <FaFilter
-                  className="filter-icon"
-                  onClick={() => setShowPatientNameFilter(!showPatientNameFilter)}
-                />
+                <FaFilter className="filter-icon" onClick={() => setShowPatientNameFilter(!showPatientNameFilter)} />
                 <input
                   type="text"
                   placeholder="Filter by Patient Name"
@@ -147,13 +136,9 @@ const AllAppointments = ({ appointments, filterDate, setFilterDate, filterPatien
                   onChange={(e) => setFilterPatientName(e.target.value)}
                 />
               </th>
-
               <th className="appointments-table-header">
                 Assigned Doctor
-                <FaFilter
-                  className="filter-icon"
-                  onClick={() => setShowDoctorNameFilter(!showDoctorNameFilter)}
-                />
+                <FaFilter className="filter-icon" onClick={() => setShowDoctorNameFilter(!showDoctorNameFilter)} />
                 <input
                   type="text"
                   placeholder="Filter by Doctor Name"
@@ -162,8 +147,6 @@ const AllAppointments = ({ appointments, filterDate, setFilterDate, filterPatien
                   onChange={(e) => setFilterDoctorName(e.target.value)}
                 />
               </th>
-
-              {/* Status column with a dropdown filter */}
               <th className="appointments-table-header">
                 Status
                 <select
@@ -178,7 +161,6 @@ const AllAppointments = ({ appointments, filterDate, setFilterDate, filterPatien
                   <option value="2">Completed</option>
                 </select>
               </th>
-
             </tr>
           </thead>
           <tbody>
@@ -188,8 +170,10 @@ const AllAppointments = ({ appointments, filterDate, setFilterDate, filterPatien
                 <td>{new Date(appointment.appointmentDate).toLocaleTimeString()}</td>
                 <td>{appointment.patientName}</td>
                 <td>{appointment.doctorName}</td>
-                <td className={getStatusClass(appointment)}>
-                  {getStatusText(appointment)}
+                <td>
+                  <span className={`badge ${getStatusClasses(appointment).bg} text-white status-badge`}>
+                    {getStatusText(appointment)}
+                  </span>
                 </td>
               </tr>
             ))}
