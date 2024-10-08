@@ -25,7 +25,7 @@ const PatientForm = () => {
     smoke: '',
     Id: patientInfo.id,
     doctorId: doctor.doctorId,
-    hospitalName: hospital.hospitalName,
+    hospitalName: doctor.hospitalName,
     firstName: '',
     lastName: '',
     gender: '',
@@ -36,7 +36,7 @@ const PatientForm = () => {
     appointmentDate: '',
     appointmentTime:''
   });
- 
+  console.log(formData);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [slots, setSlots] = useState({});
@@ -171,7 +171,12 @@ const PatientForm = () => {
  
     if (newDate) {
       try {
-        const response = await api.get(`/Doctor/GetDoctorSlotsByDate?DoctorId=${doctor.doctorId}&date=${newDate}`);
+        const response = await api.get('/Doctor/GetDoctorSlotsByDate', {
+          params: {
+            DoctorId: doctor.doctorId,
+            date: newDate,
+          },
+        });
         console.log(response.data);
         setSlots(response.data); // Set the fetched slots
       } catch (error) {

@@ -47,11 +47,11 @@ const Hospital = () => {
               <h1 className=" text-center">Hospitals List</h1>
             </div>
             <div className="col col-8 search-container d-flex justify-content-end align-items-center">
-              <input
-                type="text"
-                id="search"
-                className="form-control search-bar w-50"
-                placeholder="Find hospital by location"
+              <input 
+                type="text" 
+                id="search" 
+                className="form-control search-bar w-50" 
+                placeholder="Find hospital by location" 
                 value={location}
                 onChange={handleLocationChange}
               />

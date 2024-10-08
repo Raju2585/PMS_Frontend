@@ -1,6 +1,4 @@
 import StarRatings from 'react-star-ratings';
-
-
 // Doctors Component
 const AllDoctors = ({ doctors, loading, error, handleAddDoctorClick}) => {
     const getRandomRating = () => Math.floor(Math.random() * 5) + 1;
@@ -9,7 +7,6 @@ const AllDoctors = ({ doctors, loading, error, handleAddDoctorClick}) => {
       <div className="doc-container" >
         <div className='d-flex mb-4 justify-content-between'>
           <h2>Doctors List</h2>
-          <button className='btn btn-primary' onClick={handleAddDoctorClick}>Add Doctor</button>
         </div>
         {loading && <div>Loading...</div>}
         {error && <div>Error: {error.message}</div>}
@@ -39,8 +36,7 @@ const AllDoctors = ({ doctors, loading, error, handleAddDoctorClick}) => {
             starSpacing="2px"
           />
         </div>
-      </div>
-  
+      </div>  
             );
           })
         ) : (

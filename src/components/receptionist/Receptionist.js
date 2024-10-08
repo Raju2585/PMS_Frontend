@@ -143,8 +143,7 @@ const Receptionist = () => {
   return (
     <div className="receptionist-container">
       {/* Navbar */}
-      <nav className="navbar-custom sticky-top">
-     
+      <nav className="navbar-custom sticky-top d-flex" style={{height:"80px"}}>   
      
         <div className="container d-flex justify-content-between align-items-center">
         <div className="d-flex ">
@@ -201,10 +200,19 @@ const Receptionist = () => {
             {activeComponent === 'tasks' && <Tasks tasks={tasks} confirmAppointment={confirmAppointment}/>}
           </div>
           <div   className='container'>
-            {activeComponent === 'doctors' && <AllDoctors doctors={doctors} error={error} loading={loading} handleAddDoctorClick={handleAddDoctorClick} onAddDoctorSuccess={handleAddDoctorSuccess} />}
-          </div>
-          <div   className='container'>
-            {activeComponent==='AddDoctor' && <AddDoctor onAddSuccess={handleAddDoctorSuccess}></AddDoctor>}
+              {
+                activeComponent === 'doctors' && 
+                (
+                  <div className='row'>
+                    <div className='col col-6'>
+                      <AllDoctors doctors={doctors} error={error} loading={loading} handleAddDoctorClick={handleAddDoctorClick} onAddDoctorSuccess={handleAddDoctorSuccess} />
+                    </div>
+                    <div className='col col-6 mt-4'>
+                      <AddDoctor onAddSuccess={handleAddDoctorSuccess}></AddDoctor>
+                    </div>
+                  </div>
+                )
+              }
           </div>
         </div>
       </div>
@@ -287,7 +295,9 @@ const AddDoctor = ({ onAddSuccess }) => {
         <button type="submit" className="btn btn-primary" disabled={loading}>
           {loading ? 'Adding...' : 'Add Doctor'}
         </button>
+
       </form>
+     
     </div>
   );
 };
