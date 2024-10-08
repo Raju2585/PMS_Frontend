@@ -43,7 +43,7 @@ const HospitalSearchComponent = () => {
       <div className="row">
         {hospitals.length > 0 ? (
           hospitals.map(hospital => (
-            <div key={hospital.hospitalId} className="col-md-4 mb-4">
+            <div key={hospital.hospitalId} className="col col-4 col-md-4 mb-4">
               <div className="card custom-card">
                 <div className="custom-card-img-container">
                   {hospital.hospitalImage ? (
@@ -64,7 +64,7 @@ const HospitalSearchComponent = () => {
                   <h5 className="card-title">{hospital.hospitalName} Hospital</h5>
                   <p className="card-text">Location: {hospital.city}</p>
                   <p className="card-text">Pincode: {hospital.pincode}</p>
-                  <p className="card-text">Hospital ID: {hospital.hospitalId}</p>
+
                   <Link to="/root/doctors" state={hospital}><div  className="btn btn-primary">View Doctors</div></Link>
                 </div>
               </div>

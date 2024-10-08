@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../apiHandler/api';
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useNavigate } from 'react-router-dom';
-import './Hospital.css'; 
-
+import './Hospital.css';
+ 
 const Hospital = () => {
   const [hospitals, setHospitals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [location, setLocation] = useState('');
-
+ 
   const navigate = useNavigate();
-
+ 
   useEffect(() => {
     fetchHospitals();
   }, []);
-
+ 
   const fetchHospitals = async () => {
     try {
       const response = await api.get('/Hospital/Get/All/Hospitals');
@@ -28,36 +28,36 @@ const Hospital = () => {
       setLoading(false);
     }
   };
-
+ 
   const handleSearch = () => {
     navigate(`/root/locationSearch?location=${location.toLowerCase()}`);
     setLocation('');
   };
-
+ 
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
   };
-
+ 
   return (
     <div className="hospital-background">
       <div className="container list-hospitals">
         <div className='container'>
           <div className='row'>
-            <div className='col  col-4 d-flex justify-content-start'>
+            <div className='col  col-4 d-flex justify-content-start align-items-center'>
               <h1 className=" text-center">Hospitals List</h1>
             </div>
-            <div className="col col-8 search-container d-flex justify-content-end">
-              <input 
-                type="text" 
-                id="search" 
-                className="form-control search-bar w-50" 
-                placeholder="Find hospital by location" 
+            <div className="col col-8 search-container d-flex justify-content-end align-items-center">
+              <input
+                type="text"
+                id="search"
+                className="form-control search-bar w-50"
+                placeholder="Find hospital by location"
                 value={location}
                 onChange={handleLocationChange}
               />
-              <button 
-                className="btn-container btn btn-success ms-1" 
-                type="button" 
+              <button
+                className="btn-container btn btn-success ms-1"
+                type="button"
                 onClick={handleSearch}
               >
                 Search
@@ -65,11 +65,11 @@ const Hospital = () => {
             </div>
           </div>
         </div>
-
-
+ 
+ 
         {loading && <div className="text-center">Loading...</div>}
         {error && <div className="alert alert-danger text-center">Error: {error.message}</div>}
-        
+       
         <div className="row">
           {hospitals.map(hospital => (
             <div key={hospital.hospitalId} className="col-md-4 mb-4">
@@ -89,12 +89,12 @@ const Hospital = () => {
                     />
                   )}
                 </div>
-                <div className="card-body">
-                  <h5 className="card-title">{hospital.hospitalName} Hospital</h5>
+                <div className="card-body hospitalDtl">
+                  <h5 className="card-title hospitalName">{hospital.hospitalName} Hospital</h5>
                   <p className="card-text">City: {hospital.city}</p>
                   <p className="card-text">Pincode: {hospital.pincode}</p>
                   <Link to="/root/doctors" state={hospital}>
-                    <div className="btn btn-primary">View Doctors</div>
+                    <div className="btn btn-primary viewBtn">View Doctors</div>
                   </Link>
                 </div>
               </div>
@@ -107,4 +107,3 @@ const Hospital = () => {
 };
  
 export default Hospital;
- 

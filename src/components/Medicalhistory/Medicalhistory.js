@@ -196,10 +196,7 @@ const PatientForm = () => {
           <div className="row mb-6">
             <div className="col-md-6 ">
               <label htmlFor="firstName" className='appointment-form'>First Name:</label>
-              <input
-                type="text"
-                id="first"
-                name="firstName"
+              <input type="text" id="first" name="firstName"
                 className="form-control form-control2"
                 value={formData.firstName}
                 onChange={handleChange}
@@ -273,6 +270,7 @@ const PatientForm = () => {
                 className="form-control form-control2"
                 value={formData.dob}
                 onChange={handleChange}
+                max={new Date().toISOString().split("T")[0]}
                 required
               />
             </div>

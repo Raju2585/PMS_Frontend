@@ -45,8 +45,8 @@ function Doctor() {
         }
     }
     return (
-        <div className='baimage'>
-            <div style={{margin:"100px"}}>
+        <div className='baimage' style={{paddingTop:"110px",paddingBottom:"120px"}}>
+            <div className='container'>
                 {loading && <div>Loading...</div>}
                 {error && <div>Error: {error.message}</div>}
                 {doctors.length > 0 ? (
@@ -84,8 +84,8 @@ function Doctor() {
                 )}
             </div>
         </div>
+       
     );
 }
  
 export default Doctor;
- 
