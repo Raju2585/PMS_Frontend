@@ -116,4 +116,12 @@
   .filter-select:hover {
     background-color: #e9ecef;
   }
+  .status-badge {
+    display: inline-block; /* Ensures block-like behavior */
+    width: 120px; /* Increase the width for a larger badge */
+    text-align: center; /* Center the text */
+    font-size: 1.1rem; /* Increase the font size slightly */
+    padding: 0.5rem; /* Add some padding for a better appearance */
+  }
+  
   
