@@ -90,3 +90,40 @@ p {
 .fa-star.filled {
     color: gold;
 }
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 10px;
+/* same as the doctor cards */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 12%; /* Align with Doctors */
+    margin-right: 12%; /* Align with Doctors */
+}
+
+.filter-container input {
+    flex: 1;
+    margin-right: 10px; /* space between filters */
+    padding: 10px;
+    border: 1px  #ced4da;
+    border-radius: 25px;
+    font-size: 1em;
+}
+
+.filter-container input:last-child {
+    margin-right: 0; /* remove margin for the last input */
+}
+
+.Doctors {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+

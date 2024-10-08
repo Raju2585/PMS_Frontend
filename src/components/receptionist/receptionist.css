@@ -128,9 +128,12 @@
   border-radius: 0.5rem 0.5rem 0 0; /* Rounded top corners */
 }
 .doc-container {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+  max-height: 900px; /* Set a height that fits your layout */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 20px; /* Optional: add some padding */
+  border: 1px solid #dee2e6; /* Optional: add a border for better visibility */
+  border-radius: 5px; /* Optional: rounded corners */
+  background-color: #fff; /* Optional: background color */
 }
  
 .doc-card {
