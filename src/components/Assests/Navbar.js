@@ -34,6 +34,7 @@ function Navbar() {
     setSidebarOpen(false);
     navigate('/root');
   };
+  const isLoggedIn=localStorage.getItem("authToken")!==null;
   const vitals =localStorage.getItem("vitalsigns")!=null? JSON.parse(localStorage.getItem("vitalsigns")):null;
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   
@@ -118,8 +119,20 @@ function Navbar() {
             </div>
             <Link to="/root/aboutus" className="nav-link">About Us</Link>
 
-            <Link to="" className="nav-link">More</Link>
+            {/* <Link to="appointments" className="nav-link">More</Link> */}
+            {/* <Link to="/root/chatbot" className="nav-link">Chatbot</Link> */}
+            {isLoggedIn &&(
+                vitals!=null ? (
+                  <Link to="/root/vitalsigns" state={vitals} className="nav-link" >Vital Signs</Link> // Show Vital Signs if device added
+                ) : (
+                  <Link onClick={handleShowAddDevice} className="nav-link">Add Device</Link>// Show Add Device otherwise
+              )
+            )}
 
+          
+
+            {/* <Link to="/root/chatbot" className="nav-link">Chatbot</Link> */}
+          
           </div>
           {localStorage.getItem("authToken") != null?(
               <div className='dropdown mt-2' >
@@ -127,11 +140,7 @@ function Navbar() {
                 <div className='dropdown-content'>
                   <Link to='/root/hospitals'>Consult a Doctor</Link>
                   <Link to='appointments'>My Appointments</Link>
-                  {vitals!=null ? (
-                      <Link to="/root/vitalsigns" state={vitals} >Vital Signs</Link> // Show Vital Signs if device added
-                    ) : (
-                      <Link onClick={handleShowAddDevice}>Add Device</Link>// Show Add Device otherwise
-                  )}
+                  
                   <Link  onClick={handleLogout}>LogOut</Link>
                 </div>
               </div>):
