@@ -255,25 +255,7 @@ sidebar-links li {
   color: #e74c3c; /* Alert text color (can remain as is or change to white) */
 }
 
-.card-custom {
-  background-color: rgba(0, 0, 0, 0.8); /* Darker background for the cards */
-  color: white; /* Default text color for body text */
-  border-radius: 8px; /* Optional: Adds rounded corners */
-  padding: 20px; /* Add padding for better spacing */
-  flex: 1; /* Ensure cards take equal space */
-  margin: 10px; /* Add margin between cards */
-  display: flex; /* Make it a flex container */
-  flex-direction: column; /* Arrange children vertically */
-  justify-content: space-between; /* Space out the header and body */
-}
 
-.card-header-custom {
-  color: black; /* Card header text color */
-}
-
-.custom-card-text {
-  color: white; /* Body text color */
-}
 
 .receptionist-container {
   display: flex;
@@ -331,6 +313,26 @@ sidebar-links li {
 .shift-left {
   margin-left: -30px; /* Adjust this value as needed */
 }
+.card-header-custom {
+  background-color: white; /* White background for header */
+  color: black; /* Black color for card title */
+}
+
+.custom-card-title {
+  color: black; /* Ensure card title is black */
+}
+
+.card-body-custom {
+  background-color: #34495e; /* Dark background for card body */
+  color: white; /* White color for card text */
+}
+
+.custom-card-text {
+  color: white; /* Ensure card text is white */
+}
+
+
+
 
 
 
