@@ -61,17 +61,12 @@ const Appointments = () => {
         }
 
         switch (appointment.statusId) {
-            case 1:
-                return 'bg-success text-white'; 
-            case 0:
-                return 'bg-danger text-white'; 
-            case -1:
-                return 'bg-warning text-dark'; 
-            case 2:
-                return 'bg-primary text-white';
-            default:
-                return 'bg-secondary text-white'; 
-        }
+            case 1: return { bg: 'bg-success' }; // Booked
+            case 0: return { bg: 'bg-danger' }; // Cancelled
+            case -1: return { bg: 'bg-warning' }; // Pending
+            case 2: return { bg: 'bg-secondary' }; // Completed
+            default: return { bg: 'bg-light' }; // Unknown status
+          }
     };
 
     
@@ -101,6 +96,7 @@ const Appointments = () => {
 
     return (
         <div className="container mt-5 appointments-heading">
+            <div className='container' style={{marginLeft:"93px"}}>
             <h1 className="mb-4 appoinment-header">Appointments</h1>
             {
                 appointments.length === 0 ? (
@@ -192,6 +188,7 @@ const Appointments = () => {
                     </table>
                 )
             }
+            </div>
         </div>
     );
 };

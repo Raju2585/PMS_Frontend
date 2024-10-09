@@ -90,11 +90,11 @@
 .card-custom {
   transition: box-shadow 0.3s;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 0.5rem; /* Set border radius for all corners */
+  border-radius: 0.10rem; /* Set border radius for all corners */
   min-height: 15vh; /* Set a minimum height based on viewport height */
   margin: 10px; /* Add margin for spacing between cards */
 }
- 
+
 @media (max-width: 768px) {
   .card-custom {
     min-height: 20vh; /* Increased minimum height for smaller screens */
@@ -320,4 +320,18 @@ sidebar-links li {
 
 .custom-card-text {
   color: white; /* Ensure card text is white */
+}
+.todayApp-card
+{
+  width: 51.2%;
+  flex: 0 0 auto;
+}
+.todayApp-card-body{
+  background-color: #34495e; /* Dark background for card body */
+  color: white;
+  padding-bottom: 500px;
+}
+hr {
+  background-color: white;
+  margin: 10px 0; /* Add margin for spacing */
 }

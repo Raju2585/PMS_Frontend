@@ -7,24 +7,24 @@
     background-color: skyblue;
     color: white;
 }
-
+ 
 .table-custom tbody tr:nth-child(even) {
     background-color: #f8f9fa; /* Light grey for even rows */
 }
-
+ 
 .table-custom tbody tr:nth-child(odd) {
     background-color: #ffffff; /* White for odd rows */
 }
-
+ 
 .table-custom tbody td {
     border: 1px solid #ddd; /* Light grey border for table cells */
     color: #333; /* Dark grey text color for better readability */
 }
-
+ 
 .table-custom th, .table-custom td {
     padding: 1rem; /* Add some padding for better spacing */
 }
-
+ 
 .text-skyblue {
     color: skyblue; /* Skyblue color for headings */
 }
@@ -45,4 +45,5 @@ h1{
     font-size: 1.1rem; /* Increase the font size slightly */
     padding: 0.5rem; /* Add some padding for a better appearance */
   }
-  
+ 
+ 

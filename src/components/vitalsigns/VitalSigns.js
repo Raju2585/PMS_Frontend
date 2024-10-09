@@ -40,49 +40,51 @@ function VitalSigns() {
     );
 
     return (
-      <div className='container mr-5 vit d-flex justify-content-between align-items-center' style={{marginRight:'20%'}}>
-      <div className='vital-container' >
-          <div className='vital'>
-              <div className='overview-conditions'>
-                  {/* <div>
-                      <h2>Overview Conditions</h2>
-                      <img src={VitalSignBanner} alt="previe-image" className='img-fluid vital-banner' />
-                  </div> */}
-              </div>
-              <div className='my-vitals'>
-                  <div className='vital-heading'>
-                      {/* <h2>My Vital Signs</h2> */}
-                     
-                       <div className='vital-layout '>
-                       
-                        <div className='single-card m-5'>
-                        <h2>Heart Condition</h2>
-                            <div className="vital-image">
-                                  <img src={R} className='img-fluid vitalImage' alt='vitalimage' style={{width:'800px' ,height:'300px'}}/>
-                                  <div className='heart-rate-display'>{renderVital('Heart Rate', vitals.heartRate, ecgsignal,<i className="fa-regular fa-heart"></i>)}</div>
-                              </div>
-                               
-                         
+        <div className='main-container'>
+            <div className='container mr-5 vit d-flex justify-content-between align-items-center' style={{marginRight:'20%'}}>
+            <div className='vital-container' >
+                <div className='vital'>
+                    <div className='overview-conditions'>
+                        {/* <div>
+                            <h2>Overview Conditions</h2>
+                            <img src={VitalSignBanner} alt="previe-image" className='img-fluid vital-banner' />
+                        </div> */}
+                    </div>
+                    <div className='my-vitals'>
+                        <div className='vital-heading'>
+                            {/* <h2>My Vital Signs</h2> */}
                             
-                       
+                            <div className='vital-layout '>
+                            
+                                <div className='single-card m-5'>
+                                <h2>Heart Condition</h2>
+                                    <div className="vital-image">
+                                        <img src={R} className='img-fluid vitalImage' alt='vitalimage' style={{width:'800px' ,height:'300px'}}/>
+                                        <div className='heart-rate-display'>{renderVital('Heart Rate', vitals.heartRate, ecgsignal,<i className="fa-regular fa-heart"></i>)}</div>
+                                    </div>
+                                    
+                                
+                                    
+                            
+                                </div>
+                    <div className='multiple-cards m-5'>
+                    <h2>Overview Conditions</h2>
+                    <div className='row' >
+                            {renderVital('Respiratory Rate', vitals.respiratoryRate, respiration,<i class="fa-solid fa-droplet"></i> )}
+                            {renderVital('Blood Pressure', vitals.bloodPressure, bp,<i class="fa-solid fa-droplet"></i>)}
                         </div>
-              <div className='multiple-cards m-5'>
-              <h2>Overview Conditions</h2>
-              <div className='row' >
-                      {renderVital('Respiratory Rate', vitals.respiratoryRate, respiration,<i class="fa-solid fa-droplet"></i> )}
-                      {renderVital('Blood Pressure', vitals.bloodPressure, bp,<i class="fa-solid fa-droplet"></i>)}
-                  </div>
-                  <div className='row'>
-                      {renderVital('Oxygen Saturation', vitals.oxygenSaturation, o2,<i class="fa-solid fa-droplet"></i>)}
-                      {renderVital('Temperature', vitals.temperature, temp,<i class="fa-solid fa-temperature-three-quarters"></i>)}
-                  </div>
-              </div>
-          </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      </div>
+                        <div className='row'>
+                            {renderVital('Oxygen Saturation', vitals.oxygenSaturation, o2,<i class="fa-solid fa-droplet"></i>)}
+                            {renderVital('Temperature', vitals.temperature, temp,<i class="fa-solid fa-temperature-three-quarters"></i>)}
+                        </div>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
 
      
     );
