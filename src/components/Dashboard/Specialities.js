@@ -46,7 +46,8 @@ const responsive = {
  
 const Specialities = () => {
     return (
-        <div className='appointment-specialist container'>
+        <div className='container'>
+            <div className='appointment-specialist container'>
             <p className='Specialist'> 30+ Specialities</p>
             <h2 className='Specialist-heading'>Consult top doctors across Specialities</h2>
             <Carousel
@@ -79,6 +80,7 @@ const Specialities = () => {
                     </div>
                 ))}
             </Carousel>
+        </div>
         </div>
     );
 };

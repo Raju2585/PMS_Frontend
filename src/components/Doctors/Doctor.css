@@ -94,7 +94,7 @@ p {
     justify-content: space-between;
     margin-bottom: 20px;
     padding: 10px;
-/* same as the doctor cards */
+    background-color: white;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-left: 12%; /* Align with Doctors */
@@ -124,7 +124,7 @@ p {
 /* Focus styles */
 .filter-container input:focus {
     outline: none; /* Remove default outline */
- /* Show only bottom border on focus */
+    border-bottom: 2px solid black;
 }
 
 /* Optional: Add some hover effect */

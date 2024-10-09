@@ -6,18 +6,13 @@ import api from '../../apiHandler/api';
 import '../css/Appointments.css';
 import axios from 'axios';
 
-
-
-
 const Appointments = () => {
     const [appointments, setAppointments] = useState([]);
     const [error, setError] = useState(null);
     const location = useLocation();
     const appointment = location.state;
+    const [cancelDisable,setCancelDisable]=useState(false);
     const navigate = useNavigate();
-   
-    
-
 
     useEffect(() => {
         const fetchAppointments = async () => {
@@ -85,25 +80,33 @@ const Appointments = () => {
                 return 'bg-danger text-white'; 
             case -1:
                 return 'bg-warning text-dark'; 
+            case 2:
+                return 'bg-primary text-white';
             default:
                 return 'bg-secondary text-white'; 
         }
     };
 
     
-    const handleCancel = async () => {
+    const handleCancel = async (appointmentId) => {
         if (window.confirm('Are you sure you want to cancel this appointment?')) {
             try {
-                await api.delete(`/Appointment/Cancel/${appointment.appointmentId}`);
+                await api.delete(`/Appointment/Cancel/${appointmentId}`);
                 alert('Appointment cancelled successfully.');
+                setAppointments((prevAppointments) =>
+                    prevAppointments.map(appointment =>
+                        appointment.appointmentId === appointmentId
+                            ? { ...appointment, statusId: 0 } // Update statusId to 2 for cancelled
+                            : appointment
+                    )
+                );
+                setCancelDisable(true);
                 navigate('/root/appointments'); 
             } catch (error) {
                 setError('Failed to cancel appointment: ' + (error.response ? error.response.data : error.message));
             }
         }
     };
-
-
 
     if (error) {
         return <div className="alert alert-danger">Error: {error}</div>;
@@ -123,6 +126,7 @@ const Appointments = () => {
                             <tr>
                                 <th>Hospital Name</th>
                                 <th>Doctor Name</th>
+                                <th>Patient Name</th>
                                 <th>Reason</th>
                                 <th>Created At</th>
                                 <th>Appointment Date</th>
@@ -131,57 +135,70 @@ const Appointments = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {appointments.map(appointment => (
-                                <tr key={appointment.appointmentId}>
+                            {appointments.map(appointment => {
+                                    const currentDate = new Date();
+                                    const appointmentDate = new Date(appointment.appointmentDate);
+                                    const timeDifference = appointmentDate - currentDate; // Time difference in milliseconds
+                                    const isCancelable = timeDifference >= 48 * 60 * 60 * 1000;
+                                return (
+                                    <tr key={appointment.appointmentId}>
                                     <td>{appointment.hospitalName}</td>
                                     <td>{appointment.doctorName}</td>
+                                    <td>{appointment.patientName}</td>
                                     <td>{appointment.reason}</td>
                                     <td>{new Date(appointment.createdAt).toLocaleString()}</td>
                                     <td>{new Date(appointment.appointmentDate).toLocaleString()}</td>
                                     <td className={getStatusClass(appointment)}>
                                         {getStatusText(appointment)}
                                     </td>
-                                    <td>
-                                        {appointment.statusId===2 &&(
-                                            <button 
-                                            className="btn btn-danger" 
-                                            onClick={() => handleCancel(appointment.appointmentId)}
-                                            disabled 
-                                        > Cancel</button>
-                                        )}
-                                        {appointment.statusId===1 &&(
-                                            <button 
-                                            className="btn btn-danger" 
-                                            onClick={() => handleCancel(appointment.appointmentId)}
-                                            
-                                            
-                                        > Cancel</button>
-                                        )}
-                                        {appointment.statusId===-1 &&(
-                                              <button 
-                                              className="btn btn-danger" 
-                                              onClick={() => handleCancel(appointment.appointmentId)}
-                                            
-                                              
-                                          > Cancel</button>
-                                        )}
-                                        {appointment.statusId===0 &&(
-                                             <button 
-                                             className="btn btn-danger" 
-                                             onClick={() => handleCancel(appointment.appointmentId)}
-                                             disabled
-                                             
-                                         > Cancel</button>
-                                        )}
-                                            
-                                    
-                                       
-                                            
+                                    {
+                                        appointment.statusId === 1 && isCancelable ? (
+                                            <td>
+                                                <button className="btn btn-danger" onClick={() => handleCancel(appointment.appointmentId)} disabled={cancelDisable}>
+                                                    Cancel
+                                                </button>
+                                            </td>
+                                            ) : null
+                                    }
 
-                                       
-                                    </td>
+                                    {
+                                        appointment.statusId === -1 && isCancelable ? (
+                                            <td>
+                                                <button className="btn btn-danger" onClick={() => handleCancel(appointment.appointmentId)} disabled={cancelDisable}>
+                                                    Cancel
+                                                </button>
+                                            </td>
+                                        ) : null
+                                    }
+
+                                    {
+                                        !isCancelable && (appointment.statusId === 1 || appointment.statusId === -1) ? (
+                                            <td>
+                                                <button className="btn btn-danger" onClick={handleCancel} disabled>
+                                                    Cancel
+                                                </button>
+                                            </td>
+                                        ) : null
+                                    }
+
+                                    {
+                                        appointment.statusId === 0 ? (
+                                            <td>
+                                                <button className="btn btn-danger" onClick={handleCancel} disabled>
+                                                    Cancel
+                                                </button>
+                                            </td>
+                                        ) : appointment.statusId === 2 ? (
+                                            <td>
+                                                <button className="btn btn-danger" onClick={handleCancel} disabled>
+                                                    Cancel
+                                                </button>
+                                            </td>
+                                        ) : null
+                                    }
                                 </tr>
-                            ))}
+                                )
+                            })}
                         </tbody>
                     </table>
                 )
