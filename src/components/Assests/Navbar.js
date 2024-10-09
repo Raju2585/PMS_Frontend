@@ -138,7 +138,7 @@ function Navbar() {
               <div className='dropdown mt-2' >
                 <span className='dropbtn' style={{ margin: 'auto', cursor: "pointer", fontSize: "20px" }}><i class="fa-solid fa-user" ></i> {getInitials(patientInfo.patientName)}</span>
                 <div className='dropdown-content'>
-                  <Link to='/root/hospitals'>Consult a Doctor</Link>
+                  <Link to='/root/doctors'>Consult a Doctor</Link>
                   <Link to='appointments'>My Appointments</Link>
                   
                   <Link  onClick={handleLogout}>LogOut</Link>
