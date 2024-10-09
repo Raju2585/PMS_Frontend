@@ -1,4 +1,5 @@
 // Tasks Component
+import '../receptionist/tasks.css'
 const Tasks = ({tasks,confirmAppointment}) => {
 
  
@@ -12,7 +13,7 @@ const Tasks = ({tasks,confirmAppointment}) => {
             tasks.map((task) => (
               <div className="col-12 mb-3" key={task.appointmentId}>
                 <div className="card-custom">
-                  <div className="card-body-custom d-flex justify-content-between align-items-start">
+                  <div className="task-card-body d-flex justify-content-between align-items-start">
                     <div>
                       <h5 className="card-title">{task.patientName}</h5>
                       <p className="card-text">
