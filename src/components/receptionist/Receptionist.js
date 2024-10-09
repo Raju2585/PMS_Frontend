@@ -105,7 +105,7 @@ const Receptionist = () => {
       <div className="default-cards d-flex justify-content-between">
         <div className="card-custom flex-fill mx-2">
           <div className="card-header-custom">
-            <h5 className="card-title"><i className="fa fa-calendar" aria-hidden="true"></i>   Appointments</h5>
+            <h5 className="custom-card-title"><i className="fa fa-calendar" aria-hidden="true"></i>   Appointments</h5>
           </div>
           <div className="card-body-custom">
             {
@@ -117,13 +117,13 @@ const Receptionist = () => {
         </div>
         <div className="card-custom flex-fill mx-2">
           <div className="card-header-custom">
-            <h5 className="card-title"><i class="fas fa-tasks"></i>  Tasks</h5>
+            <h5 className="custom-card-title"><i class="fas fa-tasks"></i>  Tasks</h5>
           </div>
           <div className="card-body-custom">
             {
               tasks?.length>0?
-              <p className="card-text">You have {tasks.length} tasks to complete.</p>:
-              <p className="card-text">You have no tasks to complete.</p>
+              <p className="custom-card-text">You have {tasks.length} tasks to complete.</p>:
+              <p className="custom-card-text">You have no tasks to complete.</p>
             }
           </div>
         </div>
@@ -178,6 +178,7 @@ const Receptionist = () => {
         </div>
  
         {/* Main Component Area */}
+        
         <div className="overview-section d-flex flex-column" style={{paddingRight:"80px"}}>
           <div className='bg-light'>{activeComponent === 'default' &&renderDefaultCards()}</div>
           <div  className='container'>
@@ -230,24 +231,39 @@ const AddDoctor = ({ onAddSuccess }) => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
- 
+
+    // Email validation
+    if (!email.endsWith('@gmail.com')) {
+      setError('Email must be a Gmail address (ending with @gmail.com)');
+      setLoading(false);
+      return;
+    }
+
+    // Contact number validation
+    const contactRegex = /^\d{10}$/; // Only digits, exactly 10 characters
+    if (!contactRegex.test(contact)) {
+      setError('Contact number must be a 10-digit number.');
+      setLoading(false);
+      return;
+    }
+
     const hospitalId = JSON.parse(localStorage.getItem('receptionistInfo'))?.hospitalId;
- 
+
     const formData = new FormData();
     formData.append('Doctorname', doctorName);
     formData.append('email', email);
     formData.append('specialization', specialization);
     formData.append('contact', contact);
-    formData.append('isAvailable',isAvailable);
+    formData.append('isAvailable', isAvailable);
     formData.append('consultationFee', consultationFee);
     formData.append('hospitalId', hospitalId);
     if (file) formData.append('file', file);
- 
+
     try {
       const token = localStorage.getItem('recAuthToken');
       await axios.post('https://localhost:44376/api/Doctor/Add/Doctors', formData, {
@@ -261,43 +277,40 @@ const AddDoctor = ({ onAddSuccess }) => {
       setLoading(false);
     }
   };
- 
+
   return (
     <div className="add-doctor-form">
       <h2>Add New Doctor</h2>
       {error && <div className="alert alert-danger">{error}</div>}
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="form-group">
-          <label>Doctor Name:</label>
+          <label>Doctor Name:<span className="text-danger">*</span></label>
           <input type="text" className="form-control" value={doctorName} onChange={(e) => setDoctorName(e.target.value)} required />
         </div>
         <div className="form-group">
-          <label>Email:</label>
+          <label>Email:<span className="text-danger">*</span></label>
           <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
         <div className="form-group">
-          <label>Specialization:</label>
+          <label>Specialization:<span className="text-danger">*</span></label>
           <input type="text" className="form-control" value={specialization} onChange={(e) => setSpecialization(e.target.value)} required />
         </div>
         <div className="form-group">
-          <label>Contact:</label>
+          <label>Contact:<span className="text-danger">*</span></label>
           <input type="text" className="form-control" value={contact} onChange={(e) => setContact(e.target.value)} required />
         </div>
         <div className="form-group">
-          <label>Consultation Fee:</label>
+          <label>Consultation Fee:<span className="text-danger">*</span></label>
           <input type="number" className="form-control" value={consultationFee} onChange={(e) => setConsultationFee(e.target.value)} required />
         </div>
- 
         <div className="form-group">
-          <label>Upload Image:</label>
-          <input type="file" className="form-control" onChange={(e) => setFile(e.target.files[0])} />
+          <label>Upload Image:<span className="text-danger">*</span></label>
+          <input type="file" className="form-control" onChange={(e) => setFile(e.target.files[0])} required />
         </div>
         <button type="submit" className="btn btn-primary" disabled={loading}>
           {loading ? 'Adding...' : 'Add Doctor'}
         </button>
-
       </form>
-     
     </div>
   );
 };
