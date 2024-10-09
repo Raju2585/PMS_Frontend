@@ -105,7 +105,7 @@ const Receptionist = () => {
       <div className="default-cards d-flex justify-content-between">
         <div className="card-custom flex-fill mx-2">
           <div className="card-header-custom">
-            <h5 className="card-title"><i className="fa fa-calendar" aria-hidden="true"></i>   Appointments</h5>
+            <h5 className="custom-card-title"><i className="fa fa-calendar" aria-hidden="true"></i>   Appointments</h5>
           </div>
           <div className="card-body-custom">
             {
@@ -117,13 +117,13 @@ const Receptionist = () => {
         </div>
         <div className="card-custom flex-fill mx-2">
           <div className="card-header-custom">
-            <h5 className="card-title"><i class="fas fa-tasks"></i>  Tasks</h5>
+            <h5 className="custom-card-title"><i class="fas fa-tasks"></i>  Tasks</h5>
           </div>
           <div className="card-body-custom">
             {
               tasks?.length>0?
-              <p className="card-text">You have {tasks.length} tasks to complete.</p>:
-              <p className="card-text">You have no tasks to complete.</p>
+              <p className="custom-card-text">You have {tasks.length} tasks to complete.</p>:
+              <p className="custom-card-text">You have no tasks to complete.</p>
             }
           </div>
         </div>
