@@ -7,8 +7,8 @@ import logo from "../Assests/newlogo.png";
 import AllAppointments from './AllAppointments';
 import Tasks from './Tasks';
 import AllDoctors from './AllDoctors';
-import bargraph from '../Assests/barimage.';
-
+// import bargraph from '../Assests/barimage.jpg';
+import bargraph from '../Assests/barimage.png'
 
 const Receptionist = () => {
   const [activeComponent, setActiveComponent] = useState('default');
@@ -196,11 +196,21 @@ const Receptionist = () => {
 
 
           <ul className="sidebar-links d-block ">
+            <li className="sidebar-section-title">Main Menu</li>
             <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('overview')}><i class="fa fa-list-alt" aria-hidden="true"></i> Overview</NavLink></li>
             <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('doctors')}><i class="fas fa-user-md"></i> Doctors</NavLink></li>
             <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('appointments')}><i class="fa fa-calendar" aria-hidden="true"></i> Appointment History</NavLink></li>
             <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('tasks')}><i class="fas fa-tasks"></i> Tasks</NavLink></li>
 
+            <li className="sidebar-section-title">Other Menu</li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('schedules')}><i className="fas fa-clock"></i> Schedules</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('payments')}><i className="fas fa-credit-card"></i> Payment</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('products')}><i className="fas fa-box"></i> Product & Stock</NavLink></li>
+
+            <li className="sidebar-section-title">Help & Settings</li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('report')}><i className="fas fa-chart-line"></i> Report</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('help')}><i className="fas fa-question-circle"></i> Help</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('settings')}><i className="fas fa-cog"></i> Settings</NavLink></li>
           </ul>
         </div>
 
@@ -295,28 +305,28 @@ const AddDoctor = ({ onAddSuccess }) => {
       {error && <div className="alert alert-danger">{error}</div>}
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="form-group">
-          <label>Doctor Name:</label>
+          <label>Doctor Name:</label><span className="text-danger">*</span>
           <input type="text" className="form-control" value={doctorName} onChange={(e) => setDoctorName(e.target.value)} required />
         </div>
         <div className="form-group">
-          <label>Email:</label>
+          <label>Email:</label><span className="text-danger">*</span>
           <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
         <div className="form-group">
-          <label>Specialization:</label>
+          <label>Specialization:</label><span className="text-danger">*</span>
           <input type="text" className="form-control" value={specialization} onChange={(e) => setSpecialization(e.target.value)} required />
         </div>
         <div className="form-group">
-          <label>Contact:</label>
+          <label>Contact:</label><span className="text-danger">*</span>
           <input type="text" className="form-control" value={contact} onChange={(e) => setContact(e.target.value)} required />
         </div>
         <div className="form-group">
-          <label>Consultation Fee:</label>
+          <label>Consultation Fee:</label><span className="text-danger">*</span>
           <input type="number" className="form-control" value={consultationFee} onChange={(e) => setConsultationFee(e.target.value)} required />
         </div>
 
         <div className="form-group">
-          <label>Upload Image:</label>
+          <label>Upload Image:</label><span className="text-danger">*</span>
           <input type="file" className="form-control" onChange={(e) => setFile(e.target.files[0])} />
         </div>
         <button type="submit" className="btn btn-primary" disabled={loading}>
