@@ -12,11 +12,11 @@ const Tasks = ({tasks,confirmAppointment}) => {
           ) : (
             tasks.map((task) => (
               <div className="col-12 mb-3" key={task.appointmentId}>
-                <div className="card-custom">
+                <div className="task-card-custom">
                   <div className="task-card-body d-flex justify-content-between align-items-start">
                     <div>
-                      <h5 className="card-title">{task.patientName}</h5>
-                      <p className="card-text">
+                      <h5 className="card-title task-card-title">{task.patientName}</h5>
+                      <p className="card-text task-card-text">
                         <strong>Doctor:</strong> {task.doctorName} <br />
                         <strong>Problem:</strong> {task.reason} <br />
                         <strong>Gender:</strong> {task.gender} <br />
@@ -25,7 +25,7 @@ const Tasks = ({tasks,confirmAppointment}) => {
                       </p>
                     </div>
                     <button
-                      className="btn btn-primary"
+                      className="btn task-btn btn-primary"
                       onClick={() => confirmAppointment(task.appointmentId)}
                     >
                       Confirm
