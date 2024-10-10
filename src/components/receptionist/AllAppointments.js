@@ -111,8 +111,9 @@ const AllAppointments = ({
       {filteredAppointments.length === 0 ? (
         <p className="no-appointments-text">No appointments available.</p>
       ) : (
-        <table className="appointments-table table">
-          <thead>
+        <div className='all-apnmt-table-container'>
+          <table className="appointments-table all-apnmt-table table">
+          <thead className='apnmt-table-head'>
             <tr>
               <th className="appointments-table-header">
                 Date
@@ -179,6 +180,7 @@ const AllAppointments = ({
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </div>
   );

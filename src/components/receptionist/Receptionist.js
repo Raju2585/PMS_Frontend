@@ -11,8 +11,14 @@ import AllDoctors from './AllDoctors';
 import bargraph from '../Assests/barimage.png'
 
 const Receptionist = () => {
-  const [activeComponent, setActiveComponent] = useState('default');
   const navigate = useNavigate();
+  const isLoggedIn=localStorage.getItem('recAuthToken');
+  if(isLoggedIn==null)
+  {
+    alert("Session timeout, Please login again.");
+    navigate("/root/login");
+  }
+  const [activeComponent, setActiveComponent] = useState('default');
   const receptionistInfo = JSON.parse(localStorage.getItem('receptionistInfo')) || null;
 
   const hospitalName = receptionistInfo?.hospitalName || 'Unknown Hospital';
@@ -100,19 +106,22 @@ const Receptionist = () => {
   useEffect(() => {
     fetchDoctors();
   }, []);
-  // Function to get today's appointments
-  const getTodaysAppointments = () => {
-    const today = new Date().toISOString().slice(0, 10); // Format as YYYY-MM-DD
-
-    return appointments.filter(appointment => {
-      // Ensure the appointment date is valid before comparing
-      const appointmentDate = new Date(appointment.date);
-      if (!isNaN(appointmentDate)) { // Check if it's a valid date
-        const formattedAppointmentDate = appointmentDate.toISOString().slice(0, 10);
-        return formattedAppointmentDate === today;
-      }
-      return false;
+  const CalculateCompletedAppointments = () => {
+    const currentDate = new Date();
+    const currentDateString = currentDate.toISOString().split('T')[0]; // Get the current date in YYYY-MM-DD format
+    const currentTime = currentDate.getTime(); // Get the current time in milliseconds
+  
+    // Filter appointments that are completed and occurred today before the current time
+    const completedAppointments = appointments.filter(appointment => {
+      const appointmentDate = new Date(appointment.appointmentDate);
+      return (
+        appointmentDate.toISOString().split('T')[0] === currentDateString && // Check if the date is today
+        appointmentDate.getTime() < currentTime && // Check if the time is before the current time
+        appointment.statusId === 2 // Check if the status is completed
+      );
     });
+  
+    return completedAppointments.length; // Return the length of the filtered array
   };
 
 
@@ -152,10 +161,29 @@ const Receptionist = () => {
           </div>
         </div>
       </div>
-
-
-      
-
+      <div className="todayApp-card  mx-2">
+          <div className="card-header-custom">
+            <h5 className="custom-card-title"><i className="fa fa-calendar" aria-hidden="true"></i>   Today Appointments</h5>
+          </div>
+          <div className="card-body-custom todayApp-card-body">
+              {
+                CalculateCompletedAppointments()>0?
+                (
+                  <div>
+                    <h5 className="">Attended Appointments</h5>
+                    <p className='' style={{marginLeft:"15px"}}>{CalculateCompletedAppointments()} Patients attended</p>
+                  </div>
+                ):
+                (
+                  <div>
+                    <h4 className="custom-card-text">Attended Appointments</h4>
+                    <p className="custom-card-text" style={{marginLeft:"15px"}}>No one attended yet.</p>
+                  </div>
+                )
+              }
+              <hr width="100%;" color="white" size="5" noshade/>
+          </div>
+      </div>
     </div>
   );
   const handleAddDoctorSuccess = () => {
@@ -215,9 +243,12 @@ const Receptionist = () => {
         </div>
 
         {/* Main Component Area */}
-        <div className="overview-section d-flex flex-column" style={{ paddingRight: "80px" }}>
-          <div className='bg-light'>{activeComponent === 'default' && renderDefaultCards()}</div>
+        
+        <div className="overview-section d-flex flex-column" style={{paddingRight:"80px"}}>
           <div className='container'>
+            {activeComponent === 'default' &&renderDefaultCards()}
+          </div>
+          <div  className='container'>
             {activeComponent === 'overview' && renderDefaultCards()}
           </div>
           <div className='container'>

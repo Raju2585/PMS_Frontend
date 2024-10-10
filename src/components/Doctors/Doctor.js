@@ -9,7 +9,7 @@ function Doctor() {
     const [doctors, setDoctors] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setErrors] = useState(null);
-    const [filters, setFilters] = useState({ name: '', specialization: '', city: '' });
+    const [filters, setFilters] = useState({ name: '', specialization: '', city: '', hospitalName: '' });
     const location = useLocation();
     const navigate = useNavigate(); // useNavigate to redirect
     const hospital = location.state || null;
@@ -56,7 +56,8 @@ function Doctor() {
         return (
             doctor.doctorName.toLowerCase().includes(filters.name.toLowerCase()) &&
             doctor.specialization.toLowerCase().includes(filters.specialization.toLowerCase()) &&
-            doctor.city.toLowerCase().includes(filters.city.toLowerCase())
+            doctor.city.toLowerCase().includes(filters.city.toLowerCase()) &&
+            doctor.hospitalName.toLowerCase().includes(filters.hospitalName.toLowerCase()) // New filter
         );
     });
 
@@ -85,7 +86,9 @@ function Doctor() {
                 {/* Filter inputs */}
                 <div className='filter-container'>
                     <div className='input-group inp'>
-                        <span className=' d-flex align-items-center justify-content-center p-1 filter-icon' style={{borderTopLeftRadius:"25px",borderBottomLeftRadius:"25px",width:"40px"}}><i className="fas fa-user-md "></i></span>
+                        <span className='d-flex align-items-center justify-content-center p-1 filter-icon' style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px", width: "40px" }}>
+                            <i className="fas fa-user-md"></i>
+                        </span>
                         <input
                             type='text'
                             placeholder='Search by name'
@@ -94,7 +97,9 @@ function Doctor() {
                         />
                     </div>
                     <div className='input-group inp'>
-                        <span className=' d-flex align-items-center justify-content-center p-1 filter-icon' style={{borderTopLeftRadius:"25px",borderBottomLeftRadius:"25px",width:"40px"}}><i className="fa-solid fa-stethoscope"></i></span>
+                        <span className='d-flex align-items-center justify-content-center p-1 filter-icon' style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px", width: "40px" }}>
+                            <i className="fa-solid fa-stethoscope"></i>
+                        </span>
                         <input
                             type='text'
                             placeholder='Filter by specialization'
@@ -103,12 +108,25 @@ function Doctor() {
                         />
                     </div>
                     <div className='input-group inp'>
-                        <span className=' d-flex align-items-center justify-content-center p-1 filter-icon' style={{borderTopLeftRadius:"25px",borderBottomLeftRadius:"25px",width:"40px"}}><i className="fa-solid fa-location"></i></span>
+                        <span className='d-flex align-items-center justify-content-center p-1 filter-icon' style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px", width: "40px" }}>
+                            <i className="fa-solid fa-location"></i>
+                        </span>
                         <input
                             type='text'
                             placeholder='Filter by city'
                             value={filters.city}
                             onChange={(e) => setFilters({ ...filters, city: e.target.value })}
+                        />
+                    </div>
+                    <div className='input-group inp'>
+                        <span className='d-flex align-items-center justify-content-center p-1 filter-icon' style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px", width: "40px" }}>
+                            <i className="fa-solid fa-hospital"></i>
+                        </span>
+                        <input
+                            type='text'
+                            placeholder='Filter by hospital'
+                            value={filters.hospitalName}
+                            onChange={(e) => setFilters({ ...filters, hospitalName: e.target.value })}
                         />
                     </div>
                 </div>
@@ -119,7 +137,6 @@ function Doctor() {
                     filteredDoctors.map((doctor, index) => {
                         const rating = ratings[index] !== undefined ? ratings[index] : 0;
                         
-
                         return (
                             <div key={doctor.doctorName}>
                                 <div className="Doctors d-flex justify-content-between">
