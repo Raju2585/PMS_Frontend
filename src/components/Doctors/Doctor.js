@@ -67,7 +67,7 @@ function Doctor() {
                 <div className="back-button-container" style={{
                     position: "absolute",
                     top: "20px",
-                    right: "570px",
+                    left: "370px",
                      paddingTop: "50px",
                      marginTop:"30px",
                     textAlign: "center"
@@ -75,10 +75,10 @@ function Doctor() {
                     <button 
                         type="button" 
                         className="btn btn-primary" 
-                        style={{ width: "150px" }}
+                        
                         onClick={handleBack} // Call handleBack on click
                     >
-                        Back
+                       <i class="fa-solid fa-house"></i>
                     </button>
                 </div>
 
