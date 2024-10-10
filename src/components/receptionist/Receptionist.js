@@ -170,11 +170,21 @@ const Receptionist = () => {
          
          
           <ul className="sidebar-links d-block ">
+            <li className="sidebar-section-title">Main Menu</li>
             <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('overview')}><i class="fa fa-list-alt" aria-hidden="true"></i> Overview</NavLink></li>
             <li><NavLink to="#"  className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('doctors')}><i class="fas fa-user-md"></i> Doctors</NavLink></li>
             <li><NavLink to="#"  className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('appointments')}><i class="fa fa-calendar" aria-hidden="true"></i> Appointment History</NavLink></li>
             <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('tasks')}><i class="fas fa-tasks"></i> Tasks</NavLink></li>
-           
+            <li className="sidebar-section-title">Other Menu</li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('schedules')}><i className="fas fa-clock"></i> Schedules</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('payments')}><i className="fas fa-credit-card"></i> Payment</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('products')}><i className="fas fa-box"></i> Product & Stock</NavLink></li>
+
+            {/* Help & Settings */}
+            <li className="sidebar-section-title">Help & Settings</li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('report')}><i className="fas fa-chart-line"></i> Report</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('help')}><i className="fas fa-question-circle"></i> Help Center</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('settings')}><i className="fas fa-cog"></i> Settings</NavLink></li>
           </ul>
         </div>
  
