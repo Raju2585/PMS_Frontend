@@ -105,8 +105,8 @@ const Appointments = () => {
                         <h3>You don't have any Appointments</h3>
                     </div>
                 ) : (
-                    <div className="table-container">
-                        <table className="table apnmt-table table-striped table-bordered table-hover">
+                    <div className="table-container" style={{position:'fixed'}}>
+                        <table className="table  table-striped table-bordered table-hover apnmt-table">
                         <thead className="thead-dark apnmt-table-head">
                             <tr>
                                 <th>Hospital Name</th>

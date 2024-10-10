@@ -8,8 +8,8 @@ import AllAppointments from './AllAppointments';
 import Tasks from './Tasks';
 import AllDoctors from './AllDoctors';
 // import bargraph from '../Assests/barimage.jpg';
-import bargraph from '../Assests/barimage.png'
-
+//import bargraph from '../Assests/barimage.png'
+import bargraph from '../Assests/bar-chart empty.png'
 const Receptionist = () => {
   const navigate = useNavigate();
   const isLoggedIn=localStorage.getItem('recAuthToken');
@@ -108,16 +108,15 @@ const Receptionist = () => {
   }, []);
   const CalculateCompletedAppointments = () => {
     const currentDate = new Date();
-    const currentDateString = currentDate.toISOString().split('T')[0]; // Get the current date in YYYY-MM-DD format
-    const currentTime = currentDate.getTime(); // Get the current time in milliseconds
+    const currentDateString = currentDate.toISOString().split('T')[0]; 
+    const currentTime = currentDate.getTime(); 
   
-    // Filter appointments that are completed and occurred today before the current time
     const completedAppointments = appointments.filter(appointment => {
       const appointmentDate = new Date(appointment.appointmentDate);
       return (
-        appointmentDate.toISOString().split('T')[0] === currentDateString && // Check if the date is today
-        appointmentDate.getTime() < currentTime && // Check if the time is before the current time
-        appointment.statusId === 2 // Check if the status is completed
+        appointmentDate.toISOString().split('T')[0] === currentDateString &&
+        appointmentDate.getTime() < currentTime && 
+        appointment.statusId === 2 
       );
     });
   
@@ -131,8 +130,7 @@ const Receptionist = () => {
 
       <div className="default-cards d-flex justify-content-between">
         <div className="card-custom flex-fill mx-2" style={{ position: 'relative', overflow: 'hidden' }}>
-          <img src={bargraph} alt="Bar Graph" className="image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',height: 'auto', }}
-          />
+        <i class="fa-solid fa-chart-simple image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',fontSize: '80px',height: 'auto',color: 'grey', }}></i>
           <div className="card-header-custom">
             <h5 className="card-title"><i className="fa fa-calendar" aria-hidden="true"></i> Appointments</h5>
           </div>
@@ -146,8 +144,7 @@ const Receptionist = () => {
         </div>
 
         <div className="card-custom flex-fill mx-2" style={{ position: 'relative', overflow: 'hidden' }}>
-        <img src={bargraph} alt="Bar Graph" className="image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',height: 'auto', }}
-          />
+        <i class="fa-solid fa-chart-simple image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',fontSize: '80px',height: 'auto',color: 'grey', }}></i>
           <div className="card-header-custom">
             <h5 className="card-title"><i class="fas fa-tasks"></i>  Tasks</h5>
           </div>

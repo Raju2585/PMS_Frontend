@@ -112,8 +112,8 @@ const AllAppointments = ({
         <p className="no-appointments-text">No appointments available.</p>
       ) : (
         <div className='all-apnmt-table-container'>
-          <table className="appointments-table all-apnmt-table table">
-          <thead className='apnmt-table-head'>
+          <table className="table  table-striped table-bordered table-hover appointments-table all-apnmt-table table">
+          <thead className='thead-dark apnmt-table-head'>
             <tr>
               <th className="appointments-table-header">
                 Date
