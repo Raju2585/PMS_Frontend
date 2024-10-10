@@ -7,30 +7,37 @@
     background-color: skyblue;
     color: white;
 }
-
+ 
 .table-custom tbody tr:nth-child(even) {
     background-color: #f8f9fa; /* Light grey for even rows */
 }
-
+ 
 .table-custom tbody tr:nth-child(odd) {
     background-color: #ffffff; /* White for odd rows */
 }
-
+ 
 .table-custom tbody td {
     border: 1px solid #ddd; /* Light grey border for table cells */
     color: #333; /* Dark grey text color for better readability */
 }
-
+ 
 .table-custom th, .table-custom td {
     padding: 1rem; /* Add some padding for better spacing */
 }
-
+ 
 .text-skyblue {
     color: skyblue; /* Skyblue color for headings */
 }
-.appointments-heading{
+.appointments-background {
+    background: linear-gradient(to bottom right, lightblue, lightpink);
+    min-height: 100vh; /* Ensure it covers the full height */
+    padding: 20px; /* Optional: Add some padding for better aesthetics */
+}
+
+.appointments-heading {
     margin-top: 5rem;
 }
+
 .appointments-heading{
     margin:10%;
 }
@@ -38,3 +45,12 @@ h1{
     text-align: center;
     margin-top: 100px;
 }
+.appointment-status-badge {
+    display: inline-block; /* Ensures block-like behavior */
+    width: 120px; /* Increase the width for a larger badge */
+    text-align: center; /* Center the text */
+    font-size: 1.1rem; /* Increase the font size slightly */
+    padding: 0.5rem; /* Add some padding for a better appearance */
+  }
+ 
+ 

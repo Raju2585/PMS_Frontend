@@ -3,27 +3,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-
-.receptionist-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
- 
- 
-.main-content {
-  display: flex;
-  flex-grow: 1;
-}
- 
-.sidebar-custom {
-  width: 250px; /* Fixed width for sidebar */
-  background-color: #f8f9fa; /* Light background */
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
- 
  
 .sidebar-heading {
   font-size: 1.5rem;
@@ -49,8 +28,15 @@
 }
  
 .overview-section {
-  flex-grow: 1;
+  position: relative; /* Position relative for the pseudo-element */
+  flex-grow: 1; /* Allow it to grow */
   padding: 20px;
+  overflow: hidden; /* Ensure content doesn't overflow */
+}
+ 
+.overview-section > * {
+  position: relative; /* Position content above the background */
+  z-index: 1; /* Ensure content is above the background */
 }
  
 .overview-title {
@@ -80,11 +66,11 @@
   padding: 30px;
 }
  
-.card-title {
+.custom-card-title {
   font-size: 1.5rem;
 }
  
-.card-text {
+.custom-card-text {
   font-size: 1rem;
 }
  
@@ -161,8 +147,6 @@
   object-fit: cover; /* Ensures the image covers the area */
 }
  
- 
- 
 .doc-details {
   flex: 2;
 }
@@ -177,7 +161,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
  
 }
- 
  
 .receiptonist-navbar {
   list-style: none;
@@ -214,12 +197,13 @@
 .navbar-text span {
   margin-left: 8px;
 }
-.sidebar-custom{
-  background-color:black;
-  opacity: 0.5;
-  color:white;
+.sidebar-custom {
+  width: 250px; /* Fixed width for sidebar */
+  background-color: #bad3f5; /* Light lavender background */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
 }
- 
  
 .btn i {
   margin-right: 8px;
@@ -234,13 +218,11 @@ sidebar-links li {
   margin-bottom:10px;
 }
  
- 
 .inactive-link {
   color: #333;
   text-decoration: none;
   font-weight: normal;
 }
- 
  
 .active-link {
   color: white;
@@ -248,8 +230,130 @@ sidebar-links li {
   text-decoration: none;
 }
  
- 
 .inactive-link:hover {
   color: #06248f;
   text-decoration: underline;
 }
+.add-doctor-form h2 {
+  color: white; /* Heading color */
+}
+ 
+.add-doctor-form label {
+  color: white; /* Label color */
+}
+ 
+.add-doctor-form .form-control {
+  color: white; /* Input text color */
+  background-color: #34495e; /* Optional: dark background for input fields */
+}
+ 
+.add-doctor-form .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
+}
+ 
+.add-doctor-form .alert {
+  color: #e74c3c; /* Alert text color (can remain as is or change to white) */
+}
+ 
+ 
+ 
+.receptionist-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures it takes the full height of the viewport */
+  background-image: url('../Assests/pexels-photo-6809663.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 1;
+}
+ 
+ 
+.sidebar-custom {
+  height: auto; /* Adjust height based on content */
+}
+ 
+.overview-section {
+  flex: 1; /* Allow this section to expand */
+  display: flex;
+  flex-direction: column; /* Stack contents vertically */
+  padding: 20px; /* Add padding as needed */
+ 
+}
+.sidebar-custom {
+  position: fixed; /* Fix the sidebar position */
+  top: 80px; /* Adjust based on the height of your navbar */
+  left: 0; /* Align to the left */
+  width: 250px; /* Fixed width for sidebar */
+  height: calc(100vh - 80px); /* Full height minus navbar height */
+  background-color: #34495e;; /* Light lavender background */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Add scrolling if sidebar content overflows */
+}
+ 
+.main-content {
+  margin-left: 250px; /* Space for the sidebar */
+  padding: 20px; /* Add padding for the main content */
+  flex-grow: 1; /* Allow it to take remaining space */
+  overflow-y: auto; /* Allow vertical scrolling */
+  display: flex; /* Enable flexbox */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center align items horizontally */
+}
+ 
+.overview-section {
+  width: 100%; /* Take full width */
+  max-width: 1200px; /* Optional: limit the maximum width */
+  display: flex;
+  flex-direction: column; /* Stack contents vertically */
+  align-items: center; /* Center the content */
+}
+.shift-left {
+  margin-left: -30px; /* Adjust this value as needed */
+}
+.card-header-custom {
+  background-color: white; /* White background for header */
+  color: black; /* Black color for card title */
+}
+ 
+.custom-card-title {
+  color: black; /* Ensure card title is black */
+}
+ 
+.card-body-custom {
+  background-color: #34495e; /* Dark background for card body */
+  color: white; /* White color for card text */
+}
+ 
+.custom-card-text {
+  color: white; /* Ensure card text is white */
+}
+/* Custom styles for the sidebar section titles */
+/* Set the sidebar text color to white */
+.sidebar-links li a {
+  color: white; /* Text color for menu links */
+  text-decoration: none;
+}
+
+.sidebar-links li a:hover {
+  color: lightgray; /* Optional: Text color on hover */
+}
+
+/* Custom styles for the sidebar section titles */
+.sidebar-section-title {
+  color: rgb(93, 157, 189); /* Grey color for section titles */
+  font-weight: bold;
+  margin-top: 20px; /* Space between sections */
+  padding: 10px 0;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+
+
+
+
+

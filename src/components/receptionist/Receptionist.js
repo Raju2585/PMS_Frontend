@@ -7,7 +7,7 @@ import logo from "../Assests/newlogo.png";
 import AllAppointments from './AllAppointments';
 import Tasks from './Tasks';
 import AllDoctors from './AllDoctors';
-import bargraph from '../Assests/barimage.png';
+import bargraph from '../Assests/barimage.';
 
 
 const Receptionist = () => {

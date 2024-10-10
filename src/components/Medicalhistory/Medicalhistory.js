@@ -200,7 +200,7 @@ const PatientForm = () => {
           {/* Appointment Fields */}
           <div className="row mb-6">
             <div className="col-md-6 ">
-              <label htmlFor="firstName" className='appointment-form'>First Name:</label>
+              <label htmlFor="firstName" className='appointment-form'>First Name:<span className="text-danger">*</span></label>
               <input type="text" id="first" name="firstName"
                 className="form-control form-control2"
                 value={formData.firstName}
@@ -209,7 +209,7 @@ const PatientForm = () => {
               />
             </div>
             <div className="col-md-6">
-              <label className='appointment-form' htmlFor="lastName">Last Name:</label>
+              <label className='appointment-form' htmlFor="lastName">Last Name:<span className="text-danger">*</span></label>
               <input
                 type="text"
                 id="lastName"
@@ -223,7 +223,7 @@ const PatientForm = () => {
           </div>
           <div className="row mb-6">
             <div className="col-md-6">
-              <label className='appointment-form' htmlFor="gender">Gender:</label>
+              <label className='appointment-form' htmlFor="gender">Gender:<span className="text-danger">*</span></label>
               <select
                 id="gender"
                 name="gender"
@@ -241,7 +241,7 @@ const PatientForm = () => {
               </select>
             </div>
             <div className="col-md-6">
-              <label className='appointment-form' htmlFor="height">Height (in cm):</label>
+              <label className='appointment-form' htmlFor="height">Height (in cm):<span className="text-danger">*</span></label>
               <input
                 type="number"
                 id="height"
@@ -255,7 +255,7 @@ const PatientForm = () => {
           </div>
           <div className="row mb-6">
             <div className="col-md-6">
-              <label className='appointment-form' htmlFor="weight">Weight (in kg):</label>
+              <label className='appointment-form' htmlFor="weight">Weight (in kg):<span className="text-danger">*</span></label>
               <input
                 type="number"
                 id="weight"
@@ -267,7 +267,7 @@ const PatientForm = () => {
               />
             </div>
             <div className="col-md-6">
-              <label className='appointment-form' htmlFor="dob">Date of Birth:</label>
+              <label className='appointment-form' htmlFor="dob">Date of Birth:<span className="text-danger">*</span></label>
               <input
                 type="date"
                 id="dob"
@@ -282,7 +282,7 @@ const PatientForm = () => {
           </div>
           <div className="row mb-6">
             <div className="col-md-6">
-              <label className='appointment-form' htmlFor="email">Email:</label>
+              <label className='appointment-form' htmlFor="email">Email:<span className="text-danger">*</span></label>
               <input
                 type="email"
                 id="email"
@@ -294,7 +294,7 @@ const PatientForm = () => {
               />
             </div>
             <div className="col-md-6">
-                <label className='appointment-form' htmlFor="appointmentDate">Appointment Date:</label>
+                <label className='appointment-form' htmlFor="appointmentDate">Appointment Date:<span className="text-danger">*</span></label>
                 <input
                   type="date"
                   id="appointmentDate"
@@ -311,7 +311,7 @@ const PatientForm = () => {
           {formData.appointmentDate && (
               <div className="row mb-3">
                 <div className="col-md-12">
-                  <label className='appointment-form'>Select Slot:</label>
+                  <label className='appointment-form'>Select Slot:<span className="text-danger">*</span></label>
                   <div>
                     {
                       (slots.slot_1 && slots.slot_2 && slots.slot_3 && slots.slot_4 && slots.slot_5)?
@@ -377,7 +377,7 @@ const PatientForm = () => {
 
           <div className="row mb-6">
             <div className="col-md-12">
-              <label className='appointment-form' htmlFor="reason">Reason for Visit:</label>
+              <label className='appointment-form' htmlFor="reason">Reason for Visit:<span className="text-danger">*</span></label>
               <input
                 type="text"
                 id="reason"

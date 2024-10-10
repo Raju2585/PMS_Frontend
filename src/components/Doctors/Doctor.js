@@ -85,7 +85,7 @@ function Doctor() {
                 {/* Filter inputs */}
                 <div className='filter-container'>
                     <div className='input-group inp'>
-                        <span className=' d-flex align-items-center justify-content-center p-1' style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px", width: "40px" }}><i className="fas fa-user-md"></i></span>
+                        <span className=' d-flex align-items-center justify-content-center p-1 filter-icon' style={{borderTopLeftRadius:"25px",borderBottomLeftRadius:"25px",width:"40px"}}><i className="fas fa-user-md "></i></span>
                         <input
                             type='text'
                             placeholder='Search by name'
@@ -94,7 +94,7 @@ function Doctor() {
                         />
                     </div>
                     <div className='input-group inp'>
-                        <span className=' d-flex align-items-center justify-content-center p-1' style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px", width: "40px" }}><i className="fa-solid fa-stethoscope"></i></span>
+                        <span className=' d-flex align-items-center justify-content-center p-1 filter-icon' style={{borderTopLeftRadius:"25px",borderBottomLeftRadius:"25px",width:"40px"}}><i className="fa-solid fa-stethoscope"></i></span>
                         <input
                             type='text'
                             placeholder='Filter by specialization'
@@ -103,7 +103,7 @@ function Doctor() {
                         />
                     </div>
                     <div className='input-group inp'>
-                        <span className=' d-flex align-items-center justify-content-center p-1' style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px", width: "40px" }}><i className="fa-solid fa-location"></i></span>
+                        <span className=' d-flex align-items-center justify-content-center p-1 filter-icon' style={{borderTopLeftRadius:"25px",borderBottomLeftRadius:"25px",width:"40px"}}><i className="fa-solid fa-location"></i></span>
                         <input
                             type='text'
                             placeholder='Filter by city'
