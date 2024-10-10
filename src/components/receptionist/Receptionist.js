@@ -123,8 +123,8 @@ const Receptionist = () => {
           <div className="card-body-custom">
             {
               appointments?.length>0?
-              <p className="card-text">You have {appointments.length} completed appointments.</p>:
-              <p className="card-text">You have 0 completed appointments</p>
+              <p className="custom-card-text">You have {appointments.length} completed appointments.</p>:
+              <p className="custom-card-text">You have 0 completed appointments</p>
             }
           </div>
         </div>
@@ -166,6 +166,7 @@ const Receptionist = () => {
       </div>
     </div>
   );
+
   const handleAddDoctorSuccess = () => {
     setActiveComponent('doctors')
     fetchDoctors(); // Optionally re-fetch doctors after adding a new one
@@ -220,7 +221,7 @@ const Receptionist = () => {
           <div  className='container'>
             {activeComponent === 'overview' && renderDefaultCards()}
           </div>
-          <div   className='container'>
+          <div   className='container shift-left'>
             {activeComponent === 'appointments' && <AllAppointments
             appointments={appointments}
             filterDate={filterDate}
@@ -236,7 +237,7 @@ const Receptionist = () => {
           <div className='container' style={{width:"70%"}}>
             {activeComponent === 'tasks' && <Tasks tasks={tasks} confirmAppointment={confirmAppointment}/>}
           </div>
-          <div   className='container'>
+          <div   className='container shift-left'>
               {
                 activeComponent === 'doctors' && 
                 (

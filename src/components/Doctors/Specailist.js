@@ -36,7 +36,7 @@ function Doctor() {
     const getRandomRating = () => Math.floor(Math.random() * 5) + 1;
 
     return (
-        <div className='container d-flex justify-content-center' style={{ margin:"100px",marginLeft:"300px" }}>
+        <div className='container' style={{ margin:"100px",marginLeft:"300px" }}>
             {loading && <div>Loading...</div>}
             {error && <div>Error: {error.message}</div>}
             {!loading && doctors.length === 0 && <div>No doctors available.</div>}

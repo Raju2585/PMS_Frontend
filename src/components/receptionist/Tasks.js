@@ -4,7 +4,7 @@ const Tasks = ({tasks,confirmAppointment}) => {
  
     return (
       <div>
-        <h2 className="text-center mb-4">Appointment List</h2>
+        <h2 className="text-center mb-4 fw-bold">Appointments</h2>
         <div className="row">
           {tasks.length === 0 ? (
             <p className="text-center">No appointments available.</p>
