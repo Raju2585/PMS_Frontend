@@ -130,7 +130,8 @@ const Receptionist = () => {
 
       <div className="default-cards d-flex justify-content-between">
         <div className="card-custom flex-fill mx-2" style={{ position: 'relative', overflow: 'hidden' }}>
-        <i class="fa-solid fa-chart-simple image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',fontSize: '80px',height: 'auto',color: 'grey', }}></i>
+          {/* <img src={bargraph} alt="Bar Graph" className="image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',height: 'auto', }}
+          /> */}<i class="fa-solid fa-chart-simple image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',fontSize: '80px',height: 'auto',color: 'grey', }}></i>
           <div className="card-header-custom">
             <h5 className="card-title"><i className="fa fa-calendar" aria-hidden="true"></i> Appointments</h5>
           </div>
@@ -144,7 +145,8 @@ const Receptionist = () => {
         </div>
 
         <div className="card-custom flex-fill mx-2" style={{ position: 'relative', overflow: 'hidden' }}>
-        <i class="fa-solid fa-chart-simple image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',fontSize: '80px',height: 'auto',color: 'grey', }}></i>
+        {/* <img src={bargraph} alt="Bar Graph" className="image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',height: 'auto', }}
+          /> */}<i class="fa-solid fa-chart-simple image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',fontSize: '80px',height: 'auto',color: 'grey', }}></i>
           <div className="card-header-custom">
             <h5 className="card-title"><i class="fas fa-tasks"></i>  Tasks</h5>
           </div>
