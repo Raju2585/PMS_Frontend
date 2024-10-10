@@ -1,0 +1,31 @@
+.task-card-custom {
+    background-color:black; /* White background for the card */
+    
+    border-radius: 0.5rem; /* Slightly rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .task-card-body {
+    padding: 20px; /* Padding inside the card */
+  }
+  
+  .task-card-title {
+    font-size: 1.25rem; /* Adjust title font size */
+    color: white; /* Dark text color for the title */
+  }
+  
+  .task-card-text {
+    font-size: 1rem; /* Regular font size for text */
+    color: white; /* Slightly lighter text color for better readability */
+  }
+  
+  .task-btn {
+    background-color: #007bff; /* Bootstrap primary button color */
+    border: none; /* Remove default border */
+    border-radius: 0.25rem; /* Rounded corners for button */
+  }
+  
+  .task-btn {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
