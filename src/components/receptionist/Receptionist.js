@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../receptionist/receptionist.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate,Link, NavLink } from 'react-router-dom';
+import { useNavigate, Link, NavLink } from 'react-router-dom';
 import logo from "../Assests/newlogo.png";
 import AllAppointments from './AllAppointments';
 import Tasks from './Tasks';
 import AllDoctors from './AllDoctors';
+// import bargraph from '../Assests/barimage.jpg';
+import bargraph from '../Assests/barimage.png'
+
 const Receptionist = () => {
   const navigate = useNavigate();
   const isLoggedIn=localStorage.getItem('recAuthToken');
@@ -17,7 +20,7 @@ const Receptionist = () => {
   }
   const [activeComponent, setActiveComponent] = useState('default');
   const receptionistInfo = JSON.parse(localStorage.getItem('receptionistInfo')) || null;
- 
+
   const hospitalName = receptionistInfo?.hospitalName || 'Unknown Hospital';
   const receptionistName = receptionistInfo?.receptionistName || 'Unknown Receptionist';
   const [appointments, setAppointments] = useState([]);
@@ -57,7 +60,7 @@ const Receptionist = () => {
     const fetchTasks = async () => {
       const token = localStorage.getItem('recAuthToken');
       const hospitalName = JSON.parse(localStorage.getItem('receptionistInfo'))?.hospitalName;
-      const statusId=-1;
+      const statusId = -1;
       try {
         const response = await axios.get(`https://localhost:44376/api/Appointment/GetHospitalName/${hospitalName}/${statusId}`, {
           headers: { Authorization: `Bearer ${token}` },
@@ -90,7 +93,7 @@ const Receptionist = () => {
     const hospitalId = JSON.parse(localStorage.getItem('receptionistInfo'))?.hospitalId;
     try {
       const response = await axios.get(`https://localhost:44376/api/Doctor/Get/Doctor/HospitalId/${hospitalId}`, {
-        headers: { Authorization:` Bearer ${token}` },
+        headers: { Authorization: ` Bearer ${token}` },
       });
       console.log(response.data);
       setDoctors(response.data || []);
@@ -120,34 +123,41 @@ const Receptionist = () => {
   
     return completedAppointments.length; // Return the length of the filtered array
   };
-  
+
+
   //overview
   const renderDefaultCards = () => (
     <div>
-     
+
       <div className="default-cards d-flex justify-content-between">
-        <div className="card-custom flex-fill mx-2">
+        <div className="card-custom flex-fill mx-2" style={{ position: 'relative', overflow: 'hidden' }}>
+          <img src={bargraph} alt="Bar Graph" className="image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',height: 'auto', }}
+          />
           <div className="card-header-custom">
-            <h5 className="custom-card-title"><i className="fa fa-calendar" aria-hidden="true"></i>   Appointments</h5>
+            <h5 className="card-title"><i className="fa fa-calendar" aria-hidden="true"></i> Appointments</h5>
           </div>
           <div className="card-body-custom">
             {
-              appointments?.length>0?
-              <p className="custom-card-text">You have {appointments.length} completed appointments.</p>:
-              <p className="custom-card-text">You have 0 completed appointments</p>
+              appointments?.length > 0 ?
+                <p className="card-text"><b style={{ fontSize: '40px' }}>{appointments.length}</b><br /><b>Appointments</b></p> :
+                <p className="card-text">You have 0 completed appointments</p>
             }
           </div>
         </div>
-        <div className="card-custom flex-fill mx-2">
+
+        <div className="card-custom flex-fill mx-2" style={{ position: 'relative', overflow: 'hidden' }}>
+        <img src={bargraph} alt="Bar Graph" className="image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',height: 'auto', }}
+          />
           <div className="card-header-custom">
-            <h5 className="custom-card-title"><i class="fas fa-tasks"></i>  Tasks</h5>
+            <h5 className="card-title"><i class="fas fa-tasks"></i>  Tasks</h5>
           </div>
           <div className="card-body-custom">
             {
-              tasks?.length>0?
-              <p className="custom-card-text">You have {tasks.length} tasks to complete.</p>:
-              <p className="custom-card-text">You have no tasks to complete.</p>
+              tasks?.length > 0 ?
+                <p className="card-text"><b style={{ fontSize: '40px' }}>{tasks.length}</b><br /><b>Tasks</b></p> :
+                <p className="card-text">You have no tasks to complete.</p>
             }
+            
           </div>
         </div>
       </div>
@@ -176,54 +186,62 @@ const Receptionist = () => {
       </div>
     </div>
   );
-
   const handleAddDoctorSuccess = () => {
     setActiveComponent('doctors')
     fetchDoctors(); // Optionally re-fetch doctors after adding a new one
   };
-  const handleAddDoctorClick=()=>
-  {
+  const handleAddDoctorClick = () => {
     setActiveComponent("AddDoctor");
   }
- 
- 
+
+
   return (
     <div className="receptionist-container">
       {/* Navbar */}
-      <nav className="navbar-custom sticky-top d-flex" style={{height:"80px"}}>   
-     
+      <nav className="navbar-custom sticky-top d-flex" style={{ height: "80px" }}>
+
         <div className="container d-flex justify-content-between align-items-center">
-        <div className="d-flex ">
+          <div className="d-flex ">
             <Link to="/receptionist">
               <img src={logo} className="custom-logo" alt="Logo" />
             </Link>
             <span className="custom-title-logo fw-bold">PMS</span>
           </div>
           <ul className='d-flex justify-content-between align-items-center receiptonist-navbar'>
-          <li><a className="navbar-brand" href="#">
-             {hospitalName} Hospital</a></li>
-         
-          <li><span className="navbar-text"><i class="fa-solid fa-user" ></i>{receptionistName}</span></li>
-          <li><i onClick={handleLogout}  class="fa-solid fa-power-off"></i></li>
+            <li><a className="navbar-brand" href="#">
+              {hospitalName} Hospital</a></li>
+
+            <li><span className="navbar-text"><i class="fa-solid fa-user" ></i>{receptionistName}</span></li>
+            <li><i onClick={handleLogout} class="fa-solid fa-power-off"></i></li>
           </ul>
         </div>
- 
+
       </nav>
- 
+
       <div className="main-content d-flex">
         {/* Sidebar */}
         <div className="sidebar-custom">
-         
-         
+
+
           <ul className="sidebar-links d-block ">
+            <li className="sidebar-section-title">Main Menu</li>
             <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('overview')}><i class="fa fa-list-alt" aria-hidden="true"></i> Overview</NavLink></li>
-            <li><NavLink to="#"  className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('doctors')}><i class="fas fa-user-md"></i> Doctors</NavLink></li>
-            <li><NavLink to="#"  className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('appointments')}><i class="fa fa-calendar" aria-hidden="true"></i> Appointment History</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('doctors')}><i class="fas fa-user-md"></i> Doctors</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('appointments')}><i class="fa fa-calendar" aria-hidden="true"></i> Appointment History</NavLink></li>
             <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('tasks')}><i class="fas fa-tasks"></i> Tasks</NavLink></li>
-           
+
+            <li className="sidebar-section-title">Other Menu</li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('schedules')}><i className="fas fa-clock"></i> Schedules</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('payments')}><i className="fas fa-credit-card"></i> Payment</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('products')}><i className="fas fa-box"></i> Product & Stock</NavLink></li>
+
+            <li className="sidebar-section-title">Help & Settings</li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('report')}><i className="fas fa-chart-line"></i> Report</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('help')}><i className="fas fa-question-circle"></i> Help</NavLink></li>
+            <li><NavLink to="#" className={({ isActive }) => (isActive ? 'active-link' : 'inactive-link')} onClick={() => setActiveComponent('settings')}><i className="fas fa-cog"></i> Settings</NavLink></li>
           </ul>
         </div>
- 
+
         {/* Main Component Area */}
         
         <div className="overview-section d-flex flex-column" style={{paddingRight:"80px"}}>
@@ -233,43 +251,43 @@ const Receptionist = () => {
           <div  className='container'>
             {activeComponent === 'overview' && renderDefaultCards()}
           </div>
-          <div   className='container shift-left'>
+          <div className='container'>
             {activeComponent === 'appointments' && <AllAppointments
-            appointments={appointments}
-            filterDate={filterDate}
-            setFilterDate={setFilterDate}
-            filterPatientName={filterPatientName} 
-            setFilterPatientName={setFilterPatientName}
-            filterDoctorName={filterDoctorName}
-            setFilterDoctorName={setFilterDoctorName}
-            filterStatus={filterStatus}
-            setFilterStatus={setFilterStatus}
-          />}
+              appointments={appointments}
+              filterDate={filterDate}
+              setFilterDate={setFilterDate}
+              filterPatientName={filterPatientName}
+              setFilterPatientName={setFilterPatientName}
+              filterDoctorName={filterDoctorName}
+              setFilterDoctorName={setFilterDoctorName}
+              filterStatus={filterStatus}
+              setFilterStatus={setFilterStatus}
+            />}
           </div>
-          <div className='container' style={{width:"70%"}}>
-            {activeComponent === 'tasks' && <Tasks tasks={tasks} confirmAppointment={confirmAppointment}/>}
+          <div className='container' style={{ width: "70%" }}>
+            {activeComponent === 'tasks' && <Tasks tasks={tasks} confirmAppointment={confirmAppointment} />}
           </div>
-          <div   className='container shift-left'>
-              {
-                activeComponent === 'doctors' && 
-                (
-                  <div className='row'>
-                    <div className='col col-6 mt-4'>
-                      <AllDoctors doctors={doctors} error={error} loading={loading} handleAddDoctorClick={handleAddDoctorClick} onAddDoctorSuccess={handleAddDoctorSuccess} />
-                    </div>
-                    <div className='col col-6 mt-4'>
-                      <AddDoctor onAddSuccess={handleAddDoctorSuccess}></AddDoctor>
-                    </div>
+          <div className='container'>
+            {
+              activeComponent === 'doctors' &&
+              (
+                <div className='row'>
+                  <div className='col col-6'>
+                    <AllDoctors doctors={doctors} error={error} loading={loading} handleAddDoctorClick={handleAddDoctorClick} onAddDoctorSuccess={handleAddDoctorSuccess} />
                   </div>
-                )
-              }
+                  <div className='col col-6 mt-4'>
+                    <AddDoctor onAddSuccess={handleAddDoctorSuccess}></AddDoctor>
+                  </div>
+                </div>
+              )
+            }
           </div>
         </div>
       </div>
     </div>
   );
 };
- 
+
 const AddDoctor = ({ onAddSuccess }) => {
   const [doctorName, setDoctorName] = useState('');
   const [email, setEmail] = useState('');
@@ -285,21 +303,6 @@ const AddDoctor = ({ onAddSuccess }) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-
-    // Email validation
-    if (!email.endsWith('@gmail.com')) {
-      setError('Email must be a Gmail address (ending with @gmail.com)');
-      setLoading(false);
-      return;
-    }
-
-    // Contact number validation
-    const contactRegex = /^\d{10}$/; // Only digits, exactly 10 characters
-    if (!contactRegex.test(contact)) {
-      setError('Contact number must be a 10-digit number.');
-      setLoading(false);
-      return;
-    }
 
     const hospitalId = JSON.parse(localStorage.getItem('receptionistInfo'))?.hospitalId;
 
@@ -333,41 +336,42 @@ const AddDoctor = ({ onAddSuccess }) => {
       {error && <div className="alert alert-danger">{error}</div>}
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="form-group">
-          <label>Doctor Name:<span className="text-danger">*</span></label>
+          <label>Doctor Name:</label><span className="text-danger">*</span>
           <input type="text" className="form-control" value={doctorName} onChange={(e) => setDoctorName(e.target.value)} required />
         </div>
         <div className="form-group">
-          <label>Email:<span className="text-danger">*</span></label>
+          <label>Email:</label><span className="text-danger">*</span>
           <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
         <div className="form-group">
-          <label>Specialization:<span className="text-danger">*</span></label>
+          <label>Specialization:</label><span className="text-danger">*</span>
           <input type="text" className="form-control" value={specialization} onChange={(e) => setSpecialization(e.target.value)} required />
         </div>
         <div className="form-group">
-          <label>Contact:<span className="text-danger">*</span></label>
+          <label>Contact:</label><span className="text-danger">*</span>
           <input type="text" className="form-control" value={contact} onChange={(e) => setContact(e.target.value)} required />
         </div>
         <div className="form-group">
-          <label>Consultation Fee:<span className="text-danger">*</span></label>
+          <label>Consultation Fee:</label><span className="text-danger">*</span>
           <input type="number" className="form-control" value={consultationFee} onChange={(e) => setConsultationFee(e.target.value)} required />
         </div>
+
         <div className="form-group">
-          <label>Upload Image:<span className="text-danger">*</span></label>
-          <input type="file" className="form-control" onChange={(e) => setFile(e.target.files[0])} required />
+          <label>Upload Image:</label><span className="text-danger">*</span>
+          <input type="file" className="form-control" onChange={(e) => setFile(e.target.files[0])} />
         </div>
         <button type="submit" className="btn btn-primary" disabled={loading}>
           {loading ? 'Adding...' : 'Add Doctor'}
         </button>
+
       </form>
+
     </div>
   );
 };
- 
- 
-function renderTable(){
- 
-}
- 
- 
+
+
+
+
+
 export default Receptionist;

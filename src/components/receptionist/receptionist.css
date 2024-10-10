@@ -287,7 +287,7 @@ sidebar-links li {
   left: 0; /* Align to the left */
   width: 250px; /* Fixed width for sidebar */
   height: calc(100vh - 80px); /* Full height minus navbar height */
-  background-color: #bad3f5; /* Light lavender background */
+  background-color: #34495e;; /* Light lavender background */
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   overflow-y: auto; /* Add scrolling if sidebar content overflows */
@@ -330,3 +330,30 @@ sidebar-links li {
 .custom-card-text {
   color: white; /* Ensure card text is white */
 }
+/* Custom styles for the sidebar section titles */
+/* Set the sidebar text color to white */
+.sidebar-links li a {
+  color: white; /* Text color for menu links */
+  text-decoration: none;
+}
+
+.sidebar-links li a:hover {
+  color: lightgray; /* Optional: Text color on hover */
+}
+
+/* Custom styles for the sidebar section titles */
+.sidebar-section-title {
+  color: rgb(93, 157, 189); /* Grey color for section titles */
+  font-weight: bold;
+  margin-top: 20px; /* Space between sections */
+  padding: 10px 0;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+
+
+
+
+
