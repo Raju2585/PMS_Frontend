@@ -8,13 +8,14 @@ import AllAppointments from './AllAppointments';
 import Tasks from './Tasks';
 import AllDoctors from './AllDoctors';
 const Receptionist = () => {
+  const navigate = useNavigate();
   const isLoggedIn=localStorage.getItem('recAuthToken');
   if(isLoggedIn==null)
   {
-    alert("Session timeout, Please login again.")
+    alert("Session timeout, Please login again.");
+    navigate("/root/login");
   }
   const [activeComponent, setActiveComponent] = useState('default');
-  const navigate = useNavigate();
   const receptionistInfo = JSON.parse(localStorage.getItem('receptionistInfo')) || null;
  
   const hospitalName = receptionistInfo?.hospitalName || 'Unknown Hospital';
@@ -104,10 +105,19 @@ const Receptionist = () => {
   }, []);
   const CalculateCompletedAppointments = () => {
     const currentDate = new Date();
-    // Filter appointments that are completed and occurred before the current date
-    const completedAppointments = appointments.filter(
-      appointment => appointment.appointmentDate < currentDate && appointment.statusId === 2
-    );
+    const currentDateString = currentDate.toISOString().split('T')[0]; // Get the current date in YYYY-MM-DD format
+    const currentTime = currentDate.getTime(); // Get the current time in milliseconds
+  
+    // Filter appointments that are completed and occurred today before the current time
+    const completedAppointments = appointments.filter(appointment => {
+      const appointmentDate = new Date(appointment.appointmentDate);
+      return (
+        appointmentDate.toISOString().split('T')[0] === currentDateString && // Check if the date is today
+        appointmentDate.getTime() < currentTime && // Check if the time is before the current time
+        appointment.statusId === 2 // Check if the status is completed
+      );
+    });
+  
     return completedAppointments.length; // Return the length of the filtered array
   };
   
@@ -150,7 +160,7 @@ const Receptionist = () => {
                 CalculateCompletedAppointments()>0?
                 (
                   <div>
-                    <h4 className="custom-card-text">Attended Appointments</h4>
+                    <h5 className="">Attended Appointments</h5>
                     <p className='' style={{marginLeft:"15px"}}>{CalculateCompletedAppointments()} Patients attended</p>
                   </div>
                 ):
@@ -217,7 +227,9 @@ const Receptionist = () => {
         {/* Main Component Area */}
         
         <div className="overview-section d-flex flex-column" style={{paddingRight:"80px"}}>
-          <div className='bg-light'>{activeComponent === 'default' &&renderDefaultCards()}</div>
+          <div className='container'>
+            {activeComponent === 'default' &&renderDefaultCards()}
+          </div>
           <div  className='container'>
             {activeComponent === 'overview' && renderDefaultCards()}
           </div>

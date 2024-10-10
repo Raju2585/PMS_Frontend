@@ -45,5 +45,20 @@ h1{
     font-size: 1.1rem; /* Increase the font size slightly */
     padding: 0.5rem; /* Add some padding for a better appearance */
   }
- 
- 
+.table-container {
+max-height: 600px;
+max-width: 100%;
+overflow: auto;
+border: 1px solid #ddd;
+}
+.apnmt-table {
+width: 100%;
+border-collapse: collapse;
+font-family: Arial, sans-serif;
+}
+.apnmt-table-head th {
+background-color: #f2f2f2;
+position: sticky;
+top: 0;
+z-index: 1;
+}

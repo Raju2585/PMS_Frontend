@@ -104,8 +104,9 @@ const Appointments = () => {
                         <h3>You don't have any Appointments</h3>
                     </div>
                 ) : (
-                    <table className="table table-striped table-bordered table-hover">
-                        <thead className="thead-dark">
+                    <div className="table-container">
+                        <table className="table apnmt-table table-striped table-bordered table-hover">
+                        <thead className="thead-dark apnmt-table-head">
                             <tr>
                                 <th>Hospital Name</th>
                                 <th>Doctor Name</th>
@@ -186,6 +187,7 @@ const Appointments = () => {
                             })}
                         </tbody>
                     </table>
+                    </div>
                 )
             }
             </div>
