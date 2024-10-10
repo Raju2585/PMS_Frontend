@@ -125,7 +125,7 @@ p {
 /* Focus styles */
 .filter-container input:focus {
     outline: none; /* Remove default outline */
- /* Show only bottom border on focus */
+    border-bottom: 2px solid black;
 }
 
 /* Optional: Add some hover effect */

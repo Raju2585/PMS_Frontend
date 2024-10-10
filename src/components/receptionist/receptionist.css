@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-} 
+}
  
 .sidebar-heading {
   font-size: 1.5rem;
@@ -25,15 +25,15 @@
  
 .sidebar-links a:hover {
   text-decoration: underline;
-} 
-
+}
+ 
 .overview-section {
   position: relative; /* Position relative for the pseudo-element */
   flex-grow: 1; /* Allow it to grow */
   padding: 20px;
   overflow: hidden; /* Ensure content doesn't overflow */
 }
-
+ 
 .overview-section > * {
   position: relative; /* Position content above the background */
   z-index: 1; /* Ensure content is above the background */
@@ -145,7 +145,7 @@
   width: 100%; /* Full width of the container */
   height: 120px; /* Set a fixed height */
   object-fit: cover; /* Ensures the image covers the area */
-} 
+}
  
 .doc-details {
   flex: 2;
@@ -160,7 +160,7 @@
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
  
-} 
+}
  
 .receiptonist-navbar {
   list-style: none;
@@ -216,19 +216,19 @@ sidebar-links li {
   margin: 20px 0;
   padding: 10px 0;
   margin-bottom:10px;
-} 
+}
  
 .inactive-link {
   color: #333;
   text-decoration: none;
   font-weight: normal;
-} 
+}
  
 .active-link {
   color: white;
   font-weight: bold;
   text-decoration: none;
-} 
+}
  
 .inactive-link:hover {
   color: #06248f;
@@ -237,26 +237,26 @@ sidebar-links li {
 .add-doctor-form h2 {
   color: white; /* Heading color */
 }
-
+ 
 .add-doctor-form label {
   color: white; /* Label color */
 }
-
+ 
 .add-doctor-form .form-control {
   color: white; /* Input text color */
   background-color: #34495e; /* Optional: dark background for input fields */
 }
-
+ 
 .add-doctor-form .form-control::placeholder {
   color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
 }
-
+ 
 .add-doctor-form .alert {
   color: #e74c3c; /* Alert text color (can remain as is or change to white) */
 }
-
-
-
+ 
+ 
+ 
 .receptionist-container {
   display: flex;
   flex-direction: column;
@@ -268,18 +268,18 @@ sidebar-links li {
   background-attachment: fixed;
   opacity: 1;
 }
-
-
+ 
+ 
 .sidebar-custom {
   height: auto; /* Adjust height based on content */
 }
-
+ 
 .overview-section {
   flex: 1; /* Allow this section to expand */
   display: flex;
   flex-direction: column; /* Stack contents vertically */
   padding: 20px; /* Add padding as needed */
-  
+ 
 }
 .sidebar-custom {
   position: fixed; /* Fix the sidebar position */
@@ -292,7 +292,7 @@ sidebar-links li {
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   overflow-y: auto; /* Add scrolling if sidebar content overflows */
 }
-
+ 
 .main-content {
   margin-left: 250px; /* Space for the sidebar */
   padding: 20px; /* Add padding for the main content */
@@ -302,7 +302,7 @@ sidebar-links li {
   flex-direction: column; /* Stack items vertically */
   align-items: center; /* Center align items horizontally */
 }
-
+ 
 .overview-section {
   width: 100%; /* Take full width */
   max-width: 1200px; /* Optional: limit the maximum width */
@@ -317,16 +317,16 @@ sidebar-links li {
   background-color: white; /* White background for header */
   color: black; /* Black color for card title */
 }
-
+ 
 .custom-card-title {
   color: black; /* Ensure card title is black */
 }
-
+ 
 .card-body-custom {
   background-color: #34495e; /* Dark background for card body */
   color: white; /* White color for card text */
 }
-
+ 
 .custom-card-text {
   color: white; /* Ensure card text is white */
 }

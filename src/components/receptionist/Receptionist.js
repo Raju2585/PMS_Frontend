@@ -8,6 +8,11 @@ import AllAppointments from './AllAppointments';
 import Tasks from './Tasks';
 import AllDoctors from './AllDoctors';
 const Receptionist = () => {
+  const isLoggedIn=localStorage.getItem('recAuthToken');
+  if(isLoggedIn==null)
+  {
+    alert("Session timeout, Please login again.")
+  }
   const [activeComponent, setActiveComponent] = useState('default');
   const navigate = useNavigate();
   const receptionistInfo = JSON.parse(localStorage.getItem('receptionistInfo')) || null;
@@ -97,7 +102,15 @@ const Receptionist = () => {
   useEffect(() => {
     fetchDoctors();
   }, []);
- 
+  const CalculateCompletedAppointments = () => {
+    const currentDate = new Date();
+    // Filter appointments that are completed and occurred before the current date
+    const completedAppointments = appointments.filter(
+      appointment => appointment.appointmentDate < currentDate && appointment.statusId === 2
+    );
+    return completedAppointments.length; // Return the length of the filtered array
+  };
+  
   //overview
   const renderDefaultCards = () => (
     <div>
@@ -127,6 +140,29 @@ const Receptionist = () => {
             }
           </div>
         </div>
+      </div>
+      <div className="todayApp-card  mx-2">
+          <div className="card-header-custom">
+            <h5 className="custom-card-title"><i className="fa fa-calendar" aria-hidden="true"></i>   Today Appointments</h5>
+          </div>
+          <div className="card-body-custom todayApp-card-body">
+              {
+                CalculateCompletedAppointments()>0?
+                (
+                  <div>
+                    <h4 className="custom-card-text">Attended Appointments</h4>
+                    <p className='' style={{marginLeft:"15px"}}>{CalculateCompletedAppointments()} Patients attended</p>
+                  </div>
+                ):
+                (
+                  <div>
+                    <h4 className="custom-card-text">Attended Appointments</h4>
+                    <p className="custom-card-text" style={{marginLeft:"15px"}}>No one attended yet.</p>
+                  </div>
+                )
+              }
+              <hr width="100%;" color="white" size="5" noshade/>
+          </div>
       </div>
     </div>
   );
@@ -200,7 +236,7 @@ const Receptionist = () => {
             appointments={appointments}
             filterDate={filterDate}
             setFilterDate={setFilterDate}
-            filterPatientName={filterPatientName}
+            filterPatientName={filterPatientName} 
             setFilterPatientName={setFilterPatientName}
             filterDoctorName={filterDoctorName}
             setFilterDoctorName={setFilterDoctorName}
@@ -208,7 +244,7 @@ const Receptionist = () => {
             setFilterStatus={setFilterStatus}
           />}
           </div>
-          <div   className='container' style={{width:"70%"}}>
+          <div className='container' style={{width:"70%"}}>
             {activeComponent === 'tasks' && <Tasks tasks={tasks} confirmAppointment={confirmAppointment}/>}
           </div>
           <div   className='container shift-left'>
@@ -216,7 +252,7 @@ const Receptionist = () => {
                 activeComponent === 'doctors' && 
                 (
                   <div className='row'>
-                    <div className='col col-6'>
+                    <div className='col col-6 mt-4'>
                       <AllDoctors doctors={doctors} error={error} loading={loading} handleAddDoctorClick={handleAddDoctorClick} onAddDoctorSuccess={handleAddDoctorSuccess} />
                     </div>
                     <div className='col col-6 mt-4'>

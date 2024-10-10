@@ -10,6 +10,7 @@ const Appointments = () => {
     const [error, setError] = useState(null);
     const location = useLocation();
     const appointment = location.state;
+    const [cancelDisable,setCancelDisable]=useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -60,18 +61,28 @@ const Appointments = () => {
         }
 
         switch (appointment.statusId) {
-            case 1: return { text: 'text-success', bg: 'bg-success' }; // Booked
-            case 0: return { text: 'text-danger', bg: 'bg-danger' }; // Cancelled
-            case -1: return { text: 'text-warning', bg: 'bg-warning' }; // Pending
-            default: return { text: 'text-secondary', bg: 'bg-secondary' }; // Unknown
-        }
+            case 1: return { bg: 'bg-success' }; // Booked
+            case 0: return { bg: 'bg-danger' }; // Cancelled
+            case -1: return { bg: 'bg-warning' }; // Pending
+            case 2: return { bg: 'bg-secondary' }; // Completed
+            default: return { bg: 'bg-light' }; // Unknown status
+          }
     };
 
-    const handleCancel = async () => {
+    
+    const handleCancel = async (appointmentId) => {
         if (window.confirm('Are you sure you want to cancel this appointment?')) {
             try {
-                await api.delete(`/Appointment/Cancel/${appointment.appointmentId}`);
+                await api.delete(`/Appointment/Cancel/${appointmentId}`);
                 alert('Appointment cancelled successfully.');
+                setAppointments((prevAppointments) =>
+                    prevAppointments.map(appointment =>
+                        appointment.appointmentId === appointmentId
+                            ? { ...appointment, statusId: 0 } // Update statusId to 2 for cancelled
+                            : appointment
+                    )
+                );
+                setCancelDisable(true);
                 navigate('/root/appointments'); 
             } catch (error) {
                 setError('Failed to cancel appointment: ' + (error.response ? error.response.data : error.message));
@@ -85,6 +96,7 @@ const Appointments = () => {
 
     return (
         <div className="container mt-5 appointments-heading">
+            <div className='container' style={{marginLeft:"93px"}}>
             <h1 className="mb-4 appoinment-header">Appointments</h1>
             {
                 appointments.length === 0 ? (
@@ -97,6 +109,7 @@ const Appointments = () => {
                             <tr>
                                 <th>Hospital Name</th>
                                 <th>Doctor Name</th>
+                                <th>Patient Name</th>
                                 <th>Reason</th>
                                 <th>Created At</th>
                                 <th>Appointment Date</th>
@@ -105,10 +118,16 @@ const Appointments = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {appointments.map(appointment => (
-                                <tr key={appointment.appointmentId}>
+                            {appointments.map(appointment => {
+                                    const currentDate = new Date();
+                                    const appointmentDate = new Date(appointment.appointmentDate);
+                                    const timeDifference = appointmentDate - currentDate; // Time difference in milliseconds
+                                    const isCancelable = timeDifference >= 48 * 60 * 60 * 1000;
+                                return (
+                                    <tr key={appointment.appointmentId}>
                                     <td>{appointment.hospitalName}</td>
                                     <td>{appointment.doctorName}</td>
+                                    <td>{appointment.patientName}</td>
                                     <td>{appointment.reason}</td>
                                     <td>{new Date(appointment.createdAt).toLocaleString()}</td>
                                     <td>{new Date(appointment.appointmentDate).toLocaleString()}</td>
@@ -117,26 +136,59 @@ const Appointments = () => {
                                             {getStatusText(appointment)}
                                         </span>
                                     </td>
-                                    <td>
-                                        {appointment.statusId === 2 && (
-                                            <button className="btn btn-danger" disabled> Cancel</button>
-                                        )}
-                                        {appointment.statusId === 1 && (
-                                            <button className="btn btn-danger" onClick={() => handleCancel(appointment.appointmentId)}> Cancel</button>
-                                        )}
-                                        {appointment.statusId === -1 && (
-                                            <button className="btn btn-danger" onClick={() => handleCancel(appointment.appointmentId)}> Cancel</button>
-                                        )}
-                                        {appointment.statusId === 0 && (
-                                            <button className="btn btn-danger" disabled> Cancel</button>
-                                        )}
-                                    </td>
+                                    {
+                                        appointment.statusId === 1 && isCancelable ? (
+                                            <td>
+                                                <button className="btn btn-danger" onClick={() => handleCancel(appointment.appointmentId)} disabled={cancelDisable}>
+                                                    Cancel
+                                                </button>
+                                            </td>
+                                            ) : null
+                                    }
+
+                                    {
+                                        appointment.statusId === -1 && isCancelable ? (
+                                            <td>
+                                                <button className="btn btn-danger" onClick={() => handleCancel(appointment.appointmentId)} disabled={cancelDisable}>
+                                                    Cancel
+                                                </button>
+                                            </td>
+                                        ) : null
+                                    }
+
+                                    {
+                                        !isCancelable && (appointment.statusId === 1 || appointment.statusId === -1) ? (
+                                            <td>
+                                                <button className="btn btn-danger" onClick={handleCancel} disabled>
+                                                    Cancel
+                                                </button>
+                                            </td>
+                                        ) : null
+                                    }
+
+                                    {
+                                        appointment.statusId === 0 ? (
+                                            <td>
+                                                <button className="btn btn-danger" onClick={handleCancel} disabled>
+                                                    Cancel
+                                                </button>
+                                            </td>
+                                        ) : appointment.statusId === 2 ? (
+                                            <td>
+                                                <button className="btn btn-danger" onClick={handleCancel} disabled>
+                                                    Cancel
+                                                </button>
+                                            </td>
+                                        ) : null
+                                    }
                                 </tr>
-                            ))}
+                                )
+                            })}
                         </tbody>
                     </table>
                 )
             }
+            </div>
         </div>
     );
 };
