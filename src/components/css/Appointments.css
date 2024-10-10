@@ -28,9 +28,16 @@
 .text-skyblue {
     color: skyblue; /* Skyblue color for headings */
 }
-.appointments-heading{
+.appointments-background {
+    background: linear-gradient(to bottom right, lightblue, lightpink);
+    min-height: 100vh; /* Ensure it covers the full height */
+    padding: 20px; /* Optional: Add some padding for better aesthetics */
+}
+
+.appointments-heading {
     margin-top: 5rem;
 }
+
 .appointments-heading{
     margin:10%;
 }

@@ -95,7 +95,8 @@ const Appointments = () => {
     }
 
     return (
-        <div className="container mt-5 appointments-heading">
+        <div className="appointments-background">
+        <div className="mt-5 appointments-heading">
             <div className='container' style={{marginLeft:"93px"}}>
             <h1 className="mb-4 appoinment-header">Appointments</h1>
             {
@@ -189,6 +190,7 @@ const Appointments = () => {
                 )
             }
             </div>
+        </div>
         </div>
     );
 };
