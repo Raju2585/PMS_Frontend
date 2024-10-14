@@ -52,12 +52,6 @@ h1{
     font-size: 1.1rem; /* Increase the font size slightly */
     padding: 0.5rem; /* Add some padding for a better appearance */
   }
-.table-container {
-max-height: 600px;
-max-width: 100%;
-overflow: auto;
-border: 1px solid #ddd;
-}
 .apnmt-table {
 width: 100%;
 border-collapse: collapse;
@@ -68,4 +62,11 @@ background-color: #f2f2f2;
 position: sticky;
 top: 0;
 z-index: 1;
+}
+.table-container {
+    max-height: 600px; /* Limit the height */
+    width: 67%; /* Adjust width to make it slightly wider */
+    margin: 20px auto; /* Center the table with auto margins */
+    overflow: auto; /* Allow scrolling if needed */
+    border: 1px solid #ddd; /* Add border */
 }

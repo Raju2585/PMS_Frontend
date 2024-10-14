@@ -129,7 +129,7 @@ const AllAppointments = ({
               <th className="appointments-table-header">
                 Patient Name
                 <FaFilter className="filter-icon" onClick={() => setShowPatientNameFilter(!showPatientNameFilter)} />
-                <input
+                 <input
                   type="text"
                   placeholder="Filter by Patient Name"
                   className={`filter-input ${showPatientNameFilter ? 'active' : ''}`}
