@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
 import { ToastContainer, toast } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css'; 
+import 'react-toastify/dist/ReactToastify.css';
+import '../password/EmailSender.css'; 
 
 const EmailSender = () => { 
     const [email, setEmail] = useState(''); 
@@ -41,7 +42,7 @@ const EmailSender = () => {
                 <h2>Password Recovery</h2> 
                 {error && <p className="error">{error}</p>} 
                 <div className="form-group"> 
-                    <label htmlFor="email">Email:</label> 
+                    <label htmlFor="email ">Email: </label> &nbsp; &nbsp; &nbsp;
                     <input 
                         type="email" 
                         id="email" 

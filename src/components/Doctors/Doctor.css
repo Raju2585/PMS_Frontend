@@ -18,6 +18,15 @@
     position: relative;
  
 }
+
+
+
+/* Remove the black border on focus and optionally add a custom color */
+.input-group.inp input:focus {
+    outline: none;
+   
+}
+
 .Doctor-image {
     flex: 0 0 150px;
     margin-right: 20px;
@@ -144,5 +153,7 @@ p {
     margin-left: 12%;
     margin-right: 12%;
 }
+
+
 
 
