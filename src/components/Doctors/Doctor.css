@@ -11,10 +11,12 @@
 }
 
 
-/* Remove the black border on focus and optionally add a custom color */
+
 .input-group.inp input:focus {
     outline: none;
-
+}
+.input-group.inp:hover{
+    border-bottom:none;
 }
 
 .Doctor-image {
