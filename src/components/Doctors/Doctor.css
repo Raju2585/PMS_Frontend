@@ -14,6 +14,8 @@
 
 .input-group.inp input:focus {
     outline: none;
+    border-bottom:none;
+   
 }
 .input-group.inp:hover{
     border-bottom:none;
