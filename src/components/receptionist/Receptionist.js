@@ -199,7 +199,7 @@ const Receptionist = () => {
                 )
               }
               <hr width="100%;" color="white" size="5" noshade/>
-              <h5 className=''>Upcomming Appointments <span style={{backgroundColor:"white",color:"black",paddingLeft:"5px",paddingRight:"5px",borderRadius:"25px",width:"50px"}}><strong>3</strong></span></h5>
+              <h5 className=''>Upcomming Appointments <span style={{backgroundColor:"white",color:"black",paddingLeft:"5px",paddingRight:"5px",borderRadius:"25px",width:"50px"}}><strong>4</strong></span></h5>
               <div className='container upcomming-apnts-container d-flex justify-content-between' style={{marginTop:"20px"}}>
                 <div>
                   <img className='ApntsLogo rounded w-75' src={ApntsLogo}/>
