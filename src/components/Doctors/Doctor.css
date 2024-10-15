@@ -1,103 +1,112 @@
-.Doctors {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-left: 12%;
-    margin-right: 12%;
-}
-.baimage{
+.baimage {
     background: linear-gradient(to right, lightblue, lightpink);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    min-height: 100vh; /* Full viewport height, adjust as needed */
+    min-height: 100vh;
+    /* Full viewport height, adjust as needed */
     width: 100%;
     position: relative;
- 
-}
 
+}
 
 
 /* Remove the black border on focus and optionally add a custom color */
 .input-group.inp input:focus {
     outline: none;
-   
+
 }
 
 .Doctor-image {
-    flex: 0 0 150px;
-    margin-right: 20px;
+    flex: 0 0 auto; /* Prevent the image from stretching */
+    width: 150px; /* Set a fixed width for the image */
+    height: 200px; /* Increase height for the image */
+    overflow: hidden; /* Hide overflow if any */
 }
- 
+
 .doctor-image {
-     
-    width: 100%;
-    height: 100%;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    object-fit: cover; /* Fill the area */
+    object-position: center; /* Center the image */
 }
- 
+
+.spel-container{
+    background-color: linear;
+}
+
 .Doctor-Details {
-    flex-grow: 1;
+    flex-grow: 1; /* Allow content to take remaining space */
+    margin-left: 20px; /* Space between image and content */
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: start; /* Distribute space */
 }
- 
+
+.button-container {
+    display: flex;
+    justify-content: start; /* Center horizontally */
+    margin-top: 10px; /* Space above the button */
+    width: 100%; /* Ensure it takes the full width of the parent */
+}
+
 .appointment-button {
-    align-self: flex-start;
-    margin-top: 3%;
-    padding: 10px 20px;
-    background-color: skyblue;
+    padding: 8px 16px; /* Decreased padding */
+    font-size: 0.9em; /* Decreased font size */
+    background-color: rgb(79, 148, 180);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
- 
+
 .appointment-button:hover {
     background-color: #0056b3;
 }
- Link{
+
+
+Link {
     text-decoration: none;
 }
- 
+
 h4 {
     margin: 0;
     font-size: 1.2em;
 }
- 
+
 p {
     margin: 5px 0;
 }
- 
- 
+
+
 .loading {
     text-align: center;
     font-size: 1.5em;
     margin-top: 20px;
 }
- 
+
 .error {
     color: red;
     text-align: center;
     margin-top: 20px;
 }
+
 .appointment-button a {
     text-decoration: none;
     color: white;
 }
+
 .fa-star {
     font-size: 20px;
     color: lightgray;
     margin: 0 2px;
 }
- 
+
 .fa-star.filled {
     color: gold;
 }
+
 .filter-container {
     display: flex;
     justify-content: space-between;
@@ -106,54 +115,72 @@ p {
     background-color: transparent;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-left: 12%; /* Align with Doctors */
-    margin-right: 12%; /* Align with Doctors */
-    
+    margin-left: 12%;
+    /* Align with Doctors */
+    margin-right: 12%;
+    /* Align with Doctors */
+
 }
 
 .filter-container input {
-    color: black; /* Change text color to white */
+    color: black;
+    /* Change text color to white */
     flex: 1;
-    margin-right: 10px; /* space between filters */
+    margin-right: 10px;
+    /* space between filters */
     padding-top: 10px;
     padding-bottom: 10px;
-    border: 1px white; /* Remove all borders */
-    border-radius: 25px; /* Remove border radius */
-    background-color: white; /* Keep the background transparent */
+    border: 1px white;
+    /* Remove all borders */
+    border-radius: 25px;
+    /* Remove border radius */
+    background-color: white;
+    /* Keep the background transparent */
     font-size: 1em;
-    border-bottom: 2px solid transparent; /* Add a bottom border */
-    transition: border-color 0.3s; /* Smooth transition for border color */
+    border-bottom: 2px solid transparent;
+    /* Add a bottom border */
+    transition: border-color 0.3s;
+    /* Smooth transition for border color */
 }
 
 /* Placeholder color */
 .filter-container input::placeholder {
-    color: black; /* Light white color for placeholder */
+    color: black;
+    /* Light white color for placeholder */
 }
 
 
 /* Optional: Add some hover effect */
 .filter-container input:hover {
-    border-bottom: 2px solid black; /* Change bottom border color on hover */
+    border-bottom: 2px solid black;
+    /* Change bottom border color on hover */
 }
 
 .filter-container input:last-child {
-    margin-right: 0; /* remove margin for the last input */
+    margin-right: 0;
+    /* remove margin for the last input */
 }
-.filter-icon
-{
+
+.filter-icon {
     background-color: white;
 }
+
+.Doctor-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+    gap: 20px; /* Space between items */
+    margin-left: 12%; /* Align with Doctors */
+    margin-right: 12%; /* Align with Doctors */
+}
+
 .Doctors {
+    display: flex; /* Use flexbox to align image and content */
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 5px;
     padding: 20px;
-    margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-left: 12%;
-    margin-right: 12%;
+    width: 100%; /* Full width */
+    height: 300px; /* Fixed height for uniformity */
 }
-
-
-
 
