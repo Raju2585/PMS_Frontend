@@ -114,7 +114,8 @@
   border-radius: 0.5rem 0.5rem 0 0; /* Rounded top corners */
 }
 .doc-container {
-  max-height: 900px; /* Set a height that fits your layout */
+  position: fixed;
+  max-height: 800px; /* Set a height that fits your layout */
   overflow-y: auto; /* Enable vertical scrolling */
   padding: 20px; /* Optional: add some padding */
   border: 1px solid #dee2e6; /* Optional: add a border for better visibility */
@@ -352,8 +353,17 @@ sidebar-links li {
   letter-spacing: 1px;
 }
 
+.no-bullets {
+  list-style-type: none; /* Remove bullets */
+  padding: 0;           /* Remove padding */
+  margin: 0;            /* Remove margin */
+}
 
-
-
-
+.ApntsLogo{
+  background-color: transparent;
+}
+.default-container
+{
+  position: fixed;
+}
 

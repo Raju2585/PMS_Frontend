@@ -7,6 +7,8 @@ import logo from "../Assests/newlogo.png";
 import AllAppointments from './AllAppointments';
 import Tasks from './Tasks';
 import AllDoctors from './AllDoctors';
+//import ApntsLogo from '../Assests/upcommingApnts.jpg';
+import ApntsLogo from '../Assests/istockphoto.jpg';
 // import bargraph from '../Assests/barimage.jpg';
 //import bargraph from '../Assests/barimage.png'
 import bargraph from '../Assests/bar-chart empty.png'
@@ -122,11 +124,28 @@ const Receptionist = () => {
   
     return completedAppointments.length; // Return the length of the filtered array
   };
-
-
+  const UpcommingAppointments=()=>{
+    const currentDate = new Date();
+    const currentDateString = currentDate.toISOString().split('T')[0]; 
+    const currentTime = currentDate.getTime(); 
+    const upcommingAppointments=appointments.filter(appointment=>{
+      const appointmentDate = new Date(appointment.appointmentDate);
+      return (
+        appointmentDate.toISOString().split('T')[0] === currentDateString &&
+        appointmentDate.getTime() > currentTime && 
+        appointment.statusId === 1 
+      );
+    })
+    return upcommingAppointments;
+  }
+  const OverAllCompletedAppointments=()=>{  
+    const completedAppointments = appointments.filter(appointment => appointment.statusId==2)
+  
+    return completedAppointments.length;
+  }
   //overview
   const renderDefaultCards = () => (
-    <div>
+    <div className='default-container'>
 
       <div className="default-cards d-flex justify-content-between">
         <div className="card-custom flex-fill mx-2" style={{ position: 'relative', overflow: 'hidden' }}>
@@ -138,7 +157,7 @@ const Receptionist = () => {
           <div className="card-body-custom">
             {
               appointments?.length > 0 ?
-                <p className="card-text"><b style={{ fontSize: '40px' }}>{appointments.length}</b><br /><b>Appointments</b></p> :
+                <p className="card-text"><b style={{ fontSize: '40px' }}>{OverAllCompletedAppointments()}</b><br /><b>Appointments</b></p> :
                 <p className="card-text">You have 0 completed appointments</p>
             }
           </div>
@@ -181,7 +200,37 @@ const Receptionist = () => {
                 )
               }
               <hr width="100%;" color="white" size="5" noshade/>
+              <h5 className=''>Upcomming Appointments <span style={{backgroundColor:"white",color:"black",paddingLeft:"5px",paddingRight:"5px",borderRadius:"25px",width:"50px"}}><strong>{UpcommingAppointments().length}</strong></span></h5>
+              <div className='container upcomming-apnts-container d-flex justify-content-between' style={{marginTop:"20px"}}>
+                <div>
+                  <img className='ApntsLogo rounded w-75' src={ApntsLogo}/>
+                </div>
+                <div>
+                  {
+                    UpcommingAppointments().length!=0?
+                    (<ul className='no-bullets container'>
+                      {
+                        UpcommingAppointments().map(appointment=>
+                          <li className='p-1'>
+                            <div className='d-flex align-items-center bg-light text-black rounded p-1' style={{width:"300px"}}>
+                              <div>
+                              <i class="fa-solid fa-circle-user p-2" style={{ fontSize: '40px' }}></i>
+                              </div>
+                              <div>
+                                <h6>{appointment.patientName}</h6>
+                                <p>{appointment.reason}</p>
+                              </div>
+                            </div>
+                          </li>
+                        )
+                      }
+                    </ul>):
+                    <p>No appointments today</p>
+                  }
+                </div>
+              </div>
           </div>
+          
       </div>
     </div>
   );
