@@ -94,7 +94,7 @@ function Doctor() {
                             placeholder='Search by name'
                             value={filters.name}
                             onChange={(e) => setFilters({ ...filters, name: e.target.value })}
-                        />
+                        />&nbsp;
                     </div>
                     <div className='input-group inp'>
                         <span className='d-flex align-items-center justify-content-center p-1 filter-icon' style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px", width: "40px" }}>
@@ -105,7 +105,7 @@ function Doctor() {
                             placeholder='Filter by specialization'
                             value={filters.specialization}
                             onChange={(e) => setFilters({ ...filters, specialization: e.target.value })}
-                        />
+                        />&nbsp;
                     </div>
                     <div className='input-group inp'>
                         <span className='d-flex align-items-center justify-content-center p-1 filter-icon' style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px", width: "40px" }}>
@@ -116,7 +116,7 @@ function Doctor() {
                             placeholder='Filter by city'
                             value={filters.city}
                             onChange={(e) => setFilters({ ...filters, city: e.target.value })}
-                        />
+                        />&nbsp;
                     </div>
                     <div className='input-group inp'>
                         <span className='d-flex align-items-center justify-content-center p-1 filter-icon' style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px", width: "40px" }}>
