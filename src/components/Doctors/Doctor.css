@@ -21,10 +21,14 @@
 
 
 
-/* Remove the black border on focus and optionally add a custom color */
+
 .input-group.inp input:focus {
     outline: none;
+    border-bottom:none;
    
+}
+.input-group.inp:hover{
+    border-bottom:none;
 }
 
 .Doctor-image {
@@ -143,17 +147,3 @@ p {
 {
     background-color: white;
 }
-.Doctors {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-left: 12%;
-    margin-right: 12%;
-}
-
-
-
-
