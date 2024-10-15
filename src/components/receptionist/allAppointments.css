@@ -42,13 +42,13 @@
   }
   
   /* Styling for the filter icon */
-  .filter-icon {
+  .filter-icn {
     cursor: pointer;
     margin-left: 10px;
     color: #007bff;
   }
   
-  .filter-icon:hover {
+  .filter-icn:hover {
     color: #0056b3;
   }
   
@@ -151,7 +151,7 @@ th.appointments-table-header.highlight  {
   background-color: #34495E;
   color:white;
 }
-.filter-icon{
+.filter-icn{
   margin:2%;
 }
 

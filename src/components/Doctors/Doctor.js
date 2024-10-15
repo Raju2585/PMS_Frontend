@@ -109,7 +109,7 @@ function Doctor() {
                     </div>
                     <div className='input-group inp'>
                         <span className='d-flex align-items-center justify-content-center p-1 filter-icon' style={{ borderTopLeftRadius: "25px", borderBottomLeftRadius: "25px", width: "40px" }}>
-                            <i className="fa-solid fa-location"></i>
+                            <i className="fa-solid fa-location" ></i>
                         </span>
                         <input
                             type='text'
