@@ -164,8 +164,7 @@ const Receptionist = () => {
         </div>
 
         <div className="card-custom flex-fill mx-2" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* <img src={bargraph} alt="Bar Graph" className="image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',height: 'auto', }}
-          /> */}<i class="fa-solid fa-chart-simple image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',fontSize: '80px',height: 'auto',color: 'grey', }}></i>
+          <i class="fa-solid fa-chart-simple image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',fontSize: '80px',height: 'auto',color: 'grey', }}></i>
           <div className="card-header-custom">
             <h5 className="card-title"><i class="fas fa-tasks"></i>  Tasks</h5>
           </div>
@@ -200,13 +199,13 @@ const Receptionist = () => {
                 )
               }
               <hr width="100%;" color="white" size="5" noshade/>
-              <h5 className=''>Upcomming Appointments <span style={{backgroundColor:"white",color:"black",paddingLeft:"5px",paddingRight:"5px",borderRadius:"25px",width:"50px"}}><strong>{UpcommingAppointments().length}</strong></span></h5>
+              <h5 className=''>Upcomming Appointments <span style={{backgroundColor:"white",color:"black",paddingLeft:"5px",paddingRight:"5px",borderRadius:"25px",width:"50px"}}><strong>3</strong></span></h5>
               <div className='container upcomming-apnts-container d-flex justify-content-between' style={{marginTop:"20px"}}>
                 <div>
                   <img className='ApntsLogo rounded w-75' src={ApntsLogo}/>
                 </div>
                 <div>
-                  {
+                  {/* {
                     UpcommingAppointments().length!=0?
                     (<ul className='no-bullets container'>
                       {
@@ -226,7 +225,53 @@ const Receptionist = () => {
                       }
                     </ul>):
                     <p>No appointments today</p>
-                  }
+                  } */}
+                  <ul className='no-bullets container'>
+                    <li className='p-1'>
+                      <div className='d-flex align-items-center bg-light text-black rounded p-1' style={{width:"300px"}}>
+                        <div>
+                        <i class="fa-solid fa-circle-user p-2" style={{ fontSize: '40px' }}></i>
+                        </div>
+                        <div>
+                          <h6>Arjun A</h6>
+                          <p>Fever</p>
+                        </div>
+                      </div>
+                    </li>
+                    <li className='p-1'>
+                      <div className='d-flex align-items-center bg-light text-black rounded p-1' style={{width:"300px"}}>
+                        <div>
+                        <i class="fa-solid fa-circle-user p-2" style={{ fontSize: '40px' }}></i>
+                        </div>
+                        <div>
+                          <h6>Praveen Palivela</h6>
+                          <p>Monthly cunsultation</p>
+                        </div>
+                      </div>
+                    </li>
+                    <li className='p-1'>
+                      <div className='d-flex align-items-center bg-light text-black rounded p-1' style={{width:"300px"}}>
+                        <div>
+                        <i class="fa-solid fa-circle-user p-2" style={{ fontSize: '40px' }}></i>
+                        </div>
+                        <div>
+                          <h6>Shankar Girija</h6>
+                          <p>Hair fall</p>
+                        </div>
+                      </div>
+                    </li>
+                    <li className='p-1'>
+                      <div className='d-flex align-items-center bg-light text-black rounded p-1' style={{width:"300px"}}>
+                        <div>
+                        <i class="fa-solid fa-circle-user p-2" style={{ fontSize: '40px' }}></i>
+                        </div>
+                        <div>
+                          <h6>Vikas Panduri</h6>
+                          <p>Stomach pain</p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </div>
           </div>
