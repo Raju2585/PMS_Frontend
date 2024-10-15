@@ -69,17 +69,17 @@ function Doctor() {
                     position: "absolute",
                     top: "20px",
                     left: "370px",
-                     paddingTop: "50px",
-                     marginTop:"30px",
+                    paddingTop: "50px",
+                    marginTop: "30px",
                     textAlign: "center"
                 }}>
-                    <button 
-                        type="button" 
-                        className="btn btn-primary" 
-                        
+                    <button
+                        type="button"
+                        className="btn btn-primary"
+
                         onClick={handleBack} // Call handleBack on click
                     >
-                       <i class="fa-solid fa-house"></i>
+                        <i class="fa-solid fa-house"></i>
                     </button>
                 </div>
 
@@ -133,49 +133,54 @@ function Doctor() {
 
                 {loading && <div>Loading...</div>}
                 {error && <div>Error: {error.message}</div>}
-                {filteredDoctors.length > 0 ? (
-                    filteredDoctors.map((doctor, index) => {
-                        const rating = ratings[index] !== undefined ? ratings[index] : 0;
-                        
-                        return (
-                            <div key={doctor.doctorName}>
-                                <div className="Doctors d-flex justify-content-between">
-                                    <div className="child Doctor-image">
-                                        <img
-                                            src={`data:image/jpeg;base64,${doctor.image}`}
-                                            className="img-fluid doctor-image"
-                                            alt={doctor.doctorName}
-                                        />
-                                    </div>
-                                    <div className="child Doctor-Details">
-                                        <h4>{doctor.doctorName}</h4>
-                                        <p>Specialization: {doctor.specialization}</p>
-                                        <p>Consultation Fee: Rs.{doctor.consultationFee}</p>
-                                        <p>Hospital: {doctor.hospitalName}</p>
-                                        <p>City: {doctor.city}</p>
-                                        <p>
-                                            <StarRatings
-                                                rating={rating}
-                                                starRatedColor="gold"
-                                                numberOfStars={5}
-                                                name='rating'
-                                                starDimension="20px"
-                                                starSpacing="2px"
+
+                <div className='Doctor-list'>
+                    {filteredDoctors.length > 0 ? (
+                        filteredDoctors.map((doctor, index) => {
+                            const rating = ratings[index] !== undefined ? ratings[index] : 0;
+
+                            return (
+                                <div key={doctor.doctorName}>
+                                    <div className="Doctors d-flex justify-content-between">
+                                        <div className="child Doctor-image">
+                                            <img
+                                                src={`data:image/jpeg;base64,${doctor.image}`}
+                                                className="img-fluid doctor-image"
+                                                alt={doctor.doctorName}
                                             />
-                                        </p>
-                                    </div>
-                                    <div className="child btn btn-primary appointment-button">
-                                        <Link onClick={handleBookAppointment} state={{ doctor: doctor, hospital: hospital }}>
-                                            <a>Book Appointment</a>
-                                        </Link>
+                                        </div>
+                                        <div className="child Doctor-Details">
+                                            <h4>{doctor.doctorName}</h4>
+                                            <p>Specialization: {doctor.specialization}</p>
+                                            <p>Consultation Fee: Rs.{doctor.consultationFee}</p>
+                                            <p>Hospital: {doctor.hospitalName}</p>
+                                            <p>City: {doctor.city}</p>
+                                            <p>
+                                                <StarRatings
+                                                    rating={rating}
+                                                    starRatedColor="gold"
+                                                    numberOfStars={5}
+                                                    name='rating'
+                                                    starDimension="20px"
+                                                    starSpacing="2px"
+                                                />
+                                            </p>
+                                            <div className="button-container">
+                                                <div className="child btn btn-primary appointment-button">
+                                                    <Link onClick={handleBookAppointment} state={{ doctor: doctor, hospital: hospital }}>
+                                                        <a>Book Appointment</a>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        );
-                    })
-                ) : (
-                    !loading && <div>No doctors available.</div>
-                )}
+                            );
+                        })
+                    ) : (
+                        !loading && <div>No doctors available.</div>
+                    )}
+                </div>
             </div>
         </div>
     );

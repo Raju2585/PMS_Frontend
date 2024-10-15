@@ -147,10 +147,12 @@ position: sticky;
 top: 0;
 z-index: 1;
 }
-
-.appointments-table-header:hover,
-.appointments-table-header:active {
-  background-color: #0056b3;
+th.appointments-table-header.highlight  {
+  background-color: #34495E;
+  color:white;
+}
+.filter-icon{
+  margin:2%;
 }
 
 
