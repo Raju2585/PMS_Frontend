@@ -17,11 +17,20 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-  
-  
-   
  
 } 
+
+.spec-full-page-wrapper {
+    min-height: 100vh; /* Ensures it covers the full viewport height */
+    display: flex; /* Use flex to align items */
+    flex-direction: column; /* Align items vertically */
+    background: linear-gradient(to right, lightblue, lightpink);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Keeps background fixed during scrolling */
+}
+
+
 
 .Doctor-image {
     flex: 0 0 150px;

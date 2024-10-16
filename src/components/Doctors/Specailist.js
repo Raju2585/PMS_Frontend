@@ -37,8 +37,8 @@ function Doctor() {
 
     return (
         <>
-        <div className='spec'>
-        <div className='full-page-wrapper baimage '>
+        <div className='spec-full-page-wrapper'>
+        <div className='baimage '>
         <div className='container spel-container' style={{ margin:"100px",marginLeft:"300px" }}>
             {loading && <div>Loading...</div>}
             {error && <div>Error: {error.message}</div>}
