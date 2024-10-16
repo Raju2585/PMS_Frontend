@@ -113,7 +113,7 @@ const App = () => {
           element:<PasswordReset/>
         },
         {
-          path: "/root/email-sender", // New route for EmailSender
+          path: "/root/email-sender", 
           element: <EmailSender/>
         },
         {
