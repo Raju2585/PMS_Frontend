@@ -1,5 +1,6 @@
 .recovery-container {
     padding-top: 40px; /* Move it down by adding padding */
+    background: linear-gradient( lightblue, lightpink);
     display: flex;
     justify-content: center;
     align-items: center;
