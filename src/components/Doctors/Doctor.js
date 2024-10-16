@@ -49,7 +49,7 @@ function Doctor() {
 
     // Handle back button to navigate to the homepage
     function handleBack() {
-        navigate(-1);
+        navigate("/root");
     }
 
     const filteredDoctors = doctors.filter(doctor => {
@@ -150,7 +150,7 @@ function Doctor() {
                                             />
                                         </div>
                                         <div className="child Doctor-Details">
-                                            <h4>{doctor.doctorName}</h4>
+                                            <h4>Dr.{doctor.doctorName}</h4>
                                             <p>Specialization: {doctor.specialization}</p>
                                             <p>Consultation Fee: Rs.{doctor.consultationFee}</p>
                                             <p>Hospital: {doctor.hospitalName}</p>
