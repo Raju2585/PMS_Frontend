@@ -36,7 +36,9 @@ function Doctor() {
     const getRandomRating = () => Math.floor(Math.random() * 5) + 1;
 
     return (
-        <div className='full-page-wrapper'>
+        <>
+        <div className='spec'>
+        <div className='full-page-wrapper baimage '>
         <div className='container spel-container' style={{ margin:"100px",marginLeft:"300px" }}>
             {loading && <div>Loading...</div>}
             {error && <div>Error: {error.message}</div>}
@@ -75,6 +77,8 @@ function Doctor() {
             })}
         </div>
         </div>
+        </div>
+        </>
     );
 }
 

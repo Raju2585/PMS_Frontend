@@ -1,3 +1,7 @@
+*{
+    margin:0px;
+    padding: 0px;;
+}
 .Specialist-Doctors {
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
@@ -13,13 +17,12 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    min-height: 100vh; /* Full viewport height, adjust as needed */
-    width: 100%;
-    position: relative;
+  
+  
+   
  
 } 
 
- 
 .Doctor-image {
     flex: 0 0 150px;
     margin-right: 20px;
@@ -37,15 +40,7 @@
     flex-direction: column;
     justify-content: center;
 }
-.full-page-wrapper {
-    position: fixed; /* Keep it fixed in the viewport */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom right, lightblue, lightpink);
-    z-index: -1; 
-}
+
 
 .appointment-button {
     align-self: flex-start;
@@ -91,5 +86,7 @@ p {
     text-decoration: none;
     color: white;
 }
+
+
 
  

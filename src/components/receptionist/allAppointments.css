@@ -131,8 +131,8 @@
 .all-apnmt-table-container {
   max-height: 700px;
   max-width: 100%;
-  overflow: auto;
-  border: 1px solid #ddd;
+  overflow-y: auto;
+
 }
 .all-apnmt-table {
 width: 100%;

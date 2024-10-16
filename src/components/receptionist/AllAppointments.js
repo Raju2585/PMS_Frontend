@@ -114,7 +114,7 @@ const AllAppointments = ({
       ) : (
         <div className='all-apnmt-table-container'>
           <table className="table  table-striped table-bordered table-hover appointments-table all-apnmt-table table">
-          <thead className='thead-dark apnmt-table-head'>
+          <thead className='thead-dark apnmt-table-head fixed'>
             <tr>
               <th className={`appointments-table-header ${filterDate ? 'highlight' : ''}`}>
                 Date
