@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';  // Import axios
 import { toast } from 'react-toastify'; // Import toast
 import '../password/password.css';
+import { useNavigate } from 'react-router-dom';
 
 const PasswordReset = () => {
     const [password, setPassword] = useState('');
@@ -11,7 +12,7 @@ const PasswordReset = () => {
     const [token, setToken] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(''); // Define setError
-
+    const navigate=useNavigate();
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         setEmail(urlParams.get('email'));
@@ -28,14 +29,14 @@ const PasswordReset = () => {
 
         setLoading(true);
         try { 
-            const response = await axios.post('http://localhost:5157/api/ForgetPassword/reset', 
+            const response = await axios.post('https://localhost:44376/api/ForgetPassword/reset', 
                 { Email: email, Token: token, NewPassword: password },  // Send email, token, and password
                 { headers: { 'Content-Type': 'application/json' } }
             ); 
             if (response.status === 200) { 
                 toast.success("Password reset successful!"); 
                 setMessage('Your password has been reset successfully.'); 
-                // Optionally redirect or reset the form
+                navigate("/root");
             } 
         } catch (err) { 
             if (err.response) {
@@ -45,7 +46,7 @@ const PasswordReset = () => {
             }
             toast.error("Error occurred"); 
         } finally {
-            setLoading(false); // Reset loading state
+            setLoading(false); 
         }
     };
 
@@ -88,7 +89,7 @@ const PasswordReset = () => {
                 </p>
             )}
             {error && (
-                <p className="error">{error}</p> // Display error messages
+                <p className="error">{error}</p> 
             )}
         </div>
     );

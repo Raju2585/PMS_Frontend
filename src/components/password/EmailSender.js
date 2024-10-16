@@ -16,7 +16,7 @@ const EmailSender = () => {
         e.preventDefault();
     
         try { 
-            const response = await axios.post(`http://localhost:44376/api/ForgetPassword/forget/${email}`); 
+            const response = await axios.post(`https://localhost:44376/api/ForgetPassword/forget/${email}`); 
     
             if (response.status === 200) { 
                 toast.success("Password reset email sent!"); 
