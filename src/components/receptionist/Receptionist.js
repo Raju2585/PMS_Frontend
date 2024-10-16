@@ -75,20 +75,7 @@ const Receptionist = () => {
     console.log("tasks executed");
     fetchTasks();
   }, []);
-  const confirmAppointment = async (appointmentId) => {
-    const token = localStorage.getItem('recAuthToken');
-    const statusId = 1;
-    try {
-      await axios.put(`https://localhost:44376/api/Appointment/UpdateStatus/${appointmentId}?statusId=${statusId}`, null, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setTasks(prev => prev.filter(task => task.appointmentId !== appointmentId));
-      alert(`Appointment for ID ${appointmentId} confirmed!`);
-    } catch (error) {
-      console.error('Error confirming appointment:', error);
-      alert('Error confirming appointment. Please try again.');
-    }
-  };
+  
   //fetching doctors
   const fetchDoctors = async () => {
     const token = localStorage.getItem('recAuthToken');
@@ -149,16 +136,15 @@ const Receptionist = () => {
 
       <div className="default-cards d-flex justify-content-between">
         <div className="card-custom flex-fill mx-2" style={{ position: 'relative', overflow: 'hidden' }}>
-          {/* <img src={bargraph} alt="Bar Graph" className="image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',height: 'auto', }}
-          /> */}<i class="fa-solid fa-chart-simple image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',fontSize: '80px',height: 'auto',color: 'grey', }}></i>
+          <i class="fa-solid fa-chart-simple image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',fontSize: '80px',height: 'auto',color: 'grey', }}></i>
           <div className="card-header-custom">
-            <h5 className="card-title"><i className="fa fa-calendar" aria-hidden="true"></i> Appointments</h5>
+          <Link onClick={() => (setFilterStatus(2),setActiveComponent('appointments'))}><h5 className="card-title"><i className="fa fa-calendar" aria-hidden="true"></i> Appointments</h5></Link>
           </div>
           <div className="card-body-custom">
             {
               appointments?.length > 0 ?
-                <p className="card-text"><b style={{ fontSize: '40px' }}>{OverAllCompletedAppointments()}</b><br /><b>Appointments</b></p> :
-                <p className="card-text">You have 0 completed appointments</p>
+                <p className="card-text"><b style={{ fontSize: '40px' }}>{OverAllCompletedAppointments()}</b><br /><b>Appointments Completed</b></p> :
+                <p className="card-text" style={{paddingBottom:"60px"}}>You have 0 completed appointments</p>
             }
           </div>
         </div>
@@ -166,13 +152,13 @@ const Receptionist = () => {
         <div className="card-custom flex-fill mx-2" style={{ position: 'relative', overflow: 'hidden' }}>
           <i class="fa-solid fa-chart-simple image-top-right" style={{position: 'absolute',top: '40%',right: '10%', width: '80px',fontSize: '80px',height: 'auto',color: 'grey', }}></i>
           <div className="card-header-custom">
-            <h5 className="card-title"><i class="fas fa-tasks"></i>  Tasks</h5>
+            <Link onClick={() => setActiveComponent('tasks')} ><h5 className="card-title"><i class="fas fa-tasks"></i>  Tasks</h5></Link>
           </div>
           <div className="card-body-custom">
             {
               tasks?.length > 0 ?
                 <p className="card-text"><b style={{ fontSize: '40px' }}>{tasks.length}</b><br /><b>Tasks</b></p> :
-                <p className="card-text">You have no tasks to complete.</p>
+                <p className="card-text" style={{paddingBottom:"60px"}}>You have no tasks to complete.</p>
             }
             
           </div>
@@ -358,7 +344,7 @@ const Receptionist = () => {
             />}
           </div>
           <div className='container' style={{ width: "70%" }}>
-            {activeComponent === 'tasks' && <Tasks tasks={tasks} confirmAppointment={confirmAppointment} />}
+            {activeComponent === 'tasks' && <Tasks tasks={tasks} setTasks={setTasks} />}
           </div>
           <div className='container'>
             {

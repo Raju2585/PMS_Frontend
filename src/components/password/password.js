@@ -30,7 +30,7 @@ const PasswordReset = () => {
         setLoading(true);
         try { 
             const response = await axios.post('https://localhost:44376/api/ForgetPassword/reset', 
-                { Email: email, Token: token, NewPassword: password },  // Send email, token, and password
+                { Email: email, Token: token, NewPassword: password },  
                 { headers: { 'Content-Type': 'application/json' } }
             ); 
             if (response.status === 200) { 

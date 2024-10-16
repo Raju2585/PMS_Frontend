@@ -1,8 +1,22 @@
 // Tasks Component
 import '../receptionist/tasks.css'
-const Tasks = ({tasks,confirmAppointment}) => {
+import axios from 'axios';
+const Tasks = ({tasks,setTasks}) => {
 
- 
+  const confirmAppointment = async (appointmentId) => {
+    const token = localStorage.getItem('recAuthToken');
+    const statusId = 1;
+    try {
+      await axios.put(`https://localhost:44376/api/Appointment/UpdateStatus/${appointmentId}?statusId=${statusId}`, null, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setTasks(prev => prev.filter(task => task.appointmentId !== appointmentId));
+      alert(`Appointment for ID ${appointmentId} confirmed!`);
+    } catch (error) {
+      console.error('Error confirming appointment:', error);
+      alert('Error confirming appointment. Please try again.');
+    }
+  };
     return (
       <div>
         <h2 className="text-center mb-4 fw-bold">Appointments</h2>
@@ -26,7 +40,7 @@ const Tasks = ({tasks,confirmAppointment}) => {
                     </div>
                     <button
                       className="btn task-btn btn-primary"
-                      onClick={() => confirmAppointment(task.appointmentId)}
+                      onClick={async () =>await confirmAppointment(task.appointmentId)}
                     >
                       Confirm
                     </button>
