@@ -3,31 +3,7 @@
     background: linear-gradient(to bottom right, lightblue, lightpink);
     min-height: 100vh; /* Make sure it covers the entire height of the viewport */
 }
-.table-custom thead {
-    background-color: skyblue;
-    color: white;
-}
- 
-.table-custom tbody tr:nth-child(even) {
-    background-color: #f8f9fa; /* Light grey for even rows */
-}
- 
-.table-custom tbody tr:nth-child(odd) {
-    background-color: #ffffff; /* White for odd rows */
-}
- 
-.table-custom tbody td {
-    border: 1px solid #ddd; /* Light grey border for table cells */
-    color: #333; /* Dark grey text color for better readability */
-}
- 
-.table-custom th, .table-custom td {
-    padding: 1rem; /* Add some padding for better spacing */
-}
- 
-.text-skyblue {
-    color: skyblue; /* Skyblue color for headings */
-}
+
 .appointments-background {
     background: linear-gradient(to bottom right, lightblue, lightpink);
     min-height: 100vh; /* Ensure it covers the full height */

@@ -74,7 +74,7 @@ const Login = ({ onClose }) => {
         }
       }
       catch (error) {
-        setApiError(error.response ? error.response.data.message || 'An error occurred' : 'An error occurred');
+        setApiError(error.response ? error.response.data.error || 'An error occurred' : 'An error occurred');
       } finally {
           setLoading(false);
       }
@@ -115,11 +115,12 @@ const Login = ({ onClose }) => {
           </Form.Control.Feedback>
         </Form.Group>
  
-        <Button variant="primary" type="submit" className="mt-3" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
-        </Button>
-        <div>
-        <Link to="/root/email-sender">Forgot Password?</Link>
+
+        <div className='d-flex justify-content-between align-items-end'>
+          <Button variant="primary" type="submit" className="mt-3" disabled={loading}>
+              {loading ? 'Logging in...' : 'Login'}
+          </Button>
+          <Link to="/root/email-sender">Forgot Password?</Link>
         </div>
        </Form>
     </Container>

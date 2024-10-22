@@ -95,7 +95,6 @@ function Navbar() {
 
           <div className="navbar-links d-flex align-items-stretch mt-2">
             <div className="services-contain">
-              <Link className="nav-link services">Our Services</Link>
               <div className='subnav-content'>
                 <div className='container cards-container'>
                     <Link style={{textDecoration:"none"}}>
