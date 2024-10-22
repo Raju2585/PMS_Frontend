@@ -302,7 +302,7 @@ const PatientForm = () => {
                   className="form-control form-control2"
                   value={formData.appointmentDate}
                   onChange={handleDateChange}
-                  min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
+                  min={new Date().toISOString().split("T")[0]}
                   required
                 />
               </div>
