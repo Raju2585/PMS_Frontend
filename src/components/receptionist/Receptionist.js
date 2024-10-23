@@ -185,13 +185,13 @@ const Receptionist = () => {
                 )
               }
               <hr width="100%;" color="white" size="5" noshade/>
-              <h5 className=''>Upcomming Appointments <span style={{backgroundColor:"white",color:"black",paddingLeft:"5px",paddingRight:"5px",borderRadius:"25px",width:"50px"}}><strong>4</strong></span></h5>
+              <h5 className=''>Upcomming Appointments <span style={{backgroundColor:"white",color:"black",paddingLeft:"5px",paddingRight:"5px",borderRadius:"25px",width:"50px"}}><strong>{UpcommingAppointments().length}</strong></span></h5>
               <div className='container upcomming-apnts-container d-flex justify-content-between' style={{marginTop:"20px"}}>
                 <div>
                   <img className='ApntsLogo rounded w-75' src={ApntsLogo}/>
                 </div>
                 <div>
-                  {/* {
+                  {
                     
                     UpcommingAppointments().length!=0?
                     (<ul className='no-bullets container'>
@@ -212,8 +212,8 @@ const Receptionist = () => {
                       }
                     </ul>):
                     <p>No appointments today</p>
-                  } */}
-                  <ul className='no-bullets container'>
+                  }
+                  {/* <ul className='no-bullets container'>
                     <li className='p-1'>
                       <div className='d-flex align-items-center bg-light text-black rounded p-1' style={{width:"300px"}}>
                         <div>
@@ -258,7 +258,7 @@ const Receptionist = () => {
                         </div>
                       </div>
                     </li>
-                  </ul>
+                  </ul> */}
                 </div>
               </div>
           </div>

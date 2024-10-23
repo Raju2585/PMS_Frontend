@@ -10,7 +10,6 @@ const PatientForm = () => {
   const patientInfo = localStorage.getItem('patientInfo') != null ? JSON.parse(localStorage.getItem('patientInfo')) : null;
   const doctor = location.state != null ? location.state.doctor : null;
   const hospital = location.state != null ? location.state.hospital : null;
- 
   const [formData, setFormData] = useState({
     reason: '',
     medication: [],
@@ -190,6 +189,18 @@ const PatientForm = () => {
     setSelectedSlot(time); 
     setFormData({ ...formData, appointmentTime: time });
   };
+  const isSlotAvailable=(slotTime)=>
+  {
+    const currDateTime=new Date();
+    const appointmentDate=formData.appointmentDate;
+    const date=`${currDateTime.getFullYear()}-${currDateTime.getMonth()+1}-${currDateTime.getDate()}`;
+    const time=`${currDateTime.getHours()}:${currDateTime.getMinutes()}-${currDateTime.getSeconds()}`;
+    if(appointmentDate===date && (slotTime<time))
+    {
+      return true;
+    }
+    return false;
+  }
   return (
     <>
     <div className='background mb-5'>
@@ -322,7 +333,7 @@ const PatientForm = () => {
                           <button
                             type="button"
                             className={`btn ${selectedSlot === '10:00:00' ? 'btn-success' : 'btn-outline-primary'} m-1`}
-                            disabled={slots.slot_1}
+                            disabled={slots.slot_1?true:isSlotAvailable('10:00:00')}
                             onClick={() => handleSlotClick('10:00:00')}
                           >
                             10:00
@@ -332,7 +343,7 @@ const PatientForm = () => {
                           <button
                             type="button"
                             className={`btn ${selectedSlot === '11:00:00' ? 'btn-success' : 'btn-outline-primary'} m-1`}
-                            disabled={slots.slot_2}
+                            disabled={slots.slot_2?true:isSlotAvailable('11:00:00')}
                             onClick={() => handleSlotClick('11:00:00')}
                           >
                             11:00
@@ -342,7 +353,7 @@ const PatientForm = () => {
                           <button
                             type="button"
                             className={`btn ${selectedSlot === '14:00:00' ? 'btn-success' : 'btn-outline-primary'} m-1`}
-                            disabled={slots.slot_3}
+                            disabled={slots.slot_3?true:isSlotAvailable('14:00:00')}
                             onClick={() => handleSlotClick('14:00:00')}
                           >
                             14:00
@@ -352,7 +363,7 @@ const PatientForm = () => {
                           <button
                             type="button"
                             className={`btn ${selectedSlot === '15:00:00' ? 'btn-success' : 'btn-outline-primary'} m-1`}
-                            disabled={slots.slot_4}
+                            disabled={slots.slot_4?true:isSlotAvailable('15:00:00')}
                             onClick={() => handleSlotClick('15:00:00')}
                           >
                             15:00
@@ -362,7 +373,7 @@ const PatientForm = () => {
                           <button
                             type="button"
                             className={`btn ${selectedSlot === '16:00:00' ? 'btn-success' : 'btn-outline-primary'} m-1`}
-                            disabled={slots.slot_5}
+                            disabled={slots.slot_5?true:isSlotAvailable('16:00:00')}
                             onClick={() => handleSlotClick('16:00:00')}
                           >
                             16:00
