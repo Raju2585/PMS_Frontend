@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import NotifySlice from "./NotifySlice";
+import NotifySlice from './Slices/NotificationSlice'
 
 
 const store=configureStore({
     reducer:{
-        notifications:NotifySlice
+        appointments:NotifySlice
     }
 })
 
