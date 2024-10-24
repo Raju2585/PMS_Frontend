@@ -2,18 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { FaFilter } from 'react-icons/fa';
 import './allAppointments.css';
 import axios from 'axios';
+import { MDBTable, MDBTableHead, MDBTableBody, MDBBadge} from 'mdbreact';
+import { MDBBtn } from 'mdb-react-ui-kit';
 import FilterIcon from './FilterIcon';
 
-const AllAppointments = ({ 
-  appointments, 
-  filterDate, 
-  setFilterDate, 
-  filterPatientName, 
-  setFilterPatientName, 
-  filterDoctorName, 
-  setFilterDoctorName, 
-  filterStatus, 
-  setFilterStatus 
+const AllAppointments = ({
+  appointments,
+  filterDate,
+  setFilterDate,
+  filterPatientName,
+  setFilterPatientName,
+  filterDoctorName,
+  setFilterDoctorName,
+  filterStatus,
+  setFilterStatus
 }) => {
   const [filteredAppointments, setFilteredAppointments] = useState(appointments);
   const [showDateFilter, setShowDateFilter] = useState(false);
@@ -113,85 +115,85 @@ const AllAppointments = ({
         <p className="no-appointments-text">No appointments available.</p>
       ) : (
         <div className='all-apnmt-table-container'>
-          <table className="table  table-striped table-bordered table-hover appointments-table all-apnmt-table table">
-          <thead className='thead-dark apnmt-table-head fixed'>
-            <tr>
-              <th className={`appointments-table-header ${filterDate ? 'highlight' : ''}`}>
-                Date
-                {/* <FaFilter className="filter-icon" onClick={() => setShowDateFilter(!showDateFilter)} /> */}
-                {/* <FilterIcon onClick={() => setShowDateFilter(!showDateFilter)}/>
+          <MDBTable striped bordered className='apnmt-table-head th '>
+            <MDBTableHead className='thead-dark apnmt-table-head fixed'>
+              <tr>
+                <th className={`appointments-table-header ${filterDate ? 'highlight' : ''}`}>
+                  Date
+                  {/* <FaFilter className="filter-icon" onClick={() => setShowDateFilter(!showDateFilter)} /> */}
+                  {/* <FilterIcon onClick={() => setShowDateFilter(!showDateFilter)}/>
                  */}
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" id="filter" className='filter-icn' height="20px" width="20px" onClick={() => setShowDateFilter(!showDateFilter)}>
                     <path d="M4 10h7.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2H22.91A6 6 0 0 0 11.09 8H4a1 1 0 0 0 0 2zM17 5a4 4 0 1 1-4 4A4 4 0 0 1 17 5zM44 23H36.91a6 6 0 0 0-11.82 0H4a1 1 0 0 0 0 2H25.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2zM31 28a4 4 0 1 1 4-4A4 4 0 0 1 31 28zM44 38H22.91a6 6 0 0 0-11.82 0H4a1 1 0 0 0 0 2h7.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2zM17 43a4 4 0 1 1 4-4A4 4 0 0 1 17 43z"></path>
                   </svg>
-                <input
-                  type="date"
-                  className={`filter-input ${showDateFilter ? 'active' : ''}`}
-                  value={filterDate}
-                  onChange={(e) => setFilterDate(e.target.value)}
-                />
-              </th>
-              <th className="appointments-table-header">Time</th>
-              <th className={`appointments-table-header ${filterPatientName ? 'highlight' : ''}`}>
-                Patient Name
-                {/* <FaFilter className="filter-icon" onClick={() => setShowPatientNameFilter(!showPatientNameFilter)} /> */}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" id="filter" className='filter-icn' height="20px" width="20px" onClick={() => setShowPatientNameFilter(!showPatientNameFilter)}>
-                  <path d="M4 10h7.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2H22.91A6 6 0 0 0 11.09 8H4a1 1 0 0 0 0 2zM17 5a4 4 0 1 1-4 4A4 4 0 0 1 17 5zM44 23H36.91a6 6 0 0 0-11.82 0H4a1 1 0 0 0 0 2H25.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2zM31 28a4 4 0 1 1 4-4A4 4 0 0 1 31 28zM44 38H22.91a6 6 0 0 0-11.82 0H4a1 1 0 0 0 0 2h7.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2zM17 43a4 4 0 1 1 4-4A4 4 0 0 1 17 43z"></path>
-                </svg>
-                 <input
-                  type="text"
-                  placeholder="Filter by Patient Name"
-                  className={`filter-input ${showPatientNameFilter ? 'active' : ''}`}
-                  value={filterPatientName}
-                  onChange={(e) => setFilterPatientName(e.target.value)}
-                />
-              </th>
-              <th className={`appointments-table-header ${filterDoctorName ? 'highlight' : ''}`}>
-                Assigned Doctor
-                {/* <FaFilter className="filter-icon" onClick={() => setShowDoctorNameFilter(!showDoctorNameFilter)} /> */}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" id="filter" className='filter-icn' height="20px" width="20px" onClick={() => setShowDoctorNameFilter(!showDoctorNameFilter)}>
-                  <path d="M4 10h7.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2H22.91A6 6 0 0 0 11.09 8H4a1 1 0 0 0 0 2zM17 5a4 4 0 1 1-4 4A4 4 0 0 1 17 5zM44 23H36.91a6 6 0 0 0-11.82 0H4a1 1 0 0 0 0 2H25.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2zM31 28a4 4 0 1 1 4-4A4 4 0 0 1 31 28zM44 38H22.91a6 6 0 0 0-11.82 0H4a1 1 0 0 0 0 2h7.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2zM17 43a4 4 0 1 1 4-4A4 4 0 0 1 17 43z"></path>
-                </svg>
-                <input
-                  type="text"
-                  placeholder="Filter by Doctor Name"
-                  className={`filter-input ${showDoctorNameFilter ? 'active' : ''}`}
-                  value={filterDoctorName}
-                  onChange={(e) => setFilterDoctorName(e.target.value)}
-                />
-              </th>
-              <th className={`appointments-table-header ${filterStatus ? 'highlight' : ''}`}>
-                Status
-                <select
-                  className="filter-select"
-                  value={filterStatus}
-                  onChange={(e) => setFilterStatus(e.target.value)}
-                >
-                  <option value="">All</option>
-                  <option value="-1">Pending</option>
-                  <option value="0">Cancelled</option>
-                  <option value="1">Booked</option>
-                  <option value="2">Completed</option>
-                </select>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredAppointments.map((appointment) => (
-              <tr key={appointment.appointmentId}>
-                <td>{new Date(appointment.appointmentDate).toLocaleDateString()}</td>
-                <td>{new Date(appointment.appointmentDate).toLocaleTimeString()}</td>
-                <td>{appointment.patientName}</td>
-                <td>{appointment.doctorName}</td>
-                <td>
-                  <span className={`badge ${getStatusClasses(appointment).bg} text-white status-badge`}>
-                    {getStatusText(appointment)}
-                  </span>
-                </td>
+                  <input
+                    type="date"
+                    className={`filter-input ${showDateFilter ? 'active' : ''}`}
+                    value={filterDate}
+                    onChange={(e) => setFilterDate(e.target.value)}
+                  />
+                </th>
+                <th className="appointments-table-header">Time</th>
+                <th className={`appointments-table-header ${filterPatientName ? 'highlight' : ''}`}>
+                  Patient Name
+                  {/* <FaFilter className="filter-icon" onClick={() => setShowPatientNameFilter(!showPatientNameFilter)} /> */}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" id="filter" className='filter-icn' height="20px" width="20px" onClick={() => setShowPatientNameFilter(!showPatientNameFilter)}>
+                    <path d="M4 10h7.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2H22.91A6 6 0 0 0 11.09 8H4a1 1 0 0 0 0 2zM17 5a4 4 0 1 1-4 4A4 4 0 0 1 17 5zM44 23H36.91a6 6 0 0 0-11.82 0H4a1 1 0 0 0 0 2H25.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2zM31 28a4 4 0 1 1 4-4A4 4 0 0 1 31 28zM44 38H22.91a6 6 0 0 0-11.82 0H4a1 1 0 0 0 0 2h7.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2zM17 43a4 4 0 1 1 4-4A4 4 0 0 1 17 43z"></path>
+                  </svg>
+                  <input
+                    type="text"
+                    placeholder="Filter by Patient Name"
+                    className={`filter-input ${showPatientNameFilter ? 'active' : ''}`}
+                    value={filterPatientName}
+                    onChange={(e) => setFilterPatientName(e.target.value)}
+                  />
+                </th>
+                <th className={`appointments-table-header ${filterDoctorName ? 'highlight' : ''}`}>
+                  Assigned Doctor
+                  {/* <FaFilter className="filter-icon" onClick={() => setShowDoctorNameFilter(!showDoctorNameFilter)} /> */}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" id="filter" className='filter-icn' height="20px" width="20px" onClick={() => setShowDoctorNameFilter(!showDoctorNameFilter)}>
+                    <path d="M4 10h7.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2H22.91A6 6 0 0 0 11.09 8H4a1 1 0 0 0 0 2zM17 5a4 4 0 1 1-4 4A4 4 0 0 1 17 5zM44 23H36.91a6 6 0 0 0-11.82 0H4a1 1 0 0 0 0 2H25.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2zM31 28a4 4 0 1 1 4-4A4 4 0 0 1 31 28zM44 38H22.91a6 6 0 0 0-11.82 0H4a1 1 0 0 0 0 2h7.09a6 6 0 0 0 11.82 0H44a1 1 0 0 0 0-2zM17 43a4 4 0 1 1 4-4A4 4 0 0 1 17 43z"></path>
+                  </svg>
+                  <input
+                    type="text"
+                    placeholder="Filter by Doctor Name"
+                    className={`filter-input ${showDoctorNameFilter ? 'active' : ''}`}
+                    value={filterDoctorName}
+                    onChange={(e) => setFilterDoctorName(e.target.value)}
+                  />
+                </th>
+                <th className={`appointments-table-header ${filterStatus ? 'highlight' : ''}`}>
+                  Status
+                  <select
+                    className="filter-select"
+                    value={filterStatus}
+                    onChange={(e) => setFilterStatus(e.target.value)}
+                  >
+                    <option value="">All</option>
+                    <option value="-1">Pending</option>
+                    <option value="0">Cancelled</option>
+                    <option value="1">Booked</option>
+                    <option value="2">Completed</option>
+                  </select>
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </MDBTableHead>
+            <MDBTableBody>
+              {filteredAppointments.map((appointment) => (
+                <tr key={appointment.appointmentId}>
+                  <td>{new Date(appointment.appointmentDate).toLocaleDateString()}</td>
+                  <td>{new Date(appointment.appointmentDate).toLocaleTimeString()}</td>
+                  <td>{appointment.patientName}</td>
+                  <td>{appointment.doctorName}</td>
+                  <td>
+                    <MDBBadge className={`badge ${getStatusClasses(appointment).bg} text-white status-badge`}>
+                      {getStatusText(appointment)}
+                    </MDBBadge>
+                  </td>
+                </tr>
+              ))}
+            </MDBTableBody>
+          </MDBTable>
         </div>
       )}
     </div>
