@@ -46,3 +46,23 @@ z-index: 1;
     overflow: auto; /* Allow scrolling if needed */
     border: 1px solid #ddd; /* Add border */
 }
+.status-badge {
+    font-size: 1.00rem; /* Adjust the size as needed */
+    font-weight: bold;  /* Optional: make it bold */
+}
+.table-container {
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 600px; /* Set a max height for the table */
+}
+
+.table-container thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10; /* Make sure it stays on top of other elements */
+    background-color: white; /* Background color for the sticky header */
+}
+
+.table-container thead {
+    margin: 0;
+    padding: 0;
+}

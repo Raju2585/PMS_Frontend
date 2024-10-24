@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import api from '../../apiHandler/api';
 import '../css/Appointments.css';
 import axios from 'axios';
+import { MDBTable, MDBTableHead, MDBTableBody, MDBBadge} from 'mdbreact';
+import { MDBBtn } from 'mdb-react-ui-kit';
 
 const Appointments = () => {
     const [appointments, setAppointments] = useState([]);
@@ -106,8 +108,8 @@ const Appointments = () => {
                     </div>
                 ) : (
                     <div className="table-container" style={{position:'fixed'}}>
-                        <table className="table  table-striped table-bordered table-hover apnmt-table">
-                        <thead className="thead-dark apnmt-table-head">
+                        <MDBTable>
+                            <MDBTableHead className="apnmt-table-head">
                             <tr>
                                 <th>Hospital Name</th>
                                 <th>Doctor Name</th>
@@ -118,8 +120,8 @@ const Appointments = () => {
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </MDBTableHead>
+                        <MDBTableBody>
                             {appointments.map(appointment => {
                                     const currentDate = new Date();
                                     const appointmentDate = new Date(appointment.appointmentDate);
@@ -134,16 +136,16 @@ const Appointments = () => {
                                     <td>{new Date(appointment.createdAt).toLocaleString()}</td>
                                     <td>{new Date(appointment.appointmentDate).toLocaleString()}</td>
                                     <td>
-                                        <span className={`badge ${getStatusClasses(appointment).bg} text-white appointment-status-badge`}>
-                                            {getStatusText(appointment)}
-                                        </span>
+                                    <MDBBadge className="status-badge" color={getStatusClasses(appointment).bg}>
+                                        {getStatusText(appointment)}
+                                    </MDBBadge>
                                     </td>
                                     {
                                         appointment.statusId === 1 && isCancelable ? (
                                             <td>
-                                                <button className="btn btn-danger" onClick={() => handleCancel(appointment.appointmentId)} disabled={cancelDisable}>
+                                                <MDBBtn color="danger" className="btn btn-danger" onClick={() => handleCancel(appointment.appointmentId)} disabled={cancelDisable}>
                                                     Cancel
-                                                </button>
+                                                </MDBBtn >
                                             </td>
                                             ) : null
                                     }
@@ -151,9 +153,9 @@ const Appointments = () => {
                                     {
                                         appointment.statusId === -1 && isCancelable ? (
                                             <td>
-                                                <button className="btn btn-danger" onClick={() => handleCancel(appointment.appointmentId)} disabled={cancelDisable}>
+                                                <MDBBtn color="danger" className="btn btn-danger" onClick={() => handleCancel(appointment.appointmentId)} disabled={cancelDisable}>
                                                     Cancel
-                                                </button>
+                                                </MDBBtn >
                                             </td>
                                         ) : null
                                     }
@@ -161,9 +163,9 @@ const Appointments = () => {
                                     {
                                         !isCancelable && (appointment.statusId === 1 || appointment.statusId === -1) ? (
                                             <td>
-                                                <button className="btn btn-danger" onClick={handleCancel} disabled>
+                                                <MDBBtn color="danger" className="btn btn-danger" onClick={handleCancel} disabled>
                                                     Cancel
-                                                </button>
+                                                </MDBBtn >
                                             </td>
                                         ) : null
                                     }
@@ -171,23 +173,23 @@ const Appointments = () => {
                                     {
                                         appointment.statusId === 0 ? (
                                             <td>
-                                                <button className="btn btn-danger" onClick={handleCancel} disabled>
+                                                <MDBBtn color="danger" className="btn btn-danger" onClick={handleCancel} disabled>
                                                     Cancel
-                                                </button>
+                                                </MDBBtn >
                                             </td>
                                         ) : appointment.statusId === 2 ? (
                                             <td>
-                                                <button className="btn btn-danger" onClick={handleCancel} disabled>
+                                                <MDBBtn color="danger"  className="btn btn-danger" onClick={handleCancel} disabled>
                                                     Cancel
-                                                </button>
+                                                </MDBBtn >
                                             </td>
                                         ) : null
                                     }
                                 </tr>
                                 )
                             })}
-                        </tbody>
-                    </table>
+                        </MDBTableBody>
+                    </MDBTable>
                     </div>
                 )
             }
