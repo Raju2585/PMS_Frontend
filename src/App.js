@@ -24,6 +24,7 @@ import EmailSender from './components/password/EmailSender';
 import Chat from './components/chatbot/chatbot';
 import ViewAppointment from './components/appointment/ViewAppointment';
 import About from './components/About/About';
+import Notification from './components/Notifications2/Notification';
 
 
 const App = () => {
@@ -94,7 +95,7 @@ const App = () => {
         {
           path: '/root/notifications',
 
-          element: <Notifications />
+          element: <Notification />
         },
         {
           path: "/root/PasswordReset",

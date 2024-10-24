@@ -11,6 +11,7 @@ import { useNotification } from '../Notifications/NotificationContext';
 import serviceImg from "./doctor-consultation.jpg";
 import vs from "./vs.webp";
 import AddDevice from '../vitalsigns/AddDevice';
+import { useSelector } from 'react-redux';
 
 function Navbar() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -34,6 +35,9 @@ function Navbar() {
     setSidebarOpen(false); 
     navigate('/root');
   };
+  const notifications=useSelector(state=>state.appointments.data);
+  let notifications1=notifications.length
+  console.log('the length of notifications',notifications1)
   const isLoggedIn=localStorage.getItem("authToken")!==null;
   const vitals =localStorage.getItem("vitalsigns")!=null? JSON.parse(localStorage.getItem("vitalsigns")):null;
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
@@ -117,12 +121,14 @@ function Navbar() {
               </div>
             </div>
             <Link to="/root/aboutus" className="nav-link">About Us</Link>
+            <Link to='/root/notifications' className='nav-link'><i class="fa-regular fa-bell"></i>{notifications.length}</Link>
 
             {/* <Link to="appointments" className="nav-link">More</Link> */}
             {/* <Link to="/root/chatbot" className="nav-link">Chatbot</Link> */}
             {isLoggedIn &&(
                 vitals!=null ? (
-                  <Link to="/root/vitalsigns" state={vitals} className="nav-link" >Vital Signs</Link> // Show Vital Signs if device added
+                  <Link to="/root/vitalsigns" state={vitals} className="nav-link" >Vital Signs</Link>
+                   // Show Vital Signs if device added
                 ) : (
                   <Link onClick={handleShowAddDevice} className="nav-link">Add Device</Link>// Show Add Device otherwise
               )
