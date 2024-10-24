@@ -38,7 +38,6 @@ const AddDevice = ({ onClose, show ,onDeviceAdded }) => {
     } finally {
       setLoading(false);
     }
-    
   };
 
   return (

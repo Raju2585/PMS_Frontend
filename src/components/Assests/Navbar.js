@@ -31,7 +31,7 @@ function Navbar() {
     localStorage.removeItem('authToken');
     localStorage.removeItem('patientInfo');
     localStorage.removeItem("vitalsigns");
-    setSidebarOpen(false);
+    setSidebarOpen(false); 
     navigate('/root');
   };
   const isLoggedIn=localStorage.getItem("authToken")!==null;
@@ -128,9 +128,6 @@ function Navbar() {
               )
             )}
 
-          
-
-            {/* <Link to="/root/chatbot" className="nav-link">Chatbot</Link> */}
           
           </div>
           {localStorage.getItem("authToken") != null?(

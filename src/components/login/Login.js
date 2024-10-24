@@ -47,6 +47,7 @@ const Login = ({ onClose }) => {
             setTimeout(()=>{
               localStorage.removeItem('authToken');
               localStorage.removeItem('patientInfo');
+              localStorage.removeItem('vitalsigns');
               alert("Session timeout, Please login again.");
               navigate("/root/login");
             },1800000);
