@@ -7,7 +7,7 @@ const initialState={
 }
 
 const NotifySlice=createSlice({
-    name:'notifications',
+    name:'appointments',
     initialState,
     reducers:{
 

@@ -274,7 +274,6 @@ const Receptionist = () => {
     setActiveComponent("AddDoctor");
   }
 
-
   return (
     <div className="receptionist-container">
       {/* Navbar */}
