@@ -26,7 +26,7 @@ const Appointments = () => {
                 }
 
                 setAppointments(response.data);
-                localStorage.setItem('appointments', JSON.stringify(response.data));
+               // localStorage.setItem('appointments', JSON.stringify(response.data));
             } catch (error) {
                 setError(error.message);
             }

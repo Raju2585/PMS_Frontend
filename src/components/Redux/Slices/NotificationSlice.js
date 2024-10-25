@@ -11,6 +11,8 @@ const NotifySlice=createSlice({
     name:'appointments',
     initialState,
     reducers:{
+        notificationRemove(state, action) { state.data = state.data.filter(item => item.id !== action.payload);
+        },
 
     },
     extraReducers:(builder)=>{
@@ -26,34 +28,17 @@ const NotifySlice=createSlice({
         .addCase( fetchAppointmentsByPatientId.rejected, (state,action)=>{
             state.status="error"
         })
-        debugger
+       
     }
 })
 
 export default NotifySlice.reducer;
 
+export const { notificationRemove } = NotifySlice.actions;
 
 
-// export const fetchAppointmentsByPatientId = createAsyncThunk(
-//     'appointments/fetchByPatientId',
-//     async (patientId) => {
-//         const token = localStorage.getItem('authToken'); 
 
-//         const response = await fetch(`https://localhost:44376/api/Appointment/GetAppointmentByPatientId/${patientId}`,{
-//             method: 'GET', // Specify the method
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'Authorization': `Bearer ${token}` // Add the token to the Authorization header
-//             },
-//         });
-//         if (!response.ok) {
-//             throw new Error('Failed to fetch appointments');
-//         }
-//         const data = await response.json();
-//         console.log("Appointments Data:", data); 
-//         return data; 
-//     }
-// );
+
 export const fetchAppointmentsByPatientId = createAsyncThunk(
     'appointments/fetchByPatientId',
     async (patientId) => {
