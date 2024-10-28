@@ -274,3 +274,6 @@
   width: 50%; /* Control the width of each card */
 
 }
+.notification-badge{
+  color:red;
+}

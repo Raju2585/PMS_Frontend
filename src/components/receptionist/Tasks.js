@@ -1,13 +1,29 @@
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import '../receptionist/tasks.css';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { fetchAppointmentsByPatientId } from '../Redux/Slices/NotificationSlice';
 
-const Tasks = ({ tasks, setTasks }) => {
+const Tasks = ({ tasks, setTasks,patientId }) => {
   const [loadingId, setLoadingId] = useState(null); 
+  const [patientIds, setPatientIds] = useState(null);
+  const dispatch=useDispatch();
+
+  useEffect(() => {
+    
+    const storedPatientInfo = localStorage.getItem('patientInfo');
+
+    if (storedPatientInfo) {
+      const patientInfo = JSON.parse(storedPatientInfo);
+      setPatientIds(patientInfo.id); 
+    }
+  }, []);
+
 
   const confirmAppointment = async (appointmentId) => {
     const token = localStorage.getItem('recAuthToken');
     const statusId = 1;
+    const storedPatientInfo = localStorage.getItem('patientInfo');
 
     setLoadingId(appointmentId); 
 
@@ -20,7 +36,12 @@ const Tasks = ({ tasks, setTasks }) => {
         }
       );
       setTasks((prev) => prev.filter((task) => task.appointmentId !== appointmentId));
+     
+      if (patientIds) {
+        dispatch(fetchAppointmentsByPatientId(patientIds)); 
+      }
       alert(`Appointment for ID ${appointmentId} confirmed!`);
+    
     } catch (error) {
       console.error('Error confirming appointment:', error);
       alert('Error confirming appointment. Please try again.');

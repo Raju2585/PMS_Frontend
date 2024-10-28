@@ -4,22 +4,30 @@ import api from '../../../apiHandler/api';
 
 const initialState={
     data:[],
-    status:'idle'
+    status:'idle',
+    notificationCount:0,
 }
 
 const NotifySlice=createSlice({
     name:'appointments',
     initialState,
     reducers:{
-        notificationRemove(state, action) { state.data = state.data.filter(item => item.id !== action.payload);
+        notificationRemove(state, action) { 
+            state.data = state.data.filter(item => item.id !== action.payload);
+            state.notificationCount -=1;
         },
+        
 
     },
     extraReducers:(builder)=>{
         builder.addCase( fetchAppointmentsByPatientId.fulfilled, (state,action)=>{
             state.status='idle'
-            state.data = action.payload.filter(appointment => appointment.statusId === 1);
-            
+            state.data=action.payload;
+           // state.data = action.payload.filter(appointment => appointment.statusId === 1);
+           const confirmedAppointments = action.payload.filter(
+            appointment => appointment.statusId === 1
+          );
+           state.notificationCount =confirmedAppointments.length;
         })
         .addCase( fetchAppointmentsByPatientId.pending, (state,action)=>{
             state.status="loading"

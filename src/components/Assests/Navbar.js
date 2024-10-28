@@ -35,7 +35,8 @@ function Navbar() {
     setSidebarOpen(false); 
     navigate('/root');
   };
-  const notifications=useSelector(state=>state.appointments.data);
+  const notifications=useSelector(state=>state.appointments.notificationCount);
+  console.log('the notification from redux is',notifications);
   let notifications1=notifications.length
   console.log('the length of notifications',notifications1)
   const isLoggedIn=localStorage.getItem("authToken")!==null;
@@ -121,7 +122,8 @@ function Navbar() {
               </div>
             </div>
             <Link to="/root/aboutus" className="nav-link">About Us</Link>
-            <Link to='/root/notifications' className='nav-link'><i class="fa-regular fa-bell"></i>{notifications.length}</Link>
+            {isLoggedIn && (<Link to='/root/notifications' className='nav-link'><i class="fa-regular fa-bell"></i>{notifications > 0 && <span className="badge notification-badge">{notifications}</span>}</Link>)}
+
 
             {/* <Link to="appointments" className="nav-link">More</Link> */}
             {/* <Link to="/root/chatbot" className="nav-link">Chatbot</Link> */}

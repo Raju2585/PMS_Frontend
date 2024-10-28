@@ -8,7 +8,7 @@ import { Alert } from 'react-bootstrap';
 function Notification() {
     const dispatch = useDispatch();
     const [patientId, setPatientId] = useState(null);
-    const [showNotification, setShowNotification] = useState(true); // Local state to manage notification visibility
+    const [showNotification, setShowNotification] = useState(true); 
     const notifications = useSelector(state => state.appointments.data);
     const status = useSelector(state => state.appointments.status);
     const notificationCount=useSelector(state=>state.appointments.notificationCount)
@@ -19,9 +19,11 @@ function Notification() {
         if (storedPatientInfo) {
             const patientInfo = JSON.parse(storedPatientInfo);
             setPatientId(patientInfo.id);
-            dispatch(fetchAppointmentsByPatientId(patientInfo.id));
+           dispatch(fetchAppointmentsByPatientId(patientInfo.id));
         }
     }, [dispatch]);
+
+    console.log("Redux Notifications:", notifications);
 
     const removeNotification=(appointment)=>{
         dispatch(notificationRemove(appointment))
@@ -34,9 +36,9 @@ function Notification() {
         return <p>Error in loading appointments</p>;
     }
 
-    // Filter for confirmed appointments
+   
     const confirmedAppointments = notifications.filter(appointment => appointment.statusId === 1);
-    const notificationsLength = notifications.length || 0;
+    console.log("Confirmed Appointments:", confirmedAppointments);
 
     return (
         
@@ -45,9 +47,10 @@ function Notification() {
                 confirmedAppointments.map(appointment => (
                     <Alert
                         key={appointment.id}
+                        
                         variant="success"
                         dismissible
-                        onClose={() => removeNotification(appointment.id)} 
+                        onClose={() => removeNotification(appointment.appointmentId)} 
                     >
                         Your appointment with Dr. {appointment.doctorName} at {appointment.hospitalName} hospital has been booked successfully!
                     </Alert>
